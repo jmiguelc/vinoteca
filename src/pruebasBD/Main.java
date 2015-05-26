@@ -31,6 +31,6 @@ public class Main {
         } catch (BDException ex) {
             ex.printStackTrace();
         }
-    
+    /**/
     }
 }
