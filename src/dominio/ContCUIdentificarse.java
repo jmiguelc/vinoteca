@@ -11,9 +11,9 @@ package dominio;
  */
 public class ContCUIdentificarse {
     
-    public TipoEmpleado identificarse(String login, String password){
+    /*public TipoEmpleado identificarse(String login, String password){
         Empleado emp;
         emp = emp
         
-    }
+    }*/
 }

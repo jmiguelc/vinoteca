@@ -5,9 +5,8 @@
  */
 package pruebasBD;
 
-import datos.conexionBD;
+import datos.GestorPersistenciaEmpleado;
 import excepciones.BDException;
-import java.sql.ResultSet;
 
 /**
  *
@@ -15,12 +14,23 @@ import java.sql.ResultSet;
  */
 public class Main {
     public static void main(String[] args) {
-        ResultSet r;
+        /*ResultSet r;
         String sql="SELECT * FROM APP.CATEGORIA";
         try{
             r=conexionBD.creaInstancia().ejecutaQuery(sql);
         }catch(ClassNotFoundException|BDException e){
             e.printStackTrace();
+        }*/
+    
+    String str;
+        try {
+            str = GestorPersistenciaEmpleado.getEmpleado("admin", "admin");
+            System.out.println(str);
+        } catch (ClassNotFoundException ex) {
+           ex.printStackTrace();
+        } catch (BDException ex) {
+            ex.printStackTrace();
         }
+    
     }
 }

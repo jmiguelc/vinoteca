@@ -48,7 +48,7 @@ public class Empleado {
         this.fechaInicio = fechaInicio;
     }
     
-    public Empleado obtenerEmpleado (String login, String password){
+    /*public Empleado obtenerEmpleado (String login, String password){
         
-    }
+    }*/
 }
