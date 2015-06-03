@@ -16,7 +16,7 @@ public enum TipoEmpleado {
     public static TipoEmpleado getTipo(String tipo) {
         switch(tipo){
           case "A": return responsableAlmacen;
-          case "B": return responsablePedidos;
+          case "P": return responsablePedidos;
           default: return null;
         }
     }
