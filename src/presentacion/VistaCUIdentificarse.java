@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author monrae
@@ -24,6 +26,10 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
     
     public char[] getPassword(){
         return passwordField.getPassword();        
+    }
+    
+    public void lanzaError(String msg){
+        JOptionPane.showMessageDialog(rootPane, msg, "ERROR", ERROR, null);
     }
 
     /**
@@ -56,6 +62,11 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
         passwordLabel.setText("Password: ");
 
         aceptarButton.setText("Aceptar");
+        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarButtonActionPerformed(evt);
+            }
+        });
 
         salirButton.setText("Salir");
         salirButton.setPreferredSize(new java.awt.Dimension(89, 25));
@@ -107,6 +118,10 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarButtonActionPerformed
 
     /**
      * @param args the command line arguments

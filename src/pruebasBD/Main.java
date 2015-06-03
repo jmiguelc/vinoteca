@@ -24,13 +24,11 @@ public class Main {
     
     String str;
         try {
-            str = GestorPersistenciaEmpleado.getEmpleado("admin", "admin");
+            str = GestorPersistenciaEmpleado.getEmpleadoByLogin("admin", "admin");
             System.out.println(str);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | BDException ex) {
            ex.printStackTrace();
-        } catch (BDException ex) {
-            ex.printStackTrace();
         }
-    /**/
+
     }
 }
