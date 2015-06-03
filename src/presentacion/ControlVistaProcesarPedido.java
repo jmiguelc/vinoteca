@@ -10,5 +10,9 @@ package presentacion;
  * @author nurcanc
  */
 public class ControlVistaProcesarPedido {
+
+    public ControlVistaProcesarPedido() {
+    
+    }
     
 }
