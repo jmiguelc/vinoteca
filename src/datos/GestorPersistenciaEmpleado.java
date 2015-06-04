@@ -29,8 +29,6 @@ public class GestorPersistenciaEmpleado {
             if(rs.next()){
                 JsonObject jsonObj=Json.createObjectBuilder()
                 .add("login",rs.getString("LOGIN"))
-                .add("nif",rs.getString("NIF"))
-                .add("password",rs.getString("PASSWORD"))
                 .add("fechaInicio",rs.getString("FECHAINICIO"))
                 .add("tipoEmpleado",rs.getString("TIPOEMPLEADO"))
                 .build();

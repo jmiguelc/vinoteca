@@ -44,7 +44,7 @@ public class conexionBD {
             con=DriverManager.getConnection("jdbc:derby://localhost:1527/Vinoteca", user, pass);
                  
         }catch(SQLException e){
-            throw new BDException("Error en la Consulta de la base de datos: " + e.getMessage());
+            throw new BDException(e.getMessage());
         }
     }
     

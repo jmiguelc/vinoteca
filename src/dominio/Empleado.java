@@ -28,10 +28,10 @@ public class Empleado {
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
         
-        setLogin(jsonObject.getString("LOGIN"));
-        Date fechaInicio=Date.valueOf(jsonObject.getString("FECHAINICIO"));
+        setLogin(jsonObject.getString("login"));
+        Date fechaInicio=Date.valueOf(jsonObject.getString("fechaInicio"));
         setFechaInicio(fechaInicio);
-        String tipoEmp=jsonObject.getString("TIPOEMPLEADO");
+        String tipoEmp=jsonObject.getString("tipoEmpleado");
         TipoEmpleado tipoEmpleado=TipoEmpleado.getTipo(tipoEmp);
         setTipoEmpleado(tipoEmpleado); 
         

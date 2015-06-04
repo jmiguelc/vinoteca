@@ -8,9 +8,6 @@ package presentacion;
 import dominio.ContCUIdentificarse;
 import excepciones.BDException;
 import excepciones.EmpNotFoundException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,11 +25,11 @@ public class ControlVistaIdentificarse {
     void procesaIdentificacion(){
         /*Traemos el contenido de los elementos*/
         String login=vista.getUsuario();
-        String password=Arrays.toString(vista.getPassword());
+        String password=String.valueOf(vista.getPassword());
         
         try{
         ContCUIdentificarse.identificarse(login, password);
-        }catch(BDException | EmpNotFoundException ex){
+        }catch(EmpNotFoundException ex){
             vista.lanzaError(ex.getMessage());
         }
     }

@@ -14,6 +14,6 @@ import java.sql.SQLException;
  */
 public class BDException extends SQLException{
       public BDException(String msg) {
-        super("Error de la Base de Datos: "+msg);
+        super(msg);
     }
 }

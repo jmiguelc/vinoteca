@@ -11,7 +11,7 @@ package excepciones;
  * @author juacelo
  */
 public class EmpNotFoundException extends Exception{
-      public EmpNotFoundException() {
-        super("Error Empleado no encontrado!");
+      public EmpNotFoundException(String msg) {
+        super(msg);
     }
 }

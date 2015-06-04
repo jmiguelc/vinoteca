@@ -14,12 +14,20 @@ import excepciones.EmpNotFoundException;
  */
 public class ContCUIdentificarse {
     
-    public static TipoEmpleado identificarse(String login, String password) throws BDException, EmpNotFoundException{
+    public static TipoEmpleado identificarse(String login, String password) throws EmpNotFoundException{
         Empleado emp;
-        emp = Empleado.obtenerEmpleado(login, password);
-        if (emp==null){
-            throw new EmpNotFoundException();
+        TipoEmpleado tipo=null;
+        try{    
+            emp = Empleado.obtenerEmpleado(login, password);
+            if(emp==null){
+                throw new EmpNotFoundException("Login o password Incorrectos.");
+            }
+            System.out.println("El login se ha realizado correctamente");
+            tipo=emp.getTipoEmpleado();
+        }catch(BDException ex){
+            throw new EmpNotFoundException("Empleado no Encontrado: "+ex.getMessage());   
         }
-        return emp.getTipoEmpleado();
+        return tipo;
     }
+    
 }
