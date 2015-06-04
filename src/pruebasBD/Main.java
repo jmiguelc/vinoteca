@@ -15,7 +15,7 @@ import excepciones.BDException;
 public class Main {
     public static void main(String[] args) {
         /*ResultSet r;
-        String sql="SELECT * FROM APP.CATEGORIA";
+        String sql="SELECT * FROM APP.CATEGORIA";//
         try{
             r=conexionBD.creaInstancia().ejecutaQuery(sql);
         }catch(ClassNotFoundException|BDException e){
