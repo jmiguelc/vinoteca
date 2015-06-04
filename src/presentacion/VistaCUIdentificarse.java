@@ -41,7 +41,7 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
     }
     
     public void lanzaError(String msg){
-        JOptionPane.showMessageDialog(rootPane, msg, "ERROR", ERROR, null);
+        JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -96,12 +96,11 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(userTextField))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(passwordLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passwordField))
+                        .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(aceptarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

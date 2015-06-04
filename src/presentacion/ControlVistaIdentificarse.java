@@ -5,19 +5,35 @@
  */
 package presentacion;
 
+import dominio.ContCUIdentificarse;
+import excepciones.BDException;
+import excepciones.EmpNotFoundException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author monrae
  */
 public class ControlVistaIdentificarse {
 
-    public ControlVistaIdentificarse(VistaCUIdentificarse v) {
-        
+    protected VistaCUIdentificarse vista;
+    
+    public ControlVistaIdentificarse(VistaCUIdentificarse vista) {
+        this.vista=vista;
     }
     
     
     void procesaIdentificacion(){
+        /*Traemos el contenido de los elementos*/
+        String login=vista.getUsuario();
+        String password=Arrays.toString(vista.getPassword());
         
-        /*Falta aqui hacer todo*/
+        try{
+        ContCUIdentificarse.identificarse(login, password);
+        }catch(BDException | EmpNotFoundException ex){
+            vista.lanzaError(ex.getMessage());
+        }
     }
 }

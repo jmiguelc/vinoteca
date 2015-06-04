@@ -14,7 +14,7 @@ import excepciones.EmpNotFoundException;
  */
 public class ContCUIdentificarse {
     
-    public TipoEmpleado identificarse(String login, String password) throws BDException, EmpNotFoundException{
+    public static TipoEmpleado identificarse(String login, String password) throws BDException, EmpNotFoundException{
         Empleado emp;
         emp = Empleado.obtenerEmpleado(login, password);
         if (emp==null){
