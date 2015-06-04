@@ -10,8 +10,11 @@ package presentacion;
  * @author nurcanc
  */
 public class ControlVistaProcesarPedido {
+    
+    protected VistaCUProcesarPedido vista;
 
-    public ControlVistaProcesarPedido() {
+    public ControlVistaProcesarPedido(VistaCUProcesarPedido vista) {
+        this.vista=vista;
     
     }
     

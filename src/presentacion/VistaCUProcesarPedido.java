@@ -5,19 +5,48 @@
  */
 package presentacion;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nurcanc
  */
 public class VistaCUProcesarPedido extends javax.swing.JFrame {
-
+    protected ControlVistaProcesarPedido pp;
     /**
      * Creates new form VistaCUProcesarPedido
      */
     public VistaCUProcesarPedido() {
         initComponents();
+        pp=new ControlVistaProcesarPedido(this);
     }
-
+     public boolean compruebaElementosVista(){
+        boolean val=true;
+        
+        /*Mirar si tienen los campos por defecto*/
+        
+        /*Mirar si los campos estan vacios*/
+        
+        
+        return val;
+    }
+   /* public int getNumAbonado(){
+      //  return nAbonadoField.get();
+    }
+    
+    public int getReferencia(){
+        return referenciaField.get();
+    }
+    
+    public int getCantidad(){
+        return cantidadField.get();
+    }
+    
+    */
+    public void lanzaError(String msg){
+        JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,11 +60,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         numAbLabel = new javax.swing.JLabel();
         ComprobarButton = new javax.swing.JButton();
-        nAbonado = new javax.swing.JTextField();
+        nAbonadoField = new javax.swing.JTextField();
         refLabel = new javax.swing.JLabel();
-        referencia = new javax.swing.JTextField();
+        referenciaField = new javax.swing.JTextField();
         totalLabel = new javax.swing.JLabel();
-        cantidad = new javax.swing.JTextField();
+        cantidadField = new javax.swing.JTextField();
         GuardarButton = new javax.swing.JButton();
         ConfirmarButton = new javax.swing.JButton();
 
@@ -47,25 +76,25 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         ComprobarButton.setText("Comprobar");
 
-        nAbonado.setText("num abonado");
-        nAbonado.addActionListener(new java.awt.event.ActionListener() {
+        nAbonadoField.setText("num abonado");
+        nAbonadoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nAbonadoActionPerformed(evt);
+                nAbonadoFieldActionPerformed(evt);
             }
         });
 
         refLabel.setText("Referencia");
 
-        referencia.setText("referencia");
-        referencia.addActionListener(new java.awt.event.ActionListener() {
+        referenciaField.setText("referencia");
+        referenciaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                referenciaActionPerformed(evt);
+                referenciaFieldActionPerformed(evt);
             }
         });
 
         totalLabel.setText("Cantidad");
 
-        cantidad.setText("cantidad");
+        cantidadField.setText("cantidad");
 
         GuardarButton.setText("Guardar");
 
@@ -87,8 +116,8 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                             .addComponent(totalLabel))
                         .addGap(51, 51, 51)
                         .addGroup(PedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(referencia)
-                            .addComponent(cantidad)))
+                            .addComponent(referenciaField)
+                            .addComponent(cantidadField)))
                     .addGroup(PedidoLayout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addComponent(GuardarButton)))
@@ -100,7 +129,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                     .addComponent(numAbLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nAbonadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ConfirmarButton))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
@@ -112,7 +141,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(PedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numAbLabel)
-                    .addComponent(nAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nAbonadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComprobarButton)
@@ -120,11 +149,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(PedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(refLabel)
-                    .addComponent(referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(referenciaField, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalLabel)
-                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cantidadField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(GuardarButton)
                 .addContainerGap(42, Short.MAX_VALUE))
@@ -150,13 +179,13 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nAbonadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nAbonadoActionPerformed
+    private void nAbonadoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nAbonadoFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nAbonadoActionPerformed
+    }//GEN-LAST:event_nAbonadoFieldActionPerformed
 
-    private void referenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_referenciaActionPerformed
+    private void referenciaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_referenciaFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_referenciaActionPerformed
+    }//GEN-LAST:event_referenciaFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,12 +227,12 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private javax.swing.JButton ConfirmarButton;
     private javax.swing.JButton GuardarButton;
     private javax.swing.JPanel Pedido;
-    private javax.swing.JTextField cantidad;
+    private javax.swing.JTextField cantidadField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField nAbonado;
+    private javax.swing.JTextField nAbonadoField;
     private javax.swing.JLabel numAbLabel;
     private javax.swing.JLabel refLabel;
-    private javax.swing.JTextField referencia;
+    private javax.swing.JTextField referenciaField;
     private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

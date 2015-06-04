@@ -60,8 +60,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="referencia" max="32767" attributes="0"/>
-                              <Component id="cantidad" max="32767" attributes="0"/>
+                              <Component id="referenciaField" max="32767" attributes="0"/>
+                              <Component id="cantidadField" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -79,7 +79,7 @@
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nAbonado" min="-2" max="-2" attributes="0"/>
+                      <Component id="nAbonadoField" min="-2" max="-2" attributes="0"/>
                       <Component id="ConfirmarButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="78" max="32767" attributes="0"/>
@@ -94,7 +94,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="numAbLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nAbonado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nAbonadoField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -104,12 +104,12 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="refLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="referencia" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                      <Component id="referenciaField" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="totalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cantidadField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="GuardarButton" min="-2" max="-2" attributes="0"/>
@@ -134,12 +134,12 @@
             <Property name="text" type="java.lang.String" value="Comprobar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nAbonado">
+        <Component class="javax.swing.JTextField" name="nAbonadoField">
           <Properties>
             <Property name="text" type="java.lang.String" value="num abonado"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nAbonadoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nAbonadoFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="refLabel">
@@ -147,12 +147,12 @@
             <Property name="text" type="java.lang.String" value="Referencia"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="referencia">
+        <Component class="javax.swing.JTextField" name="referenciaField">
           <Properties>
             <Property name="text" type="java.lang.String" value="referencia"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="referenciaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="referenciaFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="totalLabel">
@@ -160,7 +160,7 @@
             <Property name="text" type="java.lang.String" value="Cantidad"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="cantidad">
+        <Component class="javax.swing.JTextField" name="cantidadField">
           <Properties>
             <Property name="text" type="java.lang.String" value="cantidad"/>
           </Properties>
