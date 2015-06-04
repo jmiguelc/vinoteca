@@ -31,36 +31,37 @@ public class conexionBD {
     private static conexionBD conexion; 
    
     
-    private conexionBD() throws ClassNotFoundException, BDException{
+    private conexionBD() throws BDException{
         /*Cargamos el driver de la base de datos*/
         try{
             Class.forName(driverName);
         }catch(ClassNotFoundException e){
-            throw new ClassNotFoundException("Error del Driver de la base de datos: " +e.getMessage());
+            throw new BDException("Error del Driver de la base de datos: " +e.getMessage());
         }
         
         try{
-            //creamos conexion
+            /*creamos conexion*/
             con=DriverManager.getConnection("jdbc:derby://localhost:1527/Vinoteca", user, pass);
                  
         }catch(SQLException e){
-            throw new BDException(e.getMessage());
+            throw new BDException("Error en la Consulta de la base de datos: " + e.getMessage());
         }
     }
     
-    public static conexionBD creaInstancia() throws ClassNotFoundException, BDException{
+    public static conexionBD creaInstancia() throws BDException{
         if (conexion==null)
             conexion=new conexionBD();
-        
+                   
         return conexion;
     }
     
     public ResultSet ejecutaQuery(String sql) throws BDException{
         ResultSet resConsulta;
-        //creamos statement (el que ejecuta las querys)
+        /*creamos statement (el que ejecuta las querys)*/
         try{
         Statement s = con.createStatement();
-        //ejecutamos consultas
+        
+        /*ejecutamos consultas*/
         resConsulta=s.executeQuery(sql);
         }catch(SQLException e){
             throw new BDException(e.getMessage());
@@ -69,18 +70,18 @@ public class conexionBD {
     }
     
     public int ejecutaUpdate(String sql) throws BDException{
-        //creamos statement (el que ejecuta las querys)
+        /*creamos statement (el que ejecuta las querys)*/
         int lineasMod=0;
         try{
             Statement s = con.createStatement();
-            lineasMod=s.executeUpdate(sql);
+            lineasMod=s.executeUpdate(sql); //ejecutamos consulta
             
         }catch(SQLException e){
             throw new BDException(e.getMessage());
         }
         
         return lineasMod;
-        //ejecutamos consulta
+        
     }
 
 }

@@ -5,15 +5,21 @@
  */
 package dominio;
 
+import excepciones.BDException;
+import excepciones.EmpNotFoundException;
+
 /**
  *
  * @author ruben
  */
 public class ContCUIdentificarse {
     
-    /*public TipoEmpleado identificarse(String login, String password){
+    public TipoEmpleado identificarse(String login, String password) throws BDException, EmpNotFoundException{
         Empleado emp;
-        emp = emp
-        
-    }*/
+        emp = Empleado.obtenerEmpleado(login, password);
+        if (emp==null){
+            throw new EmpNotFoundException();
+        }
+        return emp.getTipoEmpleado();
+    }
 }

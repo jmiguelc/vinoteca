@@ -1,0 +1,3 @@
+INSERT INTO PERSONA VALUES('12345678N','Juan','Cuesta Arribas','C\Leopoldo 15 3ºA','699475232','jcuestaa@gmail.com','00490079235641289654');
+INSERT INTO EMPLEADO VALUES('jcuestaa','12345678N','jcuestaa','10/29/2000','P');
+--INSERT INTO  VALUES();

@@ -22,15 +22,26 @@ public class Empleado {
     private Date fechaInicio;
     private TipoEmpleado tipoEmpleado;
 
-    public Empleado() {
-  
+    protected Empleado(String jsonStr) {
+        /*Conversion de String a Json*/
+        StringReader strReader=new StringReader(jsonStr);
+        JsonReader jReader=Json.createReader(strReader);
+        JsonObject jsonObject=jReader.readObject();
+        
+        setLogin(jsonObject.getString("LOGIN"));
+        Date fechaInicio=Date.valueOf(jsonObject.getString("FECHAINICIO"));
+        setFechaInicio(fechaInicio);
+        String tipoEmp=jsonObject.getString("TIPOEMPLEADO");
+        TipoEmpleado tipoEmpleado=TipoEmpleado.getTipo(tipoEmp);
+        setTipoEmpleado(tipoEmpleado); 
+        
     }
 
     public TipoEmpleado getTipoEmpleado() {
         return tipoEmpleado;
     }
 
-    public void setTipoEmpleado(TipoEmpleado tipoEmpleado) {
+    private void setTipoEmpleado(TipoEmpleado tipoEmpleado) {
         this.tipoEmpleado = tipoEmpleado;
     }
 
@@ -39,7 +50,7 @@ public class Empleado {
         return login;
     }
 
-    public void setLogin(String login) {
+    private void setLogin(String login) {
         this.login = login;
     }
 
@@ -48,30 +59,17 @@ public class Empleado {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    private void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
     
-    public Empleado obtenerEmpleado (String login, String password) throws ClassNotFoundException, BDException{
-        String jsonStr=GestorPersistenciaEmpleado.getEmpleadoByLogin(login, password);
+    protected static Empleado obtenerEmpleado (String login, String password) throws BDException{
+        String jsonEmp=GestorPersistenciaEmpleado.getEmpleadoByLogin(login, password);
         Empleado emp=null;
         
-        if(jsonStr!=null){
-            /*Conversion de String a Json*/
-            StringReader strReader=new StringReader(jsonStr);
-            JsonReader jReader=Json.createReader(strReader);
-            JsonObject jsonObject=jReader.readObject();
-        
-            /*Creación del empleado*/
-            emp=new Empleado();
-            emp.setLogin(jsonObject.getString("LOGIN"));
-            Date fechaInicio=Date.valueOf(jsonObject.getString("FECHAINICIO"));
-            emp.setFechaInicio(fechaInicio);
-            String tipoEmp=jsonObject.getString("TIPOEMPLEADO");
-            TipoEmpleado tipoEmpleado=TipoEmpleado.getTipo(tipoEmp);
-            emp.setTipoEmpleado(tipoEmpleado);  
-        }
-        
+        /*Creación del empleado*/
+        if(jsonEmp!=null) emp=new Empleado(jsonEmp);
+              
         return emp;
     }
 }

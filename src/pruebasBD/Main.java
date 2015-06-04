@@ -24,9 +24,9 @@ public class Main {
     
     String str;
         try {
-            str = GestorPersistenciaEmpleado.getEmpleadoByLogin("admin", "admin");
+            str = GestorPersistenciaEmpleado.getEmpleadoByLogin("jcuestaa", "jcuestaa");
             System.out.println(str);
-        } catch (ClassNotFoundException | BDException ex) {
+        } catch ( BDException ex) {
            ex.printStackTrace();
         }
 

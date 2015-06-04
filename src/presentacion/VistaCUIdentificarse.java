@@ -12,12 +12,24 @@ import javax.swing.JOptionPane;
  * @author monrae
  */
 public class VistaCUIdentificarse extends javax.swing.JFrame {
-
+    protected ControlVistaIdentificarse c;
     /**
      * Creates new form VistaCUIdentificarse
      */
     public VistaCUIdentificarse() {
         initComponents();
+        c=new ControlVistaIdentificarse(this);
+    }
+    
+    public boolean compruebaElementosVista(){
+        boolean val=true;
+        
+        /*Mirar si tienen los campos por defecto*/
+        
+        /*Mirar si los campos estan vacios*/
+        if (getUsuario().isEmpty() || getPassword().length==0) val=false;
+        
+        return val;
     }
     
     public String getUsuario(){
@@ -120,7 +132,10 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
-        // TODO add your handling code here:
+        /*Comprobamos los campos*/
+        compruebaElementosVista();
+        /*Procesamos la Indentificacion*/
+        c.procesaIdentificacion();
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
     /**
@@ -139,19 +154,16 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaCUIdentificarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaCUIdentificarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaCUIdentificarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VistaCUIdentificarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new VistaCUIdentificarse().setVisible(true);
             }

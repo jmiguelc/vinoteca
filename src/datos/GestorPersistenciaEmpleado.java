@@ -18,7 +18,7 @@ import javax.json.JsonWriter;
  * @author ruben
  */
 public class GestorPersistenciaEmpleado {
-    public static String getEmpleadoByLogin(String login, String password) throws ClassNotFoundException, BDException{
+    public static String getEmpleadoByLogin(String login, String password) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.EMPLEADO WHERE LOGIN ='"+login+"' AND PASSWORD='"+password+"'";
         
@@ -32,19 +32,16 @@ public class GestorPersistenciaEmpleado {
                 .add("nif",rs.getString("NIF"))
                 .add("password",rs.getString("PASSWORD"))
                 .add("fechaInicio",rs.getString("FECHAINICIO"))
-                .add("tipoEmpleado",rs.getByte("TIPOEMPLEADO"))
+                .add("tipoEmpleado",rs.getString("TIPOEMPLEADO"))
                 .build();
 
                 /*Conversion de Json a String*/
                 StringWriter jsonstr=new StringWriter();
-                JsonWriter writer=Json.createWriter(jsonstr);
+                JsonWriter writer = Json.createWriter(jsonstr);
                 writer.writeObject(jsonObj);
-                writer.close();
 
                 return jsonstr.toString();
             }
-        }catch(ClassNotFoundException e){
-            throw new ClassNotFoundException(e.getMessage());
         }catch(SQLException e){
             throw new BDException(e.getMessage());
         }
