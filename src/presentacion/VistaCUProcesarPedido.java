@@ -88,20 +88,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         comprobarButton.setText("Comprobar");
 
         nAbonadoField.setText("num abonado");
-        nAbonadoField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nAbonadoFieldActionPerformed(evt);
-            }
-        });
 
         refLabel.setText("Referencia");
 
         referenciaField.setText("referencia");
-        referenciaField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                referenciaFieldActionPerformed(evt);
-            }
-        });
 
         totalLabel.setText("Cantidad");
 
@@ -189,7 +179,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void ComprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         /*Comprobamos los campos*/
         if(compruebaElementosAbonado()){
             /*Procesamos la comprobacion de abonado*/
@@ -198,7 +188,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             lanzaError("Número de abonado vacio(s)\no con el valor por defecto");
         }
     }                                             
-     private void GuardarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         /*Comprobamos los campos*/
         if(compruebaElementosPedido()){
             /*Procesamos la los datos del pedido*/
@@ -207,17 +197,9 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             lanzaError("Número de referencia y la cantidad vacio(s)\no con el valor por defecto");
         }
     }
-    private void ConfirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         this.dispose();
     }  
-    private void nAbonadoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nAbonadoFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nAbonadoFieldActionPerformed
-
-    private void referenciaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_referenciaFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_referenciaFieldActionPerformed
-
     /**
      * @param args the command line arguments
      */

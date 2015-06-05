@@ -138,9 +138,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="num abonado"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nAbonadoFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="refLabel">
           <Properties>
@@ -151,9 +148,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="referencia"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="referenciaFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="totalLabel">
           <Properties>
