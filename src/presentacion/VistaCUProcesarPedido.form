@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="Pedido" min="-2" max="-2" attributes="0"/>
+              <Component id="pedido" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="44" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -34,14 +34,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="Pedido" max="32767" attributes="0"/>
+              <Component id="pedido" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="Pedido">
+    <Container class="javax.swing.JPanel" name="pedido">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -66,7 +66,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-                          <Component id="GuardarButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="guardarButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -74,13 +74,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="ComprobarButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="comprobarButton" min="-2" max="-2" attributes="0"/>
                       <Component id="numAbLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="nAbonadoField" min="-2" max="-2" attributes="0"/>
-                      <Component id="ConfirmarButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmarButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="78" max="32767" attributes="0"/>
               </Group>
@@ -98,8 +98,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ComprobarButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ConfirmarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comprobarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -112,7 +112,7 @@
                       <Component id="cantidadField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="GuardarButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="guardarButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -129,7 +129,7 @@
             <Property name="text" type="java.lang.String" value="Numero Abonado"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ComprobarButton">
+        <Component class="javax.swing.JButton" name="comprobarButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Comprobar"/>
           </Properties>
@@ -165,12 +165,12 @@
             <Property name="text" type="java.lang.String" value="cantidad"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="GuardarButton">
+        <Component class="javax.swing.JButton" name="guardarButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ConfirmarButton">
+        <Component class="javax.swing.JButton" name="confirmarButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar"/>
           </Properties>
