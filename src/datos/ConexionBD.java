@@ -17,7 +17,7 @@ import java.sql.Statement;
  *
  * @author juacelo
  */
-public class conexionBD {
+public class ConexionBD {
     /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,10 +28,10 @@ public class conexionBD {
     private static final String pass = "root";
     private static final String driverName="org.apache.derby.jdbc.ClientDriver";
     private static Connection con;
-    private static conexionBD conexion; 
+    private static ConexionBD conexion; 
    
     
-    private conexionBD() throws BDException{
+    private ConexionBD() throws BDException{
         /*Cargamos el driver de la base de datos*/
         try{
             Class.forName(driverName);
@@ -48,9 +48,9 @@ public class conexionBD {
         }
     }
     
-    public static conexionBD creaInstancia() throws BDException{
+    public static ConexionBD creaInstancia() throws BDException{
         if (conexion==null)
-            conexion=new conexionBD();
+            conexion=new ConexionBD();
                    
         return conexion;
     }

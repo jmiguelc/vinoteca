@@ -24,7 +24,7 @@ public class GestorPersistenciaAbonado {
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/
-            rs = conexionBD.creaInstancia().ejecutaQuery(sql);
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
             if(rs.next()){
                 JsonObject jsonObj=Json.createObjectBuilder()
                 .add("numAbonado",rs.getInt("NUMEROABONADO"))
