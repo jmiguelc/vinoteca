@@ -76,7 +76,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         referenciaField = new javax.swing.JTextField();
         totalLabel = new javax.swing.JLabel();
         cantidadField = new javax.swing.JTextField();
-        guardarButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         confirmarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,7 +97,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         cantidadField.setText("cantidad");
 
-        guardarButton.setText("Guardar");
+        addButton.setText("Añadir");
 
         confirmarButton.setText("Confirmar");
 
@@ -121,7 +121,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                             .addComponent(cantidadField)))
                     .addGroup(pedidoLayout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(guardarButton)))
+                        .addComponent(addButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pedidoLayout.createSequentialGroup()
                 .addContainerGap()
@@ -156,7 +156,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                     .addComponent(totalLabel)
                     .addComponent(cantidadField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(guardarButton)
+                .addComponent(addButton)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -188,7 +188,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             lanzaError("Número de abonado vacio(s)\no con el valor por defecto");
         }
     }                                             
-     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         /*Comprobamos los campos*/
         if(compruebaElementosPedido()){
             /*Procesamos la los datos del pedido*/
@@ -236,10 +236,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JTextField cantidadField;
     private javax.swing.JButton comprobarButton;
     private javax.swing.JButton confirmarButton;
-    private javax.swing.JButton guardarButton;
     private javax.swing.JTextField nAbonadoField;
     private javax.swing.JLabel numAbLabel;
     private javax.swing.JPanel pedido;
