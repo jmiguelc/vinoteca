@@ -24,7 +24,7 @@ public class Main {
     
     String str;
         try {
-            str = GestorPersistenciaEmpleado.getEmpleadoByLogin("jcuestaa", "jcuestaa");
+            str = GestorPersistenciaEmpleado.getEmpleadoByLogin("rubhern", "1234");
             System.out.println(str);
         } catch ( BDException ex) {
            ex.printStackTrace();

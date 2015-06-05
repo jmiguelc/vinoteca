@@ -6,7 +6,6 @@
 package presentacion;
 
 import dominio.ContCUIdentificarse;
-import excepciones.BDException;
 import excepciones.EmpNotFoundException;
 
 /**
