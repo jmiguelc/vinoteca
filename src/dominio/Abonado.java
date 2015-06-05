@@ -27,7 +27,7 @@ public class Abonado {
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
         
-        setNumeroAbonado(jsonObject.getInt("num"));
+        setNumeroAbonado(jsonObject.getInt("numAbonado"));
         setOpenIdRef(jsonObject.getString("openIdRef"));
         setNif(jsonObject.getString("nif"));
         
@@ -37,7 +37,7 @@ public class Abonado {
         return numeroAbonado;
     }
 
-    public void setNumeroAbonado(int numeroAbondo) {
+    private void setNumeroAbonado(int numeroAbondo) {
         this.numeroAbonado = numeroAbondo;
     }
 
@@ -45,7 +45,7 @@ public class Abonado {
         return openIdRef;
     }
 
-    public void setOpenIdRef(String openIdRef) {
+    private void setOpenIdRef(String openIdRef) {
         this.openIdRef = openIdRef;
     }
 
@@ -53,7 +53,7 @@ public class Abonado {
         return nif;
     }
 
-    public void setNif(String nif) {
+    private void setNif(String nif) {
         this.nif = nif;
     }
     

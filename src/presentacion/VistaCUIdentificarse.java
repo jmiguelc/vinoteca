@@ -5,7 +5,6 @@
  */
 package presentacion;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +21,7 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
         c=new ControlVistaIdentificarse(this);
     }
     
-    public boolean compruebaElementosVista(){
+    protected boolean compruebaElementosVista(){
         boolean val=true;
         
         /*Mirar si tienen los campos por defecto*/
@@ -36,15 +35,15 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
         return val;
     }
     
-    public String getUsuario(){
+    protected String getUsuario(){
         return userTextField.getText();
     }
     
-    public char[] getPassword(){
+    protected char[] getPassword(){
         return passwordField.getPassword();        
     }
     
-    public void lanzaError(String msg){
+    protected void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 

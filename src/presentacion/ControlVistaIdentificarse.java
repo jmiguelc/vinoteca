@@ -16,12 +16,12 @@ public class ControlVistaIdentificarse {
 
     protected VistaCUIdentificarse vista;
     
-    public ControlVistaIdentificarse(VistaCUIdentificarse vista) {
+    protected ControlVistaIdentificarse(VistaCUIdentificarse vista) {
         this.vista=vista;
     }
     
     
-    void procesaIdentificacion(){
+    protected void procesaIdentificacion(){
         /*Traemos el contenido de los elementos*/
         String login=vista.getUsuario();
         String password=String.valueOf(vista.getPassword());
