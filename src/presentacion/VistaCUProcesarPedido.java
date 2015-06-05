@@ -20,29 +20,39 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         initComponents();
         pp=new ControlVistaProcesarPedido(this);
     }
-     public boolean compruebaElementosVista(){
+     protected boolean compruebaElementosAbonado(){
         boolean val=true;
         
         /*Mirar si tienen los campos por defecto*/
         
         /*Mirar si los campos estan vacios*/
-        
+       if(getNumAbonado()==0) return val=false;
         
         return val;
     }
-   /* public int getNumAbonado(){
-      //  return nAbonadoField.get();
+    protected boolean compruebaElementosPedido(){
+        boolean val=true;
+        
+        /*Mirar si tienen los campos por defecto*/
+        
+        /*Mirar si los campos estan vacios*/
+       if(getReferencia()==0 || getCantidad()==0) return val=false;
+        
+        return val;
+    }
+   protected int getNumAbonado(){
+      return Integer.parseInt(nAbonadoField.getText());
     }
     
-    public int getReferencia(){
-        return referenciaField.get();
+    protected int getReferencia(){
+        return Integer.parseInt(referenciaField.getText());
     }
     
-    public int getCantidad(){
-        return cantidadField.get();
+    protected int getCantidad(){
+        return Integer.parseInt(cantidadField.getText());
     }
     
-    */
+
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
@@ -178,7 +188,27 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void ComprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        /*Comprobamos los campos*/
+        if(compruebaElementosAbonado()){
+            /*Procesamos la Indentificacion*/
+           // pp.();
+        }else{
+            lanzaError("Número de abonado vacio(s)\no con el valor por defecto");
+        }
+    }                                             
+     private void GuardarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        /*Comprobamos los campos*/
+        if(compruebaElementosPedido()){
+            /*Procesamos la Indentificacion*/
+           // pp.();
+        }else{
+            lanzaError("Número de referencia y la cantidad vacio(s)\no con el valor por defecto");
+        }
+    }
+    private void ConfirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        this.dispose();
+    }  
     private void nAbonadoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nAbonadoFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nAbonadoFieldActionPerformed
