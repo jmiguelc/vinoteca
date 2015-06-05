@@ -68,7 +68,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private void initComponents() {
 
         pedido = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        pedidoLabel = new javax.swing.JLabel();
         numAbLabel = new javax.swing.JLabel();
         comprobarButton = new javax.swing.JButton();
         nAbonadoField = new javax.swing.JTextField();
@@ -81,7 +81,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("               PEDIDO");
+        pedidoLabel.setText("               PEDIDO");
 
         numAbLabel.setText("Numero Abonado");
 
@@ -119,7 +119,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                 .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pedidoLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pedidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pedidoLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +148,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(pedidoLabel)
                 .addGap(18, 18, 18)
                 .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numAbLabel)
@@ -258,10 +258,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private javax.swing.JButton comprobarButton;
     private javax.swing.JButton confirmarButton;
     private javax.swing.JButton guardarButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField nAbonadoField;
     private javax.swing.JLabel numAbLabel;
     private javax.swing.JPanel pedido;
+    private javax.swing.JLabel pedidoLabel;
     private javax.swing.JLabel refLabel;
     private javax.swing.JTextField referenciaField;
     private javax.swing.JLabel totalLabel;
