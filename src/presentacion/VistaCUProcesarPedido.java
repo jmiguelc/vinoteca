@@ -12,13 +12,13 @@ import javax.swing.JOptionPane;
  * @author nurcanc
  */
 public class VistaCUProcesarPedido extends javax.swing.JFrame {
-    protected ControlVistaProcesarPedido pp;
+    protected ControlVistaProcesarPedido c;
     /**
      * Creates new form VistaCUProcesarPedido
      */
     public VistaCUProcesarPedido() {
         initComponents();
-        pp=new ControlVistaProcesarPedido(this);
+        c=new ControlVistaProcesarPedido(this);
     }
      protected boolean compruebaElementosAbonado(){
         boolean val=true;
@@ -191,8 +191,8 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private void ComprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         /*Comprobamos los campos*/
         if(compruebaElementosAbonado()){
-            /*Procesamos la Indentificacion*/
-           // pp.();
+            /*Procesamos la comprobacion de abonado*/
+           c.comprobarAbonado();
         }else{
             lanzaError("Número de abonado vacio(s)\no con el valor por defecto");
         }
@@ -200,8 +200,8 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
      private void GuardarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         /*Comprobamos los campos*/
         if(compruebaElementosPedido()){
-            /*Procesamos la Indentificacion*/
-           // pp.();
+            /*Procesamos la los datos del pedido*/
+           c.comprobarPedido();
         }else{
             lanzaError("Número de referencia y la cantidad vacio(s)\no con el valor por defecto");
         }

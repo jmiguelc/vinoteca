@@ -5,6 +5,9 @@
  */
 package presentacion;
 
+import dominio.ContCUProcesarPedido;
+import excepciones.AbNotFoundException;
+
 /**
  *
  * @author nurcanc
@@ -18,4 +21,17 @@ public class ControlVistaProcesarPedido {
     
     }
     
+    protected void comprobarAbonado(){
+        int numAbonado = vista.getNumAbonado();
+        try{
+            ContCUProcesarPedido.comprobarAbonado(numAbonado);
+        }catch(AbNotFoundException ex){
+            vista.lanzaError(ex.getMessage());
+        }
+    }
+    //falta crear una funcion para el pedido en ContCUProcesarPedido
+    protected void comprobarPedido(){
+        int refencia = vista.getReferencia();
+        int cantidad = vista.getCantidad();
+    }
 }
