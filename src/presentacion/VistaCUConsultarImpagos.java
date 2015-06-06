@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import java.sql.Date;
+
 /**
  *
  * @author monrae
@@ -133,7 +135,12 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
     private void consultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_consultaButtonActionPerformed
-
+    
+    protected Date getFecha(){
+        return Date.valueOf(fechaFiled.getText());
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
