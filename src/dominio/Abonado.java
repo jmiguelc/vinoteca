@@ -29,8 +29,7 @@ public class Abonado {
         
         setNumeroAbonado(jsonObject.getInt("numAbonado"));
         setOpenIdRef(jsonObject.getString("openIdRef"));
-        setNif(jsonObject.getString("nif"));
-        
+        setNif(jsonObject.getString("nif"));    
     }
 
     public int getNumeroAbonado() {
