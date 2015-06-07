@@ -5,7 +5,8 @@
  */
 package dominio;
 
-import datos.GestorPersistenciaFacturas;
+import datos.GestorPersistenciaFactura;
+import excepciones.BDException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Currency;
@@ -75,9 +76,9 @@ public class Factura {
         this.idExtractBancario = idExtractBancario;
     }
     
-    protected static ArrayList<Factura> obtenerFacturasVencidas(Date fecha){
+    protected static ArrayList<Factura> obtenerFacturasVencidas(Date fecha) throws BDException{
         ArrayList<Factura> facturas=null;
-        String jsonArray=GestorPersistenciaFacturas.recuperarFacturasVencidas(fecha);
+        String jsonArray=GestorPersistenciaFactura.recuperarFacturasVencidas(fecha);
         
         
         return facturas;
