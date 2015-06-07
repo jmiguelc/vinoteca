@@ -5,7 +5,9 @@
  */
 package dominio;
 
+import datos.GestorPersistenciaFacturas;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Currency;
 
 /**
@@ -73,5 +75,12 @@ public class Factura {
         this.idExtractBancario = idExtractBancario;
     }
     
+    protected static ArrayList<Factura> obtenerFacturasVencidas(Date fecha){
+        ArrayList<Factura> facturas=null;
+        String jsonArray=GestorPersistenciaFacturas.recuperarFacturasVencidas(fecha);
+        
+        
+        return facturas;
+    }
     
 }

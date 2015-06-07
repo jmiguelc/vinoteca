@@ -24,7 +24,14 @@ public class ControlVistaComprobarImpagos {
     protected void procesarDatosConsulta(){
         try{
             Date fecha=v.getFecha();
-            System.out.println(compararFechas(fecha));
+            
+            if(!compararFechas(fecha)){
+                v.lanzaError("El plazo introducido es menor a 30 dias");
+            }
+            
+            /*comprobar impagos*/
+            
+            
         }catch(ParseException|PrivilegedActionException ex){
             v.lanzaError("Error Formato de fecha Incorrecto");
         }
