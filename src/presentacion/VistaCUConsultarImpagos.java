@@ -5,7 +5,11 @@
  */
 package presentacion;
 
-import java.sql.Date;
+import java.security.PrivilegedActionException;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,12 +17,14 @@ import java.sql.Date;
  */
 public class VistaCUConsultarImpagos extends javax.swing.JFrame {
 
+    protected ControlVistaComprobarImpagos c;
     /**
      * Creates new form VistaCUConsultarImpagos
      */
     public VistaCUConsultarImpagos() {
         initComponents();
         jScrollPane1.setVisible(false);
+        c=new ControlVistaComprobarImpagos(this);
     }
 
     /**
@@ -43,7 +49,7 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Consultar Impagos");
 
-        fechaFiled.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        fechaFiled.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/MM/yyyy"))));
         fechaFiled.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fechaFiled.setText("dd/mm/aaaa");
         fechaFiled.setToolTipText("");
@@ -134,10 +140,22 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
 
     private void consultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaButtonActionPerformed
         // TODO add your handling code here:
+        c.procesarDatosConsulta();
     }//GEN-LAST:event_consultaButtonActionPerformed
     
-    protected Date getFecha(){
-        return Date.valueOf(fechaFiled.getText());
+    public void lanzaError(String msg){
+        JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    protected Date getFecha() throws ParseException,PrivilegedActionException{
+        SimpleDateFormat df=new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha=null;
+        //Date fechaSQL=null;
+        
+        fecha=df.parse(fechaFiled.getText());
+        //fechaSQL=new Date(fecha.getTime());
+        
+        return fecha;
     }
     
     
