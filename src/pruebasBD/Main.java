@@ -6,6 +6,7 @@
 package pruebasBD;
 
 import datos.GestorPersistenciaFactura;
+import datos.GestorPersistenciaPedido;
 import excepciones.BDException;
 import java.sql.Date;
 
@@ -22,8 +23,8 @@ public class Main {
             Date fecha2=Date.valueOf("2012-10-29");
             System.out.println(fecha2);
             //str = GestorPersistenciaEmpleado.getEmpleadoByLogin("rubhern", "1234");
-            str=GestorPersistenciaFactura.recuperarFacturasVencidas(fecha);
-            //str=GestorPersistenciaPedido.recuperarPedidosByFactura("");
+            //str=GestorPersistenciaFactura.recuperarFacturasVencidas(fecha);
+            str=GestorPersistenciaPedido.recuperarPedidosByFactura(1);
             System.out.println(str);
         } catch ( BDException ex) {
            ex.printStackTrace();

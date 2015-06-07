@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonWriter;
 
@@ -19,25 +20,25 @@ import javax.json.JsonWriter;
  * @author monrae
  */
 public class GestorPersistenciaPedido {
-    public static String recuperarPedidosByFactura(String numeroFactura) throws BDException{
+    public static String recuperarPedidosByFactura(int numeroFactura) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.PEDIDO WHERE NUMEROFACTURA='"+numeroFactura+"'";
+        String sql = "SELECT * FROM APP.PEDIDO WHERE NUMEROFACTURA="+numeroFactura;
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/
             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
-            JsonArray jsonPedidos= Json.createArrayBuilder().build();
+            JsonArrayBuilder jsonPedidos= Json.createArrayBuilder();
             while(rs.next()){
                 JsonObject jsonObj=Json.createObjectBuilder()
-                .add("numeroPedido",rs.getString("NUMEROPEDIDO"))
+                .add("numeroPedido",rs.getInt("NUMERO"))
                 .add("fechaRealizacion",rs.getString("FECHAREALIZACION"))
                 .add("notaEntrega",rs.getString("NOTAENTREGA"))
-                .add("importe",rs.getString("IMPORTE"))
+                .add("importe",rs.getFloat("IMPORTE"))
                 .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
                 .add("fechaEntrega",rs.getString("FECHAENTREGA"))
                 .add("estado",rs.getString("ESTADO"))
-                .add("nifAbonado",rs.getString("NIFABONADO"))
-                .add("numeroFactura",rs.getString("NUMEROFACTURA"))
+                .add("numeroAbonado",rs.getInt("NUMEROABONADO"))
+                .add("numeroFactura",rs.getInt("NUMEROFACTURA"))
                 .build();
                 
                 jsonPedidos.add(jsonObj);
@@ -46,7 +47,7 @@ public class GestorPersistenciaPedido {
             /*Conversion de Json a String*/
             StringWriter jsonstr=new StringWriter();
             JsonWriter writer = Json.createWriter(jsonstr);
-            writer.writeArray(jsonPedidos);
+            writer.writeArray(jsonPedidos.build());
 
             return jsonstr.toString();
             

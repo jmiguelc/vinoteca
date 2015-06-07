@@ -31,9 +31,9 @@ public class GestorPersistenciaFactura {
             JsonArrayBuilder jsonFacturas= Json.createArrayBuilder();
             while(rs.next()){
                 JsonObject jsonObj=Json.createObjectBuilder()
-                .add("numeroFactura",rs.getString("NUMEROFACTURA"))
+                .add("numeroFactura",rs.getInt("NUMEROFACTURA"))
                 .add("fechaEmision",rs.getString("FECHAEMISION"))
-                .add("importe",rs.getString("IMPORTE"))
+                .add("importe",rs.getFloat("IMPORTE"))
                 .build();
                 
                 jsonFacturas.add(jsonObj);
