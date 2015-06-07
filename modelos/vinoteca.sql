@@ -1,3 +1,21 @@
+DROP TABLE LINEAPEDIDO;
+DROP TABLE LINEACOMPRA;
+DROP TABLE COMPRA;
+DROP TABLE PEDIDO;
+DROP TABLE ESTADOPEDIDO;
+DROP TABLE FACTURA;
+DROP TABLE ESTADOFACTURA;
+DROP TABLE PREFERENCIA;
+DROP TABLE ABONADO;
+DROP TABLE EMPLEADO;
+DROP TABLE PERSONA;
+DROP TABLE REFERENCIA;
+DROP TABLE VINO;
+DROP TABLE DENOMINACIONORIGEN;
+DROP TABLE CATEGORIA;
+DROP TABLE BODEGA;
+
+
 CREATE TABLE Bodega (
  id INT NOT NULL,
  nombre VARCHAR(50) NOT NULL,
@@ -54,12 +72,12 @@ ALTER TABLE EstadoPedido ADD CONSTRAINT PK_EstadoPedido PRIMARY KEY (clave);
 
 
 CREATE TABLE Factura (
- numeroFactura CHAR(10) NOT NULL,
- fechaEmision CHAR(10),
- importe CHAR(10),
+ numeroFactura INT NOT NULL,
+ fechaEmision DATE,
+ importe REAL,
  estado CHAR NOT NULL,
- fechaPago CHAR(10),
- idExtractoBancario CHAR(10)
+ fechaPago DATE,
+ idExtractoBancario VARCHAR(30)
 );
 
 ALTER TABLE Factura ADD CONSTRAINT PK_Factura PRIMARY KEY (numeroFactura);
@@ -124,14 +142,14 @@ ALTER TABLE Empleado ADD CONSTRAINT PK_Empleado PRIMARY KEY (login);
 
 CREATE TABLE Pedido (
  numero INT NOT NULL,
- fechaRealizacion CHAR(10),
- notaEntrega CHAR(10),
- importe CHAR(10),
- fechaRecepcion CHAR(10),
- fechaEntrega CHAR(10),
+ fechaRealizacion DATE,
+ notaEntrega VARCHAR(200),
+ importe REAL,
+ fechaRecepcion DATE,
+ fechaEntrega DATE,
  estado CHAR NOT NULL,
  numeroAbonado INT NOT NULL,
- numeroFactura CHAR(10) NOT NULL
+ numeroFactura INT NOT NULL
 );
 
 ALTER TABLE Pedido ADD CONSTRAINT PK_Pedido PRIMARY KEY (numero);

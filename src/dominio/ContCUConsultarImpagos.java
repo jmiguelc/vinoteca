@@ -5,6 +5,7 @@
  */
 package dominio;
 
+import excepciones.BDException;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * @author monrae
  */
 public class ContCUConsultarImpagos {
-    public static ArrayList<Factura> obtenerInformacion(Date fecha){
+    public static ArrayList<Factura> obtenerInformacion(Date fecha) throws BDException{
         ArrayList<Factura> facturasVencidas=null;
         facturasVencidas=Factura.obtenerFacturasVencidas(fecha);
         

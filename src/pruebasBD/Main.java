@@ -15,19 +15,15 @@ import java.sql.Date;
  */
 public class Main {
     public static void main(String[] args) {
-        /*ResultSet r;
-        String sql="SELECT * FROM APP.CATEGORIA";//
-        try{
-            r=conexionBD.creaInstancia().ejecutaQuery(sql);
-        }catch(ClassNotFoundException|BDException e){
-            e.printStackTrace();
-        }*/
-    
-    String str;
+           
+        String str;
         try {
             Date fecha=Date.valueOf("2015-5-1");
+            Date fecha2=Date.valueOf("2012-10-29");
+            System.out.println(fecha2);
             //str = GestorPersistenciaEmpleado.getEmpleadoByLogin("rubhern", "1234");
             str=GestorPersistenciaFactura.recuperarFacturasVencidas(fecha);
+            //str=GestorPersistenciaPedido.recuperarPedidosByFactura("");
             System.out.println(str);
         } catch ( BDException ex) {
            ex.printStackTrace();
