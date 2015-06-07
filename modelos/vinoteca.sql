@@ -130,7 +130,7 @@ CREATE TABLE Pedido (
  fechaRecepcion CHAR(10),
  fechaEntrega CHAR(10),
  estado CHAR NOT NULL,
- nifAbonado VARCHAR(9) NOT NULL,
+ numeroAbonado INT NOT NULL,
  numeroFactura CHAR(10) NOT NULL
 );
 
@@ -140,7 +140,7 @@ ALTER TABLE Pedido ADD CONSTRAINT PK_Pedido PRIMARY KEY (numero);
 CREATE TABLE Preferencia (
  categoria CHAR NOT NULL,
  idDenominacion INT NOT NULL,
- nifAbonado VARCHAR(9) NOT NULL
+ numeroAbonado INT NOT NULL
 );
 
 
@@ -186,13 +186,13 @@ ALTER TABLE Empleado ADD CONSTRAINT FK_Empleado_0 FOREIGN KEY (nif) REFERENCES P
 
 
 ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_0 FOREIGN KEY (estado) REFERENCES EstadoPedido (clave);
-ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_1 FOREIGN KEY (nifAbonado) REFERENCES Abonado (nifAbonado);
+ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_1 FOREIGN KEY (numeroAbonado) REFERENCES Abonado (numeroAbonado);
 ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_2 FOREIGN KEY (numeroFactura) REFERENCES Factura (numeroFactura);
 
 
 ALTER TABLE Preferencia ADD CONSTRAINT FK_Preferencia_0 FOREIGN KEY (categoria) REFERENCES Categoria (clave);
 ALTER TABLE Preferencia ADD CONSTRAINT FK_Preferencia_1 FOREIGN KEY (idDenominacion) REFERENCES DenominacionOrigen (id);
-ALTER TABLE Preferencia ADD CONSTRAINT FK_Preferencia_2 FOREIGN KEY (nifAbonado) REFERENCES Abonado (nifAbonado);
+ALTER TABLE Preferencia ADD CONSTRAINT FK_Preferencia_2 FOREIGN KEY (numeroAbonado) REFERENCES Abonado (numeroAbonado);
 
 
 ALTER TABLE Referencia ADD CONSTRAINT FK_Referencia_0 FOREIGN KEY (id) REFERENCES Vino (id);
