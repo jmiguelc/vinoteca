@@ -6,6 +6,7 @@
 package dominio;
 
 import datos.GestorPersistenciaAbonado;
+import datos.GestorPersistenciaPersona;
 import excepciones.BDException;
 import java.io.StringReader;
 import javax.json.Json;
@@ -16,20 +17,21 @@ import javax.json.JsonReader;
  *
  * @author ruben
  */
-public class Abonado {
+public class Abonado extends Persona{
     private int numeroAbonado;
     private String openIdRef;
-    private String nif;
     
-    protected Abonado(String jsonStr) {
+    protected Abonado(String jsonAbonado,String jsonPersona) {
         /*Conversion de String a Json*/
-        StringReader strReader=new StringReader(jsonStr);
+        super(jsonPersona);
+        
+        StringReader strReader=new StringReader(jsonAbonado);
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
-        
+ 
         setNumeroAbonado(jsonObject.getInt("numAbonado"));
         setOpenIdRef(jsonObject.getString("openIdRef"));
-        setNif(jsonObject.getString("nif"));    
+        
     }
 
     public int getNumeroAbonado() {
@@ -47,21 +49,23 @@ public class Abonado {
     private void setOpenIdRef(String openIdRef) {
         this.openIdRef = openIdRef;
     }
-
-    public String getNif() {
-        return nif;
-    }
-
-    private void setNif(String nif) {
-        this.nif = nif;
-    }
-    
+  
     protected static Abonado obtenerAbonado (int num) throws BDException{
         String jsonAb=GestorPersistenciaAbonado.obtenerAbonado(num);
         Abonado ab=null;
+        Persona p;
         
         /*Creación del abonado*/
-        if(jsonAb!=null) ab=new Abonado(jsonAb);
+        if(jsonAb!=null){
+            StringReader strReader=new StringReader(jsonAb);
+            JsonReader jReader=Json.createReader(strReader);
+            JsonObject jsonObject=jReader.readObject();
+            String jsonPersona=GestorPersistenciaPersona.getPersonaByNif(jsonObject.getString("nif"));
+            
+            ab=new Abonado(jsonAb,jsonPersona);
+        
+        }
+        
               
         return ab;
     }

@@ -13,19 +13,27 @@ import excepciones.BDException;
  * @author ruben
  */
 public class ContCUProcesarPedido {
-    public static String comprobarAbonado(int numAb) throws AbNotFoundException{
+    
+    public static Abonado comprobarAbonado(int numAb) throws AbNotFoundException{
         Abonado ab;
-        String nif=null;
         try{    
             ab = Abonado.obtenerAbonado(numAb);
             if(ab==null){
                 throw new AbNotFoundException("El número de abonado no es correcto");
             }
             System.out.println("Existe el abonado");
-            nif=ab.getNif();
         }catch(BDException ex){
             throw new AbNotFoundException("Abonado no Encontrado: "+ex.getMessage());   
         }
-        return nif;
+        return ab;
     }
+   /* public static String comprobarPedido(int ref, int cant){
+        Pedido p;
+        
+        try{
+         p = Pedido.    
+            
+        }catch(){
+        }
+    }*/
 }
