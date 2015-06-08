@@ -27,7 +27,10 @@ public class ControlVistaProcesarPedido {
         int numAbonado = vista.getNumAbonado();
         try{
             ab=ContCUProcesarPedido.comprobarAbonado(numAbonado);
-            //vista.setName(ab.);
+            vista.setName(ab.getNombre());
+            vista.setapellidoLabel(ab.getApellidos());
+            vista.setEmailLabel(ab.getEmail());
+            vista.setTelefonoLabel(ab.getTelefono());
         }catch(AbNotFoundException ex){
             vista.lanzaError(ex.getMessage());
         }
