@@ -32,7 +32,7 @@ public class GestorPersistenciaPersona {
                 .add("direccion", rs.getString("DIRECCION"))
                 .add("email", rs.getString("EMAIL"))
                 .add("telefono", rs.getString("TELEFONO"))
-                .add("cuantaBancaria", rs.getString("CUENTABANCARIA"))
+                .add("cuentaBancaria", rs.getString("CUENTABANCARIA"))
                 .build();
 
                 /*Conversion de Json a String*/
