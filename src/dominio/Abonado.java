@@ -19,7 +19,6 @@ import javax.json.JsonReader;
 public class Abonado {
     private int numeroAbonado;
     private String openIdRef;
-    private String nif;
     
     protected Abonado(String jsonStr) {
         /*Conversion de String a Json*/
@@ -28,8 +27,7 @@ public class Abonado {
         JsonObject jsonObject=jReader.readObject();
         
         setNumeroAbonado(jsonObject.getInt("numAbonado"));
-        setOpenIdRef(jsonObject.getString("openIdRef"));
-        setNif(jsonObject.getString("nif"));    
+        setOpenIdRef(jsonObject.getString("openIdRef"));   
     }
 
     public int getNumeroAbonado() {
@@ -47,15 +45,7 @@ public class Abonado {
     private void setOpenIdRef(String openIdRef) {
         this.openIdRef = openIdRef;
     }
-
-    public String getNif() {
-        return nif;
-    }
-
-    private void setNif(String nif) {
-        this.nif = nif;
-    }
-    
+  
     protected static Abonado obtenerAbonado (int num) throws BDException{
         String jsonAb=GestorPersistenciaAbonado.obtenerAbonado(num);
         Abonado ab=null;

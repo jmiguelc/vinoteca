@@ -52,8 +52,18 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     protected int getCantidad(){
         return Integer.parseInt(cantidadField.getText());
     }
-    
-
+    protected void setNombreLabel(String nombre){
+        this.nombreLabel.setText(nombre);
+    }
+     protected void setapellidoLabel(String apellidos){
+        this.apellidoLabel.setText(apellidos);
+    }
+     protected void setTelefonoLabel(String telefono){
+        this.phoneLabel.setText(telefono);
+    }
+    protected void setEmailLabel(String email){
+        this.emailLabel.setText(email);
+    }
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
@@ -78,6 +88,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         cantidadField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         confirmarButton = new javax.swing.JButton();
+        apellidoLabel = new javax.swing.JLabel();
+        nombreLabel = new javax.swing.JLabel();
+        phoneLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +115,14 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         confirmarButton.setText("Confirmar");
 
+        apellidoLabel.setText("Apellidos");
+
+        nombreLabel.setText("Nombre");
+
+        phoneLabel.setText("Telefono");
+
+        emailLabel.setText("Email");
+
         javax.swing.GroupLayout pedidoLayout = new javax.swing.GroupLayout(pedido);
         pedido.setLayout(pedidoLayout);
         pedidoLayout.setHorizontalGroup(
@@ -108,56 +130,68 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             .addGroup(pedidoLayout.createSequentialGroup()
                 .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pedidoLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(pedidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pedidoLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(refLabel)
-                            .addComponent(totalLabel))
-                        .addGap(51, 51, 51)
-                        .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(referenciaField)
-                            .addComponent(cantidadField)))
-                    .addGroup(pedidoLayout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(addButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pedidoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(comprobarButton)
-                    .addComponent(numAbLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nAbonadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmarButton))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addComponent(addButton))
+                    .addGroup(pedidoLayout.createSequentialGroup()
+                        .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pedidoLayout.createSequentialGroup()
+                                .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pedidoLayout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(refLabel)
+                                            .addComponent(totalLabel)))
+                                    .addGroup(pedidoLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(numAbLabel)))
+                                .addGap(26, 26, 26)
+                                .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nAbonadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(referenciaField)
+                                        .addComponent(cantidadField))))
+                            .addComponent(pedidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pedidoLayout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(comprobarButton)))
+                        .addGap(38, 38, 38)
+                        .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreLabel)
+                            .addComponent(apellidoLabel)
+                            .addComponent(phoneLabel)
+                            .addComponent(emailLabel)
+                            .addComponent(confirmarButton))))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         pedidoLayout.setVerticalGroup(
             pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pedidoLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pedidoLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(pedidoLabel)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numAbLabel)
-                    .addComponent(nAbonadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(nAbonadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreLabel))
+                .addGap(19, 19, 19)
                 .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comprobarButton)
-                    .addComponent(confirmarButton))
+                    .addComponent(apellidoLabel))
                 .addGap(18, 18, 18)
                 .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(refLabel)
-                    .addComponent(referenciaField, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(referenciaField, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(emailLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalLabel)
-                    .addComponent(cantidadField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cantidadField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmarButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addButton)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,7 +201,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(pedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,10 +218,14 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         if(compruebaElementosAbonado()){
             /*Procesamos la comprobacion de abonado*/
            c.comprobarAbonado();
+           
         }else{
             lanzaError("Número de abonado vacio(s)\no con el valor por defecto");
         }
-    }                                             
+    }  
+    private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        
+    } 
      private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         /*Comprobamos los campos*/
         if(compruebaElementosPedido()){
@@ -197,9 +235,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             lanzaError("Número de referencia y la cantidad vacio(s)\no con el valor por defecto");
         }
     }
-    private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        this.dispose();
-    }  
+     
     /**
      * @param args the command line arguments
      */
@@ -237,13 +273,17 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JLabel apellidoLabel;
     private javax.swing.JTextField cantidadField;
     private javax.swing.JButton comprobarButton;
     private javax.swing.JButton confirmarButton;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField nAbonadoField;
+    private javax.swing.JLabel nombreLabel;
     private javax.swing.JLabel numAbLabel;
     private javax.swing.JPanel pedido;
     private javax.swing.JLabel pedidoLabel;
+    private javax.swing.JLabel phoneLabel;
     private javax.swing.JLabel refLabel;
     private javax.swing.JTextField referenciaField;
     private javax.swing.JLabel totalLabel;
