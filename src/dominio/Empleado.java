@@ -69,7 +69,7 @@ public class Empleado extends Persona{
         String jsonEmp=GestorPersistenciaEmpleado.getEmpleadoByLogin(login, password);
         Empleado emp=null;
         
-        /*Creación del empleado*/
+        /*Creación del empleado y recuperacion de la persona*/
         if(jsonEmp!=null){
             StringReader strReader=new StringReader(jsonEmp);
             JsonReader jReader=Json.createReader(strReader);
