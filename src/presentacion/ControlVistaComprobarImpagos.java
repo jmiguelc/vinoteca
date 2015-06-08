@@ -5,8 +5,12 @@
  */
 package presentacion;
 
+import dominio.ContCUConsultarImpagos;
+import dominio.Factura;
+import excepciones.BDException;
 import java.security.PrivilegedActionException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -21,22 +25,26 @@ public class ControlVistaComprobarImpagos {
         this.v=v;
     }
     
-    protected void procesarDatosConsulta(){
-        try{
+    protected ArrayList<Factura> procesarDatosConsulta(){
+        ArrayList<Factura> facturas=null;
+        try{    
             Date fecha=v.getFecha();
+            java.sql.Date fechaSQL=new java.sql.Date(fecha.getTime());
             
             if(!compararFechas(fecha)){
                 v.lanzaError("El plazo introducido es menor a 30 dias");
             }
             
             /*comprobar impagos*/
-            
+            facturas=ContCUConsultarImpagos.obtenerInformacion(fechaSQL);
             
         }catch(ParseException|PrivilegedActionException ex){
-            v.lanzaError("Error Formato de fecha Incorrecto");
+            v.lanzaError("Error Formato de fecha Incorrecto. " +ex.getMessage());
+        } catch (BDException ex) {
+            v.lanzaError(ex.getMessage());
         }
         
-        
+        return facturas;
     }
     
     /*Comparamos si hay 30 dias entre una fecha y la actual*/

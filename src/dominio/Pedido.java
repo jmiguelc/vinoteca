@@ -24,7 +24,7 @@ public class Pedido {
     private EstadoPedido estado;
     private Date fechaRealizacion;
     private String NotaEntrega;
-    private float importe;
+    private double importe;
     private Date fechaRecepcion;
     private Date fechaEntrega;
     private Abonado abonado;
@@ -41,9 +41,9 @@ public class Pedido {
         Date fechaRealizacion=Date.valueOf(jsonObject.getString("fechaRealizacion"));
         setFechaRealizacion(fechaRealizacion);
         
-        setNotaEntrega(jsonObject.getString("NotaEntrega"));
+        setNotaEntrega(jsonObject.getString("notaEntrega"));
         
-        float importe=Float.parseFloat(jsonObject.getString("importe"));
+        double importe=(jsonObject.getJsonNumber("importe").doubleValue());
         setImporte(importe);
         
         if(!jsonObject.containsKey("fechaRecepcion"))
@@ -92,11 +92,11 @@ public class Pedido {
         this.NotaEntrega = NotaEntrega;
     }
 
-    public float getImporte() {
+    public double getImporte() {
         return importe;
     }
 
-    private void setImporte(float importe) {
+    private void setImporte(double importe) {
         this.importe = importe;
     }
 

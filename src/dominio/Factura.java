@@ -22,7 +22,7 @@ import javax.json.JsonReader;
 public class Factura {
     private int numeroFactura;
     private Date fechaEmision;
-    private float importe;
+    private double importe;
     private EstadoFactura estado;
     private Date fechaPago;
     private String idExtractBancario;
@@ -39,7 +39,7 @@ public class Factura {
         setNumeroFactura(jsonObject.getInt("numeroFactura"));
         Date fechaEmision=Date.valueOf(jsonObject.getString("fechaEmision"));
         setFechaEmision(fechaEmision);
-        float importe=Float.parseFloat(jsonObject.getString("importe"));
+        double importe=jsonObject.getJsonNumber("importe").doubleValue();
         setImporte(importe);
         if(!jsonObject.containsKey("fechaPago"))
             setFechaPago(null);
@@ -69,11 +69,11 @@ public class Factura {
         this.fechaEmision = fechaEmision;
     }
 
-    public float getImporte() {
+    public double getImporte() {
         return importe;
     }
 
-    private void setImporte(float importe) {
+    private void setImporte(double importe) {
         this.importe = importe;
     }
 
@@ -127,8 +127,11 @@ public class Factura {
         /*mandamos construir los objetos y generamos la lista de facturas*/
         for(int i=0;i<jsonArray.size();i++){
             jsonFactura = jsonArray.getJsonObject(i).toString();
-            f=new Factura(jsonFactura);
-            facturas.add(f);
+            if (jsonFactura!=null){
+                f=new Factura(jsonFactura);
+                facturas.add(f);
+            }
+            
         }
         
         /*ir a pedidos y recuperar los pedidos para cada factura*/
