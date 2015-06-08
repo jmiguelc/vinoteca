@@ -5,6 +5,14 @@
  */
 package dominio;
 
+import datos.GestorPersistenciaPersona;
+import excepciones.BDException;
+import java.io.StringReader;
+import java.sql.Date;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+
 /**
  *
  * @author nurcanc
@@ -18,7 +26,20 @@ public class Persona {
     private String direccion;
     private String cuentaBancaria;
 
-    public Persona() {
+    public Persona(String jsonPersona) {
+         /*Conversion de String a Json*/
+        StringReader strReader=new StringReader(jsonPersona);
+        JsonReader jReader=Json.createReader(strReader);
+        JsonObject jsonObject=jReader.readObject();
+        
+        setNombre(jsonObject.getString("nombre"));
+        setApellidos(jsonObject.getString("apellidos"));
+        setNif(jsonObject.getString("nif"));
+        setEmail(jsonObject.getString("email"));
+        setTelefono(jsonObject.getString("telefono"));
+        setDireccion(jsonObject.getString("direccion"));
+        setCuentaBancaria(jsonObject.getString("cuentaBancaria"));
+
     }
 
     public String getNombre() {
@@ -76,5 +97,13 @@ public class Persona {
     public void setCuentaBancaria(String cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
     }
-    
+        protected static Persona obtenerPersona (String nif) throws BDException{
+        String jsonPersona=GestorPersistenciaPersona.getPersonaByNif(nif);
+        Persona pers=null;
+        
+        /*Creación del empleado*/
+        if(jsonPersona!=null) pers=new Persona(jsonPersona);
+              
+        return pers;
+    } 
 }
