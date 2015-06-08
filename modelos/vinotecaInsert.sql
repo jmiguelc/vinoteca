@@ -1,12 +1,14 @@
 /*TABLA PERSONA*/
 INSERT INTO PERSONA VALUES('38928345H','Miguel','Candelas Fuerte','C\Segismundo 3 2ºB','947508824','mcandelas@gmail.com','00490089854598725158');
 INSERT INTO PERSONA VALUES('12345678N','Juan','Cuesta Arribas','C\Leopoldo 15 3ºA','699475232','jcuestaa@gmail.com','00490079235641289654');
-INSERT INTO PERSONA VALUES('54896213V','Maria','Garcia Perez','C\De las Heras 9 5ºB','654121312','magape@gmail.com','00490015684225452485');
+INSERT INTO PERSONA VALUES('54896213V','Maria','Garcia Perez','C\De las Heras 9 5ºR','654121312','magape@gmail.com','00490015684225452485');
+INSERT INTO PERSONA VALUES('71102598A','Carmen','Gomez Prieto','C\De la Amargura 15 1ºC','983252627','carmencita@gmail.com','00490062931596705980');
+INSERT INTO PERSONA VALUES('81127345Z','Javier','Ferrero Nadal','C\Cristóbal Colón 54 9ºB','678258946','javiFerrero@gmail.com','00490069103596482103');
 
 /*TABLA EMPLEADO*/
 INSERT INTO EMPLEADO VALUES('jcuestaa','12345678N','jcuestaa','10/29/2000','P');
-INSERT INTO EMPLEADO VALUES('magape','54896213V','magape','07/01/2012','T');
-
+INSERT INTO EMPLEADO VALUES('carmencita','71102598A','carmencita','02/15/2002','C');
+INSERT INTO EMPLEADO VALUES('javiFerrero','81127345Z','javiFerrero','05/08/2001','A');
 
 /*TABLA ABONADO*/
 INSERT INTO ABONADO VALUES(1000,'mcandelas','38928345H');
