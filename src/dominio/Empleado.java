@@ -6,6 +6,7 @@
 package dominio;
 
 import datos.GestorPersistenciaEmpleado;
+import datos.GestorPersistenciaPersona;
 import excepciones.BDException;
 import java.io.StringReader;
 import java.sql.Date;
@@ -17,14 +18,15 @@ import javax.json.JsonReader;
  *
  * @author ruben
  */
-public class Empleado {
+public class Empleado extends Persona{
     private String login;
     private Date fechaInicio;
     private TipoEmpleado tipoEmpleado;
 
-    protected Empleado(String jsonStr) {
+    protected Empleado(String jsonEmp,String jsonPersona) {
         /*Conversion de String a Json*/
-        StringReader strReader=new StringReader(jsonStr);
+        super(jsonPersona);
+        StringReader strReader=new StringReader(jsonEmp);
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
         
@@ -68,7 +70,14 @@ public class Empleado {
         Empleado emp=null;
         
         /*Creación del empleado*/
-        if(jsonEmp!=null) emp=new Empleado(jsonEmp);
+        if(jsonEmp!=null){
+            StringReader strReader=new StringReader(jsonEmp);
+            JsonReader jReader=Json.createReader(strReader);
+            JsonObject jsonObject=jReader.readObject();
+            
+            String jsonPersona=GestorPersistenciaPersona.getPersonaByNif(jsonObject.getString("nif"));
+            emp=new Empleado(jsonEmp,jsonPersona);
+        }
               
         return emp;
     }

@@ -31,6 +31,7 @@ public class GestorPersistenciaEmpleado {
                 .add("login",rs.getString("LOGIN"))
                 .add("fechaInicio",rs.getString("FECHAINICIO"))
                 .add("tipoEmpleado",rs.getString("TIPOEMPLEADO"))
+                .add("nif",rs.getString("NIF"))
                 .build();
 
                 /*Conversion de Json a String*/
