@@ -10,6 +10,28 @@ package dominio;
  * @author juacelo
  */
 public enum EstadoPedido {
-    pendiente,tramitado,completado,servido,facturado,pagado;  
-
+    pendiente,
+    tramitado,
+    completado,
+    servido,
+    facturado,
+    abonado;  
+    
+    /**
+     * Trasnforma una cadena correspondiente en el valor de EstadPedido
+     * que le corresponda.
+     * @param estado cadena de caracteres que indica el estado
+     * @return devuelve una valor del tipo estado
+     */
+    public static EstadoPedido getEstado(String estado) {
+        switch(estado){
+          case "P": return pendiente;
+          case "T": return tramitado;
+          case "C": return completado;
+          case "S": return servido;
+          case "F": return facturado;
+          case "A": return abonado;
+          default: return null;
+        }
+    }
 }

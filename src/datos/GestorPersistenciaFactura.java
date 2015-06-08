@@ -7,6 +7,7 @@ package datos;
 
 import excepciones.BDException;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +35,7 @@ public class GestorPersistenciaFactura {
                 .add("numeroFactura",rs.getInt("NUMEROFACTURA"))
                 .add("fechaEmision",rs.getString("FECHAEMISION"))
                 .add("importe",rs.getFloat("IMPORTE"))
+                .add("estado", rs.getString("ESTADO"))
                 .build();
                 
                 jsonFacturas.add(jsonObj);
