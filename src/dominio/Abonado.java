@@ -56,7 +56,7 @@ public class Abonado {
         this.nif = nif;
     }
     
-     protected static Abonado obtenerAbonado (int num) throws BDException{
+    protected static Abonado obtenerAbonado (int num) throws BDException{
         String jsonAb=GestorPersistenciaAbonado.obtenerAbonado(num);
         Abonado ab=null;
         

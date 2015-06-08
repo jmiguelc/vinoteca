@@ -26,10 +26,12 @@ public class Factura {
     private EstadoFactura estado;
     private Date fechaPago;
     private String idExtractBancario;
+    private ArrayList<Pedido> pedidos;
 
     /*El constructor debe ser con Json por mi parte solo debo acceder
     a la base de datos para traerlos */
-    public Factura(String jsonFactura) {
+    public Factura(String jsonFactura) throws BDException {
+        ArrayList<Pedido> pedidos;
         StringReader strReader=new StringReader(jsonFactura);
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
@@ -45,10 +47,13 @@ public class Factura {
             setIdExtractBancario(null);
         EstadoFactura estado=EstadoFactura.getEstado(jsonObject.getString("estado"));
         setEstado(estado);
+        
+        pedidos=Pedido.obtenerPedidos(getNumeroFactura());
+        setPedidos(pedidos); 
        
     }
 
-    public int getNumeroFactura() {
+    private int getNumeroFactura() {
         return numeroFactura;
     }
 
@@ -95,6 +100,16 @@ public class Factura {
     private void setIdExtractBancario(String idExtractBancario) {
         this.idExtractBancario = idExtractBancario;
     }
+
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    private void setPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+    
+    
     
     protected static ArrayList<Factura> obtenerFacturasVencidas(Date fecha) throws BDException{
         ArrayList<Factura> facturas=new ArrayList<>();
