@@ -17,16 +17,16 @@ import java.util.Date;
  *
  * @author monrae
  */
-public class ControlVistaComprobarImpagos {
+public class ControlVistaConsultarImpagos {
     
     protected VistaCUConsultarImpagos v;
 
-    public ControlVistaComprobarImpagos(VistaCUConsultarImpagos v) {
+    public ControlVistaConsultarImpagos(VistaCUConsultarImpagos v) {
         this.v=v;
     }
     
-    protected ArrayList<Factura> procesarDatosConsulta(){
-        ArrayList<Factura> facturas=null;
+    protected void procesarDatosConsulta(){
+        ArrayList<Factura> facturas;
         try{    
             Date fecha=v.getFecha();
             java.sql.Date fechaSQL=new java.sql.Date(fecha.getTime());
@@ -38,13 +38,15 @@ public class ControlVistaComprobarImpagos {
             /*comprobar impagos*/
             facturas=ContCUConsultarImpagos.obtenerInformacion(fechaSQL);
             
+            v.showInforme(facturas);
+            
         }catch(ParseException|PrivilegedActionException ex){
             v.lanzaError("Error Formato de fecha Incorrecto. " +ex.getMessage());
         } catch (BDException ex) {
             v.lanzaError(ex.getMessage());
         }
         
-        return facturas;
+        
     }
     
     /*Comparamos si hay 30 dias entre una fecha y la actual*/

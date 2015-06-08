@@ -5,11 +5,17 @@
  */
 package presentacion;
 
+import dominio.Abonado;
+import dominio.Factura;
+import dominio.Pedido;
 import java.security.PrivilegedActionException;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -17,14 +23,14 @@ import javax.swing.JOptionPane;
  */
 public class VistaCUConsultarImpagos extends javax.swing.JFrame {
 
-    protected ControlVistaComprobarImpagos c;
+    protected ControlVistaConsultarImpagos c;
     /**
      * Creates new form VistaCUConsultarImpagos
      */
     public VistaCUConsultarImpagos() {
         initComponents();
-        jScrollPane1.setVisible(false);
-        c=new ControlVistaComprobarImpagos(this);
+        mostrarTablas(false);
+        c=new ControlVistaConsultarImpagos(this);
     }
 
     /**
@@ -39,10 +45,12 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
         fechaFiled = new javax.swing.JFormattedTextField();
         consultaButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollInforme1 = new javax.swing.JScrollPane();
         informeTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        scrollInforme2 = new javax.swing.JScrollPane();
+        informeTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,23 +71,38 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
 
         informeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Número de Factura", "Fecha de Emisión", "Importe (€)"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         informeTable.setEnabled(false);
-        jScrollPane1.setViewportView(informeTable);
+        scrollInforme1.setViewportView(informeTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 330, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,12 +113,33 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 330, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        informeTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Número de Factura", "Número de Pedido", "Fecha de Realizacion", "Importe", "Fecha de Recepción", "Estado", "Abonado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollInforme2.setViewportView(informeTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,18 +148,19 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 5, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                             .addComponent(fechaFiled)
                             .addComponent(consultaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollInforme1)
+                            .addComponent(scrollInforme2))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -131,8 +176,10 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
                         .addComponent(consultaButton))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrollInforme1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(scrollInforme2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,6 +205,48 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         return fecha;
     }
     
+    protected void showInforme(ArrayList<Factura> facturas){
+        Factura factura;
+        Pedido pedido;
+        Abonado abonado;
+        ArrayList<Pedido> pedidos;
+        DefaultTableModel modelo=(DefaultTableModel)informeTable.getModel();
+        modelo.setRowCount(facturas.size());
+        informeTable.setModel(modelo);
+        
+        mostrarTablas(true);
+        
+        for(int i=0;i<facturas.size();i++){
+            factura=facturas.get(i);
+            pedidos=factura.getPedidos();
+            informeTable.setValueAt(factura.getNumeroFactura(),i ,0);
+            informeTable.setValueAt(factura.getFechaEmision(),i ,1);
+            informeTable.setValueAt(factura.getImporte(),i ,2);
+            for(int j=0;j<pedidos.size();j++){
+                pedido=pedidos.get(j);
+                informeTable2.setValueAt(factura.getNumeroFactura(), j, 0);
+                informeTable2.setValueAt(pedido.getNumeroPedido(), j, 1);
+                informeTable2.setValueAt(pedido.getFechaRealizacion(), j, 2);
+                informeTable2.setValueAt(pedido.getImporte(), j, 3);
+                informeTable2.setValueAt(pedido.getFechaRecepcion(), j, 4);
+                informeTable2.setValueAt(pedido.getEstado(), j, 5);
+                abonado=pedido.getAbonado();
+                informeTable2.setValueAt(abonado.getNombre()+" "+abonado.getApellidos(), j, 6);
+            }
+        }
+    }
+    
+    /**
+     * parametro que cambia la visibilidad de la tabla segun el parametro show
+     * @param show si el parametro es true entonces se visualiza la tabla<br>
+     * por el contrario si es false se oculta
+     */
+    protected void mostrarTablas(boolean show){
+        scrollInforme1.setVisible(show);
+        scrollInforme2.setVisible(show);
+        getContentPane().validate();
+        getContentPane().repaint();
+    }
     
     /**
      * @param args the command line arguments
@@ -198,9 +287,11 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
     private javax.swing.JButton consultaButton;
     private javax.swing.JFormattedTextField fechaFiled;
     private javax.swing.JTable informeTable;
+    private javax.swing.JTable informeTable2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane scrollInforme1;
+    private javax.swing.JScrollPane scrollInforme2;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

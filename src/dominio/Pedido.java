@@ -46,10 +46,17 @@ public class Pedido {
         double importe=(jsonObject.getJsonNumber("importe").doubleValue());
         setImporte(importe);
         
-        if(!jsonObject.containsKey("fechaRecepcion"))
-            setFechaRecepcion(null);
-        if(!jsonObject.containsKey("fechaEntrega"))
-            setFechaEntrega(null);
+        Date fechaRecepcion=null;
+        if(jsonObject.containsKey("fechaRecepcion")){
+            fechaRecepcion=Date.valueOf(jsonObject.getString("fechaRecepcion"));
+        }
+        setFechaRecepcion(fechaRecepcion);
+        
+        Date fechaEntrega=null;
+        if(jsonObject.containsKey("fechaEntrega")){
+            fechaEntrega=Date.valueOf(jsonObject.getString("fechaEntrega"));
+        }
+        setFechaEntrega(fechaEntrega);
         
         EstadoPedido estado= EstadoPedido.getEstado(jsonObject.getString("estado"));
         setEstado(estado);

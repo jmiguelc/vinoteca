@@ -53,7 +53,11 @@ public class Factura {
        
     }
 
-    private int getNumeroFactura() {
+    /**
+     * Obtiene el identificador de factura asociado a la factura
+     * @return en numero de factura almacenado en dicha factura
+     */
+    public int getNumeroFactura() {
         return numeroFactura;
     }
 
