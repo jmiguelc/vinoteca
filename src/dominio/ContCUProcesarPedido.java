@@ -35,21 +35,16 @@ public class ContCUProcesarPedido {
     }
     
     // Método que comprueba si hay alguna factura vencida
-    public static boolean compruebaPagos(String nif)throws AbNotPaidException, PedidosNotFoundException{
+    public static void compruebaPagos(String nif)throws AbNotPaidException, PedidosNotFoundException{
         try{
             // Obtenemos todos los pedidos del abonado
             ArrayList<Pedido> pedidos = Pedido.getPedidosAbonado(nif);
-            // Si no tiene pedidos entonces los pagos están bien
-            if(pedidos == null)
-                return true;
-            // Obtenemos las facturas de los pedidos
-            else{
-                Factura f;
-                
+            // Comprobamos si las facturas estan vencidas con su numero de factura incluida en los pedidos
                 for(Pedido p: pedidos){
-                    
+                    if(Factura.comprobarFacturaVencida(p.getNumFactura()))
+                        throw new AbNotPaidException("Tiene facturas vencidas, no puede realizar otro pedido");
                 }
-            }
+            System.out.println("No tiene facturas pendientes");
         }catch(BDException ex){
             throw new PedidosNotFoundException("Error al buscar los pedidos: "+ ex.getMessage());
         }

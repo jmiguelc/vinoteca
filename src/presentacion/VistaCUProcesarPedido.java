@@ -207,6 +207,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         emailLabel.setText("Email");
 
         confirmarButton.setText("Confirmar");
+        confirmarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -273,10 +278,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             lanzaError("Número de abonado vacio(s)\no con el valor por defecto");
         }
     }//GEN-LAST:event_comprobarButtonActionPerformed
+
+    private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
+            c.comprobarPagosPendientes();
+    }//GEN-LAST:event_confirmarButtonActionPerformed
       
-    private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-            
-    } 
      private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         /*Comprobamos los campos*/
         if(compruebaElementosPedido()){

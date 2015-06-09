@@ -27,7 +27,8 @@ public class Pedido {
     private double importe;
     private Date fechaRecepcion;
     private Date fechaEntrega;
-    private String nifAbonado;
+    private Abonado Abonado;
+    private String numFactura;
 
     /*Seguramente haya que hacer un constructor para Json 
     y otro normal para procesar pedido*/
@@ -61,9 +62,20 @@ public class Pedido {
         EstadoPedido estado= EstadoPedido.getEstado(jsonObject.getString("estado"));
         setEstado(estado);
         
-        String nifAbonado=jsonObject.getString("nifAbonado");
-        setNifAbonado(nifAbonado);
+        String numeroAbonado=jsonObject.getString("numeroAbonado");
+        setAbonado();
+        
+        String numFactura=jsonObject.getString("numeroFactura");
+        setNumFactura(numFactura);
     
+    }
+
+    public String getNumFactura() {
+        return numFactura;
+    }
+
+    public void setNumFactura(String numFactura) {
+        this.numFactura = numFactura;
     }
 
     public int getNumeroPedido() {
@@ -122,13 +134,14 @@ public class Pedido {
         this.fechaEntrega = fechaEntrega;
     }
 
-    public String getNifAbonado() {
-        return nifAbonado;
+    public Abonado getAbonado() {
+        return Abonado;
     }
 
-    private void setNifAbonado(String nifAbonado) {
-        this.nifAbonado = nifAbonado;
+    public void setAbonado(Abonado Abonado) {
+        this.Abonado = Abonado;
     }
+
     
     protected static ArrayList<Pedido> obtenerPedidos(int numeroFactura) throws BDException{
         ArrayList<Pedido> pedidos=new ArrayList<>();
@@ -175,7 +188,5 @@ public class Pedido {
         }
         
         return pedidos;
-    }
-    
-    
+    }   
 }

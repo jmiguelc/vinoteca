@@ -9,6 +9,7 @@ import dominio.Abonado;
 import dominio.ContCUProcesarPedido;
 import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
+import excepciones.PedidosNotFoundException;
 
 /**
  *
@@ -17,6 +18,7 @@ import excepciones.AbNotPaidException;
 public class ControlVistaProcesarPedido {
     
     protected VistaCUProcesarPedido vista;
+    protected Abonado ab;
 
     public ControlVistaProcesarPedido(VistaCUProcesarPedido vista) {
         this.vista=vista;
@@ -26,7 +28,6 @@ public class ControlVistaProcesarPedido {
     protected void comprobarAbonado(){
 
         int numAbonado = vista.getNumAbonado();
-        Abonado ab = null;
         
         try{
             ab = ContCUProcesarPedido.comprobarAbonado(numAbonado);
@@ -44,9 +45,11 @@ public class ControlVistaProcesarPedido {
         int numAbonado = vista.getNumAbonado();
         
         try{
-            ContCUProcesarPedido.compruebaPagos(numAbonado);
+            ContCUProcesarPedido.compruebaPagos(ab.getNif());               
         }catch(AbNotPaidException ex){
-            vista.lanzaError(ex.getMessage);
+            vista.lanzaError(ex.getMessage());
+        }catch(PedidosNotFoundException ex){
+            vista.lanzaError(ex.getMessage());
         }
     }
     

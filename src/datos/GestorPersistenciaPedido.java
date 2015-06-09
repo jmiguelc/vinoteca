@@ -36,8 +36,8 @@ public class GestorPersistenciaPedido {
                 .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
                 .add("fechaEntrega",rs.getString("FECHAENTREGA"))
                 .add("estado",rs.getString("ESTADO"))
-                .add("numeroAbonado",rs.getInt("NUMEROABONADO"))
-                .add("numeroFactura",rs.getInt("NUMEROFACTURA"))
+                .add("numeroAbonado",rs.getString("NIFABONADO"))
+                .add("numeroFactura",rs.getString("NUMEROFACTURA"))
                 .build();
                 
                 jsonPedidos.add(jsonObj);
@@ -58,7 +58,7 @@ public class GestorPersistenciaPedido {
     
     public static String recuperarPedidosAbonado(String nif) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.PEDIDO WHERE NIFABONADO='"+nif+"'";
+        String sql = "SELECT * FROM APP.PEDIDO WHERE NIFABONADO="+nif;
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/
@@ -73,8 +73,8 @@ public class GestorPersistenciaPedido {
                 .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
                 .add("fechaEntrega",rs.getString("FECHAENTREGA"))
                 .add("estado",rs.getString("ESTADO"))
-                .add("nifAbonado",rs.getInt("NIFABONADO"))
-                .add("numeroFactura",rs.getInt("NUMEROFACTURA"))
+                .add("numeroAbonado",rs.getString("NIFABONADO"))
+                .add("numeroFactura",rs.getString("NUMEROFACTURA"))
                 .build();
                 
                 jsonPedidos.add(jsonObj);
