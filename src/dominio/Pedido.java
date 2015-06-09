@@ -136,7 +136,7 @@ public class Pedido {
         Pedido p;
         
         /*recuperar pedidos */
-         String jsonListaPedidos=GestorPersistenciaPedido.recuperarPedidosByFactura(numeroFactura);
+         String jsonListaPedidos=GestorPersistenciaPedido.getPedidosByFactura(numeroFactura);
          String jsonPedido;
         
         /*Deshacemos el jsonArray*/

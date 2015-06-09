@@ -119,7 +119,7 @@ public class Factura {
         ArrayList<Factura> facturas=new ArrayList<>();
         
         /*Recuperamos las facturas*/
-        String jsonListaFacturas=GestorPersistenciaFactura.recuperarFacturasVencidas(fecha);
+        String jsonListaFacturas=GestorPersistenciaFactura.getFacturasVencidasByFecha(fecha);
         String jsonFactura;
         Factura f;
         

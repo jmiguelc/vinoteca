@@ -9,14 +9,10 @@ import datos.GestorPersistenciaFactura;
 import datos.GestorPersistenciaPedido;
 import excepciones.BDException;
 import java.io.StringReader;
-import java.io.StringWriter;
 import java.sql.Date;
 import javax.json.Json;
 import javax.json.JsonArray;
-import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.json.JsonString;
-import javax.json.JsonWriter;
 
 /**
  *
@@ -32,9 +28,9 @@ public class Main {
             System.out.println(fecha2);
             //str = GestorPersistenciaEmpleado.getEmpleadoByLogin("rubhern", "1234");
             //System.out.println(str);
-            str=GestorPersistenciaFactura.recuperarFacturasVencidas(fecha);
+            str=GestorPersistenciaFactura.getFacturasVencidasByFecha(fecha);
             System.out.println(str);
-            str=GestorPersistenciaPedido.recuperarPedidosByFactura(1);
+            str=GestorPersistenciaPedido.getPedidosByFactura(1);
             System.out.println(str);
             
             StringReader strReader=new StringReader(str);
