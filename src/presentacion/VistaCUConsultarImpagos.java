@@ -53,6 +53,7 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         informeTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consultar Impagos");
 
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Consultar Impagos");
@@ -128,18 +129,34 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Número de Factura", "Número de Pedido", "Fecha de Realizacion", "Importe", "Fecha de Recepción", "Estado", "Abonado"
+                "Número de Factura", "Número de Pedido", "Fecha de Realizacion", "Importe (€)", "Fecha de Recepción", "Estado", "Abonado"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, true, true, true, true
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         scrollInforme2.setViewportView(informeTable2);
+        if (informeTable2.getColumnModel().getColumnCount() > 0) {
+            informeTable2.getColumnModel().getColumn(0).setResizable(false);
+            informeTable2.getColumnModel().getColumn(1).setResizable(false);
+            informeTable2.getColumnModel().getColumn(2).setResizable(false);
+            informeTable2.getColumnModel().getColumn(3).setResizable(false);
+            informeTable2.getColumnModel().getColumn(4).setResizable(false);
+            informeTable2.getColumnModel().getColumn(5).setResizable(false);
+            informeTable2.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,9 +227,19 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         Pedido pedido;
         Abonado abonado;
         ArrayList<Pedido> pedidos;
-        DefaultTableModel modelo=(DefaultTableModel)informeTable.getModel();
+        DefaultTableModel modelo;
+        int numPedidos = 0;
+        
+        modelo=(DefaultTableModel)informeTable.getModel();
         modelo.setRowCount(facturas.size());
         informeTable.setModel(modelo);
+        
+        modelo=(DefaultTableModel)informeTable2.getModel();
+        for (Factura factura1 : facturas) {
+            numPedidos=numPedidos+factura1.getPedidos().size();
+        }
+        modelo.setRowCount(numPedidos);
+        informeTable2.setModel(modelo);
         
         mostrarTablas(true);
         
