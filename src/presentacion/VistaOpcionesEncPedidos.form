@@ -60,11 +60,13 @@
     <Component class="javax.swing.JButton" name="RegistrarEnvioButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar Envio de Pedido"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar Entrega de Pedido"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="titleLabel">

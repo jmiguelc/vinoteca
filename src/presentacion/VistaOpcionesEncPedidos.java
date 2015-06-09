@@ -38,8 +38,10 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
         procesarPedidoButton.setText("Procesar Pedido");
 
         RegistrarEnvioButton.setText("Registrar Envio de Pedido");
+        RegistrarEnvioButton.setEnabled(false);
 
         jButton3.setText("Registrar Entrega de Pedido");
+        jButton3.setEnabled(false);
 
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Encargado de Pedidos");
