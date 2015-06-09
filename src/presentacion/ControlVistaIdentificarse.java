@@ -6,7 +6,9 @@
 package presentacion;
 
 import dominio.ContCUIdentificarse;
+import dominio.TipoEmpleado;
 import excepciones.EmpNotFoundException;
+import javax.swing.JFrame;
 
 /**
  *
@@ -25,9 +27,23 @@ public class ControlVistaIdentificarse {
         /*Traemos el contenido de los elementos*/
         String login=vista.getUsuario();
         String password=String.valueOf(vista.getPassword());
+        TipoEmpleado tipoEmpleado;
+        JFrame v;
         
         try{
-        ContCUIdentificarse.identificarse(login, password);
+            tipoEmpleado=ContCUIdentificarse.identificarse(login, password);
+            switch(tipoEmpleado){
+                case responsablePedidos:
+                    v=new VistaOpcionesEncPedidos();
+                    vista.dispose();
+                    v.setVisible(true);
+                    break;
+                case responsableContabilidad:
+                    v=new VistaOpcionesEncContabilidad();
+                    vista.dispose();
+                    v.setVisible(true);
+                    break;
+            }
         }catch(EmpNotFoundException ex){
             vista.lanzaError(ex.getMessage());
         }
