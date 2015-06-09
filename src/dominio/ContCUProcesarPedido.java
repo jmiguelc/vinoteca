@@ -14,10 +14,10 @@ import excepciones.BDException;
  */
 public class ContCUProcesarPedido {
     
-    public static Abonado comprobarAbonado(int numAb) throws AbNotFoundException{
+    public static Abonado comprobarAbonado(int numAbonado) throws AbNotFoundException{
         Abonado ab;
         try{    
-            ab = Abonado.obtenerAbonado(numAb);
+            ab = Abonado.obtenerAbonado(numAbonado);
             if(ab==null){
                 throw new AbNotFoundException("El número de abonado no es correcto");
             }
