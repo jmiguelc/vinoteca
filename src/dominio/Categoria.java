@@ -10,5 +10,8 @@ package dominio;
  * @author monrae
  */
 public enum Categoria {
-    delAño,crianza,granReserva;
+    delAño,
+    crianza,
+    reserva,
+    granReserva;
 }

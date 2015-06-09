@@ -10,7 +10,6 @@ import java.io.StringWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonWriter;
@@ -20,7 +19,7 @@ import javax.json.JsonWriter;
  * @author monrae
  */
 public class GestorPersistenciaPedido {
-    public static String recuperarPedidosByFactura(int numeroFactura) throws BDException{
+    public static String getPedidosByFactura(int numeroFactura) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.PEDIDO WHERE NUMEROFACTURA="+numeroFactura;
         

@@ -43,6 +43,11 @@ public class ControlVistaIdentificarse {
                     vista.dispose();
                     v.setVisible(true);
                     break;
+                case responsableAlmacen:
+                    v=new VistaOpcionesEncAlmacen();
+                    vista.dispose();
+                    v.setVisible(true);
+                    break;
             }
         }catch(EmpNotFoundException ex){
             vista.lanzaError(ex.getMessage());

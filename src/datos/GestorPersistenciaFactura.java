@@ -7,12 +7,10 @@ package datos;
 
 import excepciones.BDException;
 import java.io.StringWriter;
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonWriter;
@@ -22,7 +20,7 @@ import javax.json.JsonWriter;
  * @author monrae
  */
 public class GestorPersistenciaFactura {
-    public static String recuperarFacturasVencidas(Date fecha) throws BDException{
+    public static String getFacturasVencidasByFecha(Date fecha) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.FACTURA WHERE ESTADO='V' AND FECHAEMISION<'"+fecha.toString()+"'";
         

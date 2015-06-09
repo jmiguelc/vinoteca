@@ -8,7 +8,6 @@ package dominio;
 import datos.GestorPersistenciaPersona;
 import excepciones.BDException;
 import java.io.StringReader;
-import java.sql.Date;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -46,7 +45,7 @@ public class Persona {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    private void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -54,7 +53,7 @@ public class Persona {
         return apellidos;
     }
 
-    public void setApellidos(String apellidos) {
+    private void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
 
@@ -62,7 +61,7 @@ public class Persona {
         return nif;
     }
 
-    public void setNif(String nif) {
+    private void setNif(String nif) {
         this.nif = nif;
     }
 
@@ -70,7 +69,7 @@ public class Persona {
         return email;
     }
 
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 
@@ -78,7 +77,7 @@ public class Persona {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    private void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -86,7 +85,7 @@ public class Persona {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
+    private void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
@@ -94,10 +93,11 @@ public class Persona {
         return cuentaBancaria;
     }
 
-    public void setCuentaBancaria(String cuentaBancaria) {
+    private void setCuentaBancaria(String cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
     }
-        protected static Persona obtenerPersona (String nif) throws BDException{
+        
+    protected static Persona obtenerPersona (String nif) throws BDException{
         String jsonPersona=GestorPersistenciaPersona.getPersonaByNif(nif);
         Persona pers=null;
         
