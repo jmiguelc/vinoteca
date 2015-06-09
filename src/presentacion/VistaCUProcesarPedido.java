@@ -155,6 +155,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         nAbonadoField.setText("num abonado");
 
         comprobarButton.setText("Comprobar");
+        comprobarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprobarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -258,8 +263,9 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        /*Comprobamos los campos*/
+
+    private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprobarButtonActionPerformed
+         /*Comprobamos los campos*/
         if(compruebaElementosAbonado()){
             /*Procesamos la comprobacion de abonado*/
            c.comprobarAbonado();
@@ -267,9 +273,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         }else{
             lanzaError("Número de abonado vacio(s)\no con el valor por defecto");
         }
-    }  
+    }//GEN-LAST:event_comprobarButtonActionPerformed
+      
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        
+            
     } 
      private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         /*Comprobamos los campos*/
