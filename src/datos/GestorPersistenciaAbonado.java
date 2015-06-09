@@ -18,9 +18,9 @@ import javax.json.JsonWriter;
  * @author ruben
  */
 public class GestorPersistenciaAbonado {
-    public static String  obtenerAbonado(int num) throws BDException{
+    public static String getAbonadoByNumeroAbonado(int numeroAbonado) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.ABONADO WHERE NUMEROABONADO ="+num;
+        String sql = "SELECT * FROM APP.ABONADO WHERE NUMEROABONADO ="+numeroAbonado;
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/
