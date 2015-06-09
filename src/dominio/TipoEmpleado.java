@@ -11,11 +11,13 @@ package dominio;
  */
 public enum TipoEmpleado {
     responsablePedidos,
+    responsableContabilidad,
     responsableAlmacen;
 
     public static TipoEmpleado getTipo(String tipo) {
         switch(tipo){
           case "A": return responsableAlmacen;
+          case "C": return responsableContabilidad;
           case "P": return responsablePedidos;
           default: return null;
         }
