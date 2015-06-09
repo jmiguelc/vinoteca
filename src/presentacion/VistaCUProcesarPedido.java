@@ -24,7 +24,8 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         boolean val=true;
         
         /*Mirar si tienen los campos por defecto*/
-        
+       if(String.valueOf(getNumAbonado()).equals("num abonado") )
+           val = false;
         /*Mirar si los campos estan vacios*/
        if(getNumAbonado()==0) 
           val=false;

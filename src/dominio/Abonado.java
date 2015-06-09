@@ -53,7 +53,6 @@ public class Abonado extends Persona{
     protected static Abonado obtenerAbonado (int num) throws BDException{
         String jsonAb=GestorPersistenciaAbonado.obtenerAbonado(num);
         Abonado ab=null;
-        Persona p;
         
         /*Creación del abonado*/
         if(jsonAb!=null){
@@ -64,10 +63,7 @@ public class Abonado extends Persona{
             
             ab=new Abonado(jsonAb,jsonPersona);
         
-        }
-        
-              
+        }      
         return ab;
     }
-    
 }

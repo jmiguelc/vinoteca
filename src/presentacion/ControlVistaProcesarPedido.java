@@ -5,7 +5,6 @@
  */
 package presentacion;
 
-import dominio.Abonado;
 import dominio.ContCUProcesarPedido;
 import excepciones.AbNotFoundException;
 
@@ -22,19 +21,15 @@ public class ControlVistaProcesarPedido {
     
     }
     
-    protected Abonado comprobarAbonado(){
-        Abonado ab=null;
+    protected void comprobarAbonado(){
+
         int numAbonado = vista.getNumAbonado();
+        
         try{
-            ab=ContCUProcesarPedido.comprobarAbonado(numAbonado);
-            vista.setName(ab.getNombre());
-            vista.setapellidoLabel(ab.getApellidos());
-            vista.setEmailLabel(ab.getEmail());
-            vista.setTelefonoLabel(ab.getTelefono());
+            ContCUProcesarPedido.comprobarAbonado(numAbonado);
         }catch(AbNotFoundException ex){
             vista.lanzaError(ex.getMessage());
         }
-        return ab;
     }
     //falta crear una funcion para el pedido en ContCUProcesarPedido
     protected void comprobarPedido(){
