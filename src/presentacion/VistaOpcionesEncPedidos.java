@@ -36,6 +36,11 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
         setTitle("Menú Encargado de Pedidos");
 
         procesarPedidoButton.setText("Procesar Pedido");
+        procesarPedidoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                procesarPedidoButtonActionPerformed(evt);
+            }
+        });
 
         RegistrarEnvioButton.setText("Registrar Envio de Pedido");
         RegistrarEnvioButton.setEnabled(false);
@@ -74,6 +79,12 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void procesarPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarPedidoButtonActionPerformed
+        VistaCUProcesarPedido vista=new VistaCUProcesarPedido();
+        vista.setVisible(true);
+        //this.dispose();
+    }//GEN-LAST:event_procesarPedidoButtonActionPerformed
 
     /**
      * @param args the command line arguments
