@@ -6,6 +6,7 @@
 package presentacion;
 
 import dominio.ContCUIdentificarse;
+import dominio.TipoEmpleado;
 import excepciones.EmpNotFoundException;
 
 /**
@@ -25,9 +26,17 @@ public class ControlVistaIdentificarse {
         /*Traemos el contenido de los elementos*/
         String login=vista.getUsuario();
         String password=String.valueOf(vista.getPassword());
+        TipoEmpleado tipoEmpleado;
         
         try{
-        ContCUIdentificarse.identificarse(login, password);
+            tipoEmpleado=ContCUIdentificarse.identificarse(login, password);
+            switch(tipoEmpleado){
+                case responsablePedidos:
+                    VistaOpcionesEncPedidos v=new VistaOpcionesEncPedidos();
+                    vista.dispose();
+                    v.setVisible(true);
+                    break;
+            }
         }catch(EmpNotFoundException ex){
             vista.lanzaError(ex.getMessage());
         }
