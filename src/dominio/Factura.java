@@ -28,8 +28,14 @@ public class Factura {
     private String idExtractBancario;
     private ArrayList<Pedido> pedidos;
 
-    /*El constructor debe ser con Json por mi parte solo debo acceder
-    a la base de datos para traerlos */
+
+    /**
+     * El constructor debe ser con Json por mi parte solo debo acceder
+     * a la base de datos para traerlos
+     * @param jsonFactura
+     * @throws BDException
+     */
+    
     public Factura(String jsonFactura) throws BDException {
         ArrayList<Pedido> pedidos;
         StringReader strReader=new StringReader(jsonFactura);
@@ -60,43 +66,78 @@ public class Factura {
     public int getNumeroFactura() {
         return numeroFactura;
     }
-
+    /**
+     * Establece el numero de factura de una Factura
+     * @param numeroFactura 
+     */
     private void setNumeroFactura(int numeroFactura) {
         this.numeroFactura = numeroFactura;
     }
 
+    /**
+     * Se obtiene la fecha de emision de una Factura
+     * @return la fecha de emision de una factura
+     */
     public Date getFechaEmision() {
         return fechaEmision;
     }
-
+    /**
+    * Establece una fecha de emision de una Factura
+    * @param fechaEmision 
+    */
     private void setFechaEmision(Date fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 
+    /**
+     * Se obtiene el importe de una Factura
+     * @return el importe de la factura
+     */
     public double getImporte() {
         return importe;
     }
-
+    /**
+     * Establece el importe de una Factura
+     * @param importe 
+     */
     private void setImporte(double importe) {
         this.importe = importe;
     }
 
+    /**
+     * Se obtiene el estado de una Factura
+     * @return el estado de la factura
+     */
     public EstadoFactura getEstado() {
         return estado;
     }
-
+    /**
+     * Establece el estado de una Factura
+     * @param estado 
+     */
     private void setEstado(EstadoFactura estado) {
         this.estado = estado;
     }
 
+    /**
+     * Se obtiene la fecha de pago de una Factura
+     * @return la fecha de pago de la factura
+     */
     public Date getFechaPago() {
         return fechaPago;
     }
-
+    /**
+     * Establece la fecha de pago de una Factura
+     * @param fechaPago 
+     */
     private void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
 
+    /**
+     * Se obtiene el identificador del extracto bancario de una Factura
+     * @return un 
+     */
     public String getIdExtractBancario() {
         return idExtractBancario;
     }
@@ -105,6 +146,10 @@ public class Factura {
         this.idExtractBancario = idExtractBancario;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Pedido> getPedidos() {
         return pedidos;
     }
@@ -113,8 +158,12 @@ public class Factura {
         this.pedidos = pedidos;
     }
     
-    
-    
+    /**
+     *
+     * @param fecha
+     * @return
+     * @throws BDException
+     */
     protected static ArrayList<Factura> obtenerFacturasVencidas(Date fecha) throws BDException{
         ArrayList<Factura> facturas=new ArrayList<>();
         
@@ -144,7 +193,14 @@ public class Factura {
     }
     
     // Comprobar si la factura esta vencida
-    protected static boolean comprobarFacturaVencida(String numFactura)throws BDException{
+
+    /**
+     *
+     * @param numFactura
+     * @return
+     * @throws BDException
+     */
+        protected static boolean comprobarFacturaVencida(String numFactura)throws BDException{
         boolean val = false;
         
         String e = GestorPersistenciaFactura.getEstadoFactura(numFactura);
