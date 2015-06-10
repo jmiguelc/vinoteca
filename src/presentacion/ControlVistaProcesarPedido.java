@@ -5,11 +5,8 @@
  */
 package presentacion;
 
-import dominio.Abonado;
 import dominio.ContCUProcesarPedido;
 import excepciones.AbNotFoundException;
-import excepciones.AbNotPaidException;
-import excepciones.PedidosNotFoundException;
 
 /**
  *
@@ -18,41 +15,23 @@ import excepciones.PedidosNotFoundException;
 public class ControlVistaProcesarPedido {
     
     protected VistaCUProcesarPedido vista;
-    protected Abonado ab;
 
     public ControlVistaProcesarPedido(VistaCUProcesarPedido vista) {
         this.vista=vista;
     
     }
-    // Comprobamos que el numero de abonado existe y mostramos la informacion
+    
     protected void comprobarAbonado(){
 
         int numAbonado = vista.getNumAbonado();
         
         try{
-            ab = ContCUProcesarPedido.comprobarAbonado(numAbonado);
-            vista.setEmailLabel(ab.getEmail());
-            vista.setNombreLabel(ab.getNombre());
-            vista.setTelefonoLabel(ab.getTelefono());
-            vista.setapellidoLabel(ab.getApellidos());
+            ContCUProcesarPedido.comprobarAbonado(numAbonado);
         }catch(AbNotFoundException ex){
             vista.lanzaError(ex.getMessage());
         }
     }
-    
-    // Comprobamos que el abonado no tenga pagos pendientes
-    protected void comprobarPagosPendientes(){
-        int numAbonado = vista.getNumAbonado();
-        
-        try{
-            ContCUProcesarPedido.compruebaPagos(ab.getNif());               
-        }catch(AbNotPaidException ex){
-            vista.lanzaError(ex.getMessage());
-        }catch(PedidosNotFoundException ex){
-            vista.lanzaError(ex.getMessage());
-        }
-    }
-    
+    //falta crear una funcion para el pedido en ContCUProcesarPedido
     protected void comprobarPedido(){
         int refencia = vista.getReferencia();
         int cantidad = vista.getCantidad();

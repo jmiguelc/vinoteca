@@ -36,8 +36,8 @@ public class GestorPersistenciaPedido {
                 .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
                 .add("fechaEntrega",rs.getString("FECHAENTREGA"))
                 .add("estado",rs.getString("ESTADO"))
-                .add("numeroAbonado",rs.getString("NIFABONADO"))
-                .add("numeroFactura",rs.getString("NUMEROFACTURA"))
+                .add("numeroAbonado",rs.getInt("NUMEROABONADO"))
+                .add("numeroFactura",rs.getInt("NUMEROFACTURA"))
                 .build();
                 
                 jsonPedidos.add(jsonObj);
@@ -54,45 +54,5 @@ public class GestorPersistenciaPedido {
             throw new BDException(e.getMessage());
         }
        
-    }
-    
-    public static String recuperarPedidosAbonado(String nif) throws BDException{
-        ResultSet rs;
-        String sql = "SELECT * FROM APP.PEDIDO WHERE NIFABONADO="+nif;
-        
-        try{
-            /*Lectura de la BD y creación de la cadena Json*/
-            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
-            JsonArrayBuilder jsonPedidos= Json.createArrayBuilder();
-            while(rs.next()){
-                JsonObject jsonObj=Json.createObjectBuilder()
-                .add("numeroPedido",rs.getInt("NUMERO"))
-                .add("fechaRealizacion",rs.getString("FECHAREALIZACION"))
-                .add("notaEntrega",rs.getString("NOTAENTREGA"))
-                .add("importe",rs.getFloat("IMPORTE"))
-                .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
-                .add("fechaEntrega",rs.getString("FECHAENTREGA"))
-                .add("estado",rs.getString("ESTADO"))
-                .add("numeroAbonado",rs.getString("NIFABONADO"))
-                .add("numeroFactura",rs.getString("NUMEROFACTURA"))
-                .build();
-                
-                jsonPedidos.add(jsonObj);
-            }
-            
-            if(jsonPedidos == null)
-                return null;
-            
-            
-            /*Conversion de Json a String*/
-            StringWriter jsonstr=new StringWriter();
-            JsonWriter writer = Json.createWriter(jsonstr);
-            writer.writeArray(jsonPedidos.build());
-
-            return jsonstr.toString();
-            
-        }catch(SQLException e){
-            throw new BDException(e.getMessage());
-        }       
     }
 }

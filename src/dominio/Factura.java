@@ -143,11 +143,4 @@ public class Factura {
         return facturas;
     }
     
-    // Comprobar si la factura esta vencida
-    protected static boolean comprobarFacturaVencida(String numFactura)throws BDException{
-        if(GestorPersistenciaFactura.comprobarFacturaVencida(numFactura))
-            return true;
-        else
-            return false;
-    }
 }
