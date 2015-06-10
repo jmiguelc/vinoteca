@@ -8,12 +8,15 @@ package dominio;
 import datos.GestorPersistenciaPedido;
 import excepciones.BDException;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import javax.json.JsonWriter;
 
 /**
  *
@@ -199,6 +202,16 @@ public class Pedido {
     private void setAbonado(Abonado abonado) {
         this.abonado = abonado;
     }
+
+    public ArrayList<LineaPedido> getLineasPedido() {
+        return lineasPedido;
+    }
+
+    public void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
+        this.lineasPedido = lineasPedido;
+    }
+    
+    
     
     /**
      * Se obtiene una lista de pedidos por el numero de factura de Pedido
@@ -233,4 +246,31 @@ public class Pedido {
         this.lineasPedido.add(lineaPedido);
     }
     
+    protected static void guardarPedido(Pedido p, double importe) throws BDException{
+        int numPedido = GestorPersistenciaPedido.getNextPedido();
+        
+        JsonObject jsonObj=Json.createObjectBuilder()
+            .add("numeroPedido",numPedido)
+            .add("fechaRealizacion",p.getFechaRealizacion().toString())
+            .add("importe",importe)           
+            .add("estado",p.getEstado().toString())
+            .add("numeroAbonado",p.getAbonado().getNumeroAbonado())
+            //.add("numeroFactura",rs.getInt("NUMEROFACTURA"))
+            .build();
+        
+        StringWriter jsonstr=new StringWriter();
+        JsonWriter writer = Json.createWriter(jsonstr);
+        writer.writeObject(jsonObj);
+        GestorPersistenciaPedido.insertPedido(jsonstr.toString());
+    }
+    
+    protected double getTotal(){
+        double importeTotal = 0.0;
+        
+        ArrayList<LineaPedido> lineasPedidos = getLineasPedido();
+        for(LineaPedido lp: lineasPedidos){
+            importeTotal += lp.getTotal();
+        }
+        return importeTotal;
+    }
 }
