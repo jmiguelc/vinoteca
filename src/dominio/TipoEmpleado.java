@@ -13,7 +13,11 @@ public enum TipoEmpleado {
     responsablePedidos,
     responsableContabilidad,
     responsableAlmacen;
-
+    /**
+     * Se obtiene el tipo de empleado de TipoEmpleado
+     * @param tipo
+     * @return un tipo de empleado
+     */
     public static TipoEmpleado getTipo(String tipo) {
         switch(tipo){
           case "A": return responsableAlmacen;
