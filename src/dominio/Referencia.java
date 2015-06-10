@@ -5,6 +5,8 @@
  */
 package dominio;
 
+import datos.GestorPersistenciaReferencia;
+import excepciones.BDException;
 import java.io.StringReader;
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -26,7 +28,11 @@ public class Referencia {
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
         
-        
+        setCodigo(jsonObject.getInt("codigo"));
+        setEsPorCajas(jsonObject.getBoolean("porCajas"));
+        setContenidoENCL(jsonObject.getInt("contenido"));
+        setImporte(jsonObject.getJsonNumber("importe").doubleValue());
+        setDisponible(jsonObject.getBoolean("disponible"));
     }
 
     public int getCodigo() {
@@ -69,7 +75,13 @@ public class Referencia {
         this.disponible = disponible;
     }
     
-    protected static Referencia getReferencia(int numRef){
-        return GestorPersistenciaReferencia(numRef);
+    protected static Referencia getReferencia(int numRef) throws BDException{
+        String jsonReferencia = GestorPersistenciaReferencia.getReferencia(numRef);
+        Referencia ref = null;
+        
+        if(jsonReferencia != null){
+            ref = new Referencia(jsonReferencia);
+        }
+        return ref;
     }
 }

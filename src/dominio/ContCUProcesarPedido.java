@@ -63,12 +63,12 @@ public class ContCUProcesarPedido {
     }
     // Método para comprobar si la referencia del pedido existe    
     public static String comprobarPedido(int ref, int cant){
-        Referencia ref;
+        Referencia referencia;
         
         try{
-           
+         referencia = Referencia.getReferencia(ref);
             
         }catch(){
         }
-    }*/
+    }
 }
