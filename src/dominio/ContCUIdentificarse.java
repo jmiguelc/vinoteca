@@ -14,6 +14,13 @@ import excepciones.EmpNotFoundException;
  */
 public class ContCUIdentificarse {
     
+    /**
+     * Se comprueba si se realiza Identificarse correctamente.
+     * @param login
+     * @param password
+     * @return un tipo de empleado
+     * @throws EmpNotFoundException
+     */
     public static TipoEmpleado identificarse(String login, String password) throws EmpNotFoundException{
         Empleado emp;
         TipoEmpleado tipo=null;

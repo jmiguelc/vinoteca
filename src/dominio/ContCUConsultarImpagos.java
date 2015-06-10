@@ -14,6 +14,13 @@ import java.util.ArrayList;
  * @author monrae
  */
 public class ContCUConsultarImpagos {
+    
+    /**
+     * Se obtiene informacion de  consultarImpagos
+     * @param fecha
+     * @return una lista de facturas
+     * @throws BDException
+     */
     public static ArrayList<Factura> obtenerInformacion(Date fecha) throws BDException{
         ArrayList<Factura> facturasVencidas=null;
         facturasVencidas=Factura.obtenerFacturasVencidas(fecha);
