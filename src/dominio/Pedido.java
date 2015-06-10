@@ -154,5 +154,27 @@ public class Pedido {
         return pedidos;
     }
     
-    
+    // Método para hallar los pedidos de un abonado
+    protected static ArrayList getPedidosAbonado (String nif)throws BDException{
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+        Pedido p;
+        
+         /*recuperar pedidos de un abonado */
+         String jsonListaPedidos=GestorPersistenciaPedido.recuperarPedidosAbonado(nif);
+         String jsonPedido;
+        
+        /*Deshacemos el jsonArray*/
+        StringReader strReader=new StringReader(jsonListaPedidos);
+        JsonReader jReader=Json.createReader(strReader);    
+        JsonArray jsonArray=jReader.readArray();
+        
+        /*mandamos construir los objetos y generamos la lista de Pedidos*/
+        for(int i=0;i<jsonArray.size();i++){
+            jsonPedido = jsonArray.getJsonObject(i).toString();
+            p=new Pedido(jsonPedido);
+            pedidos.add(p);
+        }
+        
+        return pedidos;
+    }   
 }
