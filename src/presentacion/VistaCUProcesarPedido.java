@@ -20,24 +20,39 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         initComponents();
         c=new ControlVistaProcesarPedido(this);
     }
-    
      protected boolean compruebaElementosAbonado(){
         boolean val=true;
         
         /*Mirar si tienen los campos por defecto*/
-       if(String.valueOf(getNumAbonado()).equals("num abonado") )
-           val = false;
         /*Mirar si los campos estan vacios*/
-       if(getNumAbonado()==0) 
-          val=false;
+        String numeroAbonado=getNumAbonado();
+        if(numeroAbonado.equals("num abonado") || numeroAbonado.equals(""))
+            val = false;
+        
         
         return val;
     }
-   
-   protected int getNumAbonado(){
-      return Integer.parseInt(nAbonadoField.getText());
-    }
+    protected boolean compruebaElementosPedido(){
+        boolean val=true;
         
+        /*Mirar si tienen los campos por defecto*/
+        
+        /*Mirar si los campos estan vacios*/
+       if(getReferencia()==0 || getCantidad()==0) val=false;
+        
+        return val;
+    }
+   protected String getNumAbonado(){
+      return nAbonadoField.getText();
+    }
+    
+    protected int getReferencia(){
+        return Integer.parseInt(referenciaField.getText());
+    }
+    
+    protected int getCantidad(){
+        return Integer.parseInt(cantidadField.getText());
+    }
     protected void setNombreLabel(String nombre){
         this.nombreLabel.setText(nombre);
     }
@@ -50,11 +65,13 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     protected void setEmailLabel(String email){
         this.emailLabel.setText(email);
     }
-    
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     
+    public void setConfirmarEnabled(){
+        this.confirmarButton.setEnabled(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +82,12 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private void initComponents() {
 
         pedido = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        refLabel = new javax.swing.JLabel();
+        totalLabel = new javax.swing.JLabel();
+        addButton = new javax.swing.JButton();
+        referenciaField = new javax.swing.JTextField();
+        cantidadField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         pedidoLabel = new javax.swing.JLabel();
         numAbLabel = new javax.swing.JLabel();
@@ -80,6 +103,53 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pedido.setLayout(new javax.swing.BoxLayout(pedido, javax.swing.BoxLayout.LINE_AXIS));
+
+        refLabel.setText("Referencia");
+
+        totalLabel.setText("Cantidad");
+
+        addButton.setText("Añadir");
+        addButton.setEnabled(false);
+
+        referenciaField.setText("referencia");
+
+        cantidadField.setText("cantidad");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(refLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(totalLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cantidadField)
+                            .addComponent(referenciaField)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(addButton)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(refLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(referenciaField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalLabel)
+                    .addComponent(cantidadField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addButton)
+                .addContainerGap())
+        );
 
         pedidoLabel.setText("               PEDIDO");
 
@@ -140,6 +210,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         emailLabel.setText("Email");
 
         confirmarButton.setText("Confirmar");
+        confirmarButton.setEnabled(false);
         confirmarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarButtonActionPerformed(evt);
@@ -157,7 +228,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                     .addComponent(apellidoLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(phoneLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(confirmarButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(confirmarButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -183,16 +254,21 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,6 +289,15 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         c.comprobarPagosPendientes();
     }//GEN-LAST:event_confirmarButtonActionPerformed
      
+     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        /*Comprobamos los campos*/
+        if(compruebaElementosPedido()){
+            /*Procesamos la los datos del pedido*/
+           c.comprobarPedido();
+        }else{
+            lanzaError("Número de referencia y la cantidad vacio(s)\no con el valor por defecto");
+        }
+    }
      
     /**
      * @param args the command line arguments
@@ -250,11 +335,14 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JLabel apellidoLabel;
+    private javax.swing.JTextField cantidadField;
     private javax.swing.JButton comprobarButton;
     private javax.swing.JButton confirmarButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField nAbonadoField;
     private javax.swing.JLabel nombreLabel;
@@ -262,5 +350,8 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private javax.swing.JPanel pedido;
     private javax.swing.JLabel pedidoLabel;
     private javax.swing.JLabel phoneLabel;
+    private javax.swing.JLabel refLabel;
+    private javax.swing.JTextField referenciaField;
+    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

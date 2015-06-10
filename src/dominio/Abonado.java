@@ -71,12 +71,12 @@ public class Abonado extends Persona{
   
     /**
      * Se obtiene un Abonado
-     * @param num
+     * @param numeroAbonado
      * @return un Abonado
      * @throws BDException
      */
-    protected static Abonado obtenerAbonado (int num) throws BDException{
-        String jsonAb=GestorPersistenciaAbonado.getAbonadoByNumeroAbonado(num);
+    protected static Abonado obtenerAbonado (int numeroAbonado) throws BDException{
+        String jsonAb=GestorPersistenciaAbonado.getAbonadoByNumeroAbonado(numeroAbonado);
         Abonado ab=null;
         
         /*Creación del abonado*/

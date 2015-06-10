@@ -5,10 +5,13 @@
  */
 package dominio;
 
+import datos.GestorPersistenciaFactura;
 import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
 import excepciones.BDException;
 import excepciones.PedidosNotFoundException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +34,8 @@ public class ContCUProcesarPedido {
             if(ab==null){
                 throw new AbNotFoundException("El número de abonado no es correcto");
             }
-            System.out.println("Existe el abonado");
+            System.out.println("El abonado existe y es válido");
+            
         }catch(BDException ex){
             throw new AbNotFoundException("Abonado no Encontrado: "+ex.getMessage());   
         }
@@ -42,33 +46,34 @@ public class ContCUProcesarPedido {
     /**
      * Comprueba si hay alguna factura vencida
      * @param numAbonado
+     * @return 
+     * @throws excepciones.BDException 
      * @throws AbNotPaidException
-     * @throws PedidosNotFoundException
      */
-        public static void compruebaPagos(int numAbonado)throws AbNotPaidException, PedidosNotFoundException{
-        try{
-            String numFactura;
-            // Obtenemos todos los pedidos del abonado
-            ArrayList<Pedido> pedidos = Pedido.getPedidosAbonado(numAbonado);
-            // Comprobamos si las facturas estan vencidas con su numero de factura incluida en los pedidos
-                for(Pedido p: pedidos){
-                    numFactura = Pedido.getNumFactura(p.getNumeroPedido());
-                    if(Factura.comprobarFacturaVencida(numFactura))
-                        throw new AbNotPaidException("Tiene facturas vencidas, no puede realizar otro pedido");
-                }
-            System.out.println("No tiene facturas pendientes");
-        }catch(BDException ex){
-            throw new PedidosNotFoundException("Error al buscar los pedidos: "+ ex.getMessage());
-        }
-    }
-    // Método para comprobar si la referencia del pedido existe    
-    public static String comprobarPedido(int ref, int cant){
-        Referencia referencia;
+        public static boolean compruebaPagos(int numAbonado) throws BDException, AbNotPaidException{
         
-        try{
-         referencia = Referencia.getReferencia(ref);
-            
-        }catch(){
+        Date today =Date.valueOf(LocalDate.now());
+        ArrayList<Factura> facturas=Factura.obtenerFacturasVencidas(today);
+        ArrayList<Pedido> pedidos;
+        Pedido pedido;
+        Abonado abonado;
+        boolean val=true;
+           
+        for(Factura factura :facturas){
+            pedidos=factura.getPedidos();
+            pedido=pedidos.get(0);
+            abonado=pedido.getAbonado();
+            if (numAbonado==abonado.getNumeroAbonado()){
+                val=false;
+            }
         }
+        if (val==false){
+            throw new AbNotPaidException("Tiene facturas vencidas, no puede realizar otro pedido");
+        }else{
+            System.out.println("No tiene facturas pendientes");
+        }
+        
+        return val;
+       
     }
 }
