@@ -136,32 +136,38 @@ public class Factura {
 
     /**
      * Se obtiene el identificador del extracto bancario de una Factura
-     * @return un 
+     * @return un identificador del extracto bancario de la factura
      */
     public String getIdExtractBancario() {
         return idExtractBancario;
     }
-
+    /**
+     * Establece un identificador del extracto bancario de una Factura
+     * @param idExtractBancario 
+     */
     private void setIdExtractBancario(String idExtractBancario) {
         this.idExtractBancario = idExtractBancario;
     }
 
     /**
-     *
-     * @return
+     * Se obtiene una lista de pedidos
+     * @return una lista de pedidos
      */
     public ArrayList<Pedido> getPedidos() {
         return pedidos;
     }
-
+    /**
+     * Establece una lista de pedidos
+     * @param pedidos 
+     */
     private void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
     
     /**
-     *
+     * Se obtiene una lista de facturas vencidas de Factura
      * @param fecha
-     * @return
+     * @return lista de facturas vencidas
      * @throws BDException
      */
     protected static ArrayList<Factura> obtenerFacturasVencidas(Date fecha) throws BDException{
@@ -192,12 +198,10 @@ public class Factura {
         return facturas;
     }
     
-    // Comprobar si la factura esta vencida
-
     /**
-     *
+     * Comprobar si la factura esta vencida
      * @param numFactura
-     * @return
+     * @return un booleano dependiendo si la factura esta vencida o no
      * @throws BDException
      */
         protected static boolean comprobarFacturaVencida(String numFactura)throws BDException{
