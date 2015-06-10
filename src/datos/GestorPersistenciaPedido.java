@@ -55,10 +55,9 @@ public class GestorPersistenciaPedido {
         }
        
     }
-    
-    public static String recuperarPedidosAbonado(String nif) throws BDException{
+    public static String recuperarPedidosAbonado(int numAbonado) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.PEDIDO WHERE NIFABONADO="+nif;
+        String sql = "SELECT * FROM APP.PEDIDO WHERE NUMEROABONADO="+numAbonado;
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/
@@ -73,7 +72,7 @@ public class GestorPersistenciaPedido {
                 .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
                 .add("fechaEntrega",rs.getString("FECHAENTREGA"))
                 .add("estado",rs.getString("ESTADO"))
-                .add("numeroAbonado",rs.getString("NIFABONADO"))
+                .add("numeroAbonado",rs.getString("NUMEROABONADO"))
                 .add("numeroFactura",rs.getString("NUMEROFACTURA"))
                 .build();
                 
@@ -94,5 +93,22 @@ public class GestorPersistenciaPedido {
         }catch(SQLException e){
             throw new BDException(e.getMessage());
         }       
+    }
+    
+    public static String getNumFactura (int num)throws BDException{
+        ResultSet rs;
+        String sql = "SELECT NUMEROFACTURA FROM APP.PEDIDO WHERE NUMERO="+num;
+        String numFactura = null;
+        
+        try{
+            /*Lectura de la BD y devolucion del número de factura */
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            
+            while(rs.next())
+                numFactura = rs.getString("NUMEROFACTURA");
+        }catch(SQLException e){
+             throw new BDException(e.getMessage());
+        }
+        return numFactura;
     }
 }

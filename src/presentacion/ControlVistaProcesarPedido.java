@@ -40,12 +40,12 @@ public class ControlVistaProcesarPedido {
         }
     }
     
-    // Comprobamos que el abonado no tenga pagos pendientes
+  // Comprobamos que el abonado no tenga pagos pendientes
     protected void comprobarPagosPendientes(){
         int numAbonado = vista.getNumAbonado();
         
         try{
-            ContCUProcesarPedido.compruebaPagos(ab.getNif());               
+            ContCUProcesarPedido.compruebaPagos(numAbonado);               
         }catch(AbNotPaidException ex){
             vista.lanzaError(ex.getMessage());
         }catch(PedidosNotFoundException ex){
@@ -58,3 +58,4 @@ public class ControlVistaProcesarPedido {
         int cantidad = vista.getCantidad();
     }
 }
+

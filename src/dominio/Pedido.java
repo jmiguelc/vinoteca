@@ -155,12 +155,12 @@ public class Pedido {
     }
     
     // Método para hallar los pedidos de un abonado
-    protected static ArrayList getPedidosAbonado (String nif)throws BDException{
+    protected static ArrayList getPedidosAbonado (int numAbonado)throws BDException{
         ArrayList<Pedido> pedidos = new ArrayList<>();
         Pedido p;
         
          /*recuperar pedidos de un abonado */
-         String jsonListaPedidos=GestorPersistenciaPedido.recuperarPedidosAbonado(nif);
+         String jsonListaPedidos=GestorPersistenciaPedido.recuperarPedidosAbonado(numAbonado);
          String jsonPedido;
         
         /*Deshacemos el jsonArray*/
@@ -176,5 +176,12 @@ public class Pedido {
         }
         
         return pedidos;
-    }   
+    }  
+    
+    protected static String getNumFactura(int num)throws BDException{
+        String numFactura;
+        
+        numFactura = GestorPersistenciaPedido.getNumFactura(num);
+        return numFactura;
+    }
 }
