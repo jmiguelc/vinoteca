@@ -147,9 +147,10 @@ public class Factura {
     protected static boolean comprobarFacturaVencida(String numFactura)throws BDException{
         boolean val = false;
         
-        if(GestorPersistenciaFactura.comprobarFacturaVencida(numFactura))
+        String e = GestorPersistenciaFactura.getEstadoFactura(numFactura);
+        if(EstadoFactura.getEstado(e) == (EstadoFactura.vencida))
             val = true;
 
-            return val;
+        return val;
     }
 }

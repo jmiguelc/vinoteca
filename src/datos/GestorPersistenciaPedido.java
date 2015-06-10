@@ -72,7 +72,7 @@ public class GestorPersistenciaPedido {
                 .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
                 .add("fechaEntrega",rs.getString("FECHAENTREGA"))
                 .add("estado",rs.getString("ESTADO"))
-                .add("numeroAbonado",rs.getString("NUMEROABONADO"))
+                .add("numeroAbonado",rs.getInt("NUMEROABONADO"))
                 .add("numeroFactura",rs.getString("NUMEROFACTURA"))
                 .build();
                 

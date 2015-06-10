@@ -52,24 +52,20 @@ public class GestorPersistenciaFactura {
        
     }
     
-    public static boolean comprobarFacturaVencida(String numFactura)throws BDException{
+    public static String getEstadoFactura(String numFactura)throws BDException{
         ResultSet rs;
         String sql = "SELECT ESTADO FROM APP.FACTURA WHERE NUMEROFACTURA='"+ numFactura +"'";
-        String estado;
+        String estado = null;
         
         // Leemos de la BD y comprobamos si la factura está vencida o no
         try{
             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
             while(rs.next()){
-                estado = rs.getString("NUMEROFACTURA");
-                if(estado.equals('V'))
-                    return true;
-                else
-                    return false;
+                estado = rs.getString("ESTADO"); 
             }
         }catch(SQLException e){
             throw new BDException(e.getMessage());
         }
-        return false;
+        return estado;
     }
 }
