@@ -6,12 +6,15 @@
 package datos;
 
 import excepciones.BDException;
+import java.io.StringReader;
 import java.io.StringWriter;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.json.JsonWriter;
 
 /**
@@ -61,5 +64,25 @@ public class GestorPersistenciaPedido {
             throw new BDException(e.getMessage());
         }
        
+    }
+    
+    public static int insertPedido(String jsonPedido) throws BDException {
+        StringReader strReader=new StringReader(jsonPedido);
+        JsonReader jReader=Json.createReader(strReader);
+        JsonObject jsonObject=jReader.readObject();
+        
+        int numeroPedido=jsonObject.getInt("numeroPedido");
+        Date fechaRealizacion=Date.valueOf(jsonObject.getString("fechaRealizacion"));
+        double importe=jsonObject.getJsonNumber("importe").doubleValue();
+        String estado=jsonObject.getString("estado");
+        int numeroAbonado=jsonObject.getInt("numeroAbonado");
+        //int numeroFactura=jsonObject.getInt("numeroFactura");
+        
+        String sql = "INSERT APP.PEDIDO(NUMERO,FECHAREALIZACION,IMPORTE,ESTADO,NUMEROABONADO) VALUES('"
+                       +numeroPedido+","+fechaRealizacion+","+importe+","+estado+","+numeroAbonado+"')";
+        int resutado=ConexionBD.creaInstancia().ejecutaUpdate(sql);
+        
+        
+        return resutado;
     }
 }
