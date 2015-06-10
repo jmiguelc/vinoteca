@@ -10,6 +10,7 @@ import datos.GestorPersistenciaPersona;
 import excepciones.BDException;
 import java.io.StringReader;
 import java.sql.Date;
+import java.util.ArrayList;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -26,6 +27,7 @@ public class Compra {
     private boolean recibidaCompletada;
     private Date fechaPago;
     private boolean pagada;
+    private ArrayList<LineaCompra> lineaCompra;
 
     public Compra(String jsonCompra) {
         /*Conversion de String a Json*/
@@ -90,6 +92,12 @@ public class Compra {
 
     public void setPagada(boolean pagada) {
         this.pagada = pagada;
+    }
+    public ArrayList<LineaCompra> getLineaCompra() {
+        return lineaCompra;
+    }
+    private void setLineaCompra(ArrayList<LineaCompra> lineaCompra) {
+        this.lineaCompra = lineaCompra;
     }
     protected static Compra obtenerCompra (int idCompra) throws BDException{
         String jsonCompra=GestorPersistenciaCompra.getCompraByidCompra(idCompra);

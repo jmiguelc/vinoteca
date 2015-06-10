@@ -5,6 +5,11 @@
  */
 package presentacion;
 
+import dominio.Compra;
+import dominio.Referencia;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nurcanc
@@ -31,6 +36,44 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     protected int getIdCompra(){
         return Integer.parseInt(idCompraTextField.getText());
     }
+    protected void setidComLabel(int idCompra){
+        this.idComLabel.setText("idCompra");
+    }
+    protected void setNombreBodegaLabel(String nombreBodega){
+        this.nombreBodegaLabel.setText(nombreBodega);    
+    }
+    protected void setUnidadesLabel(int unidades){
+        this.unidadesLabel.setText("unidades");
+    }
+    public void lanzaError(String msg){
+        JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+    public void setComprobarEnabled(){
+        this.comprobarButton.setEnabled(true);
+    } 
+    public void setSeleccionarEnabled(){
+        this.selectionButton.setEnabled(true);
+    }
+    
+    public void setFinalizarEnabled(boolean enabled){
+        this.finalizarButton.setEnabled(enabled);
+    }
+    protected void showInforme(Referencia ref){
+
+    }
+    protected void mostrarTablas(boolean show){
+
+    }
+    private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
+         /*Comprobamos los campos*/
+        if(compruebaElementosCompra()){
+            /*Procesamos la comprobacion de abonado*/
+           c.comprobarIDCompra();
+           
+        }else{
+            lanzaError("Identificador de compra vacio(s)\no con el valor por defecto");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,9 +83,6 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         CompraLabel = new javax.swing.JLabel();
         iDCompraLabel = new javax.swing.JLabel();
@@ -54,42 +94,9 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         unidadesLabel = new javax.swing.JLabel();
         selectionButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Table = new javax.swing.JTable();
         finalizarButton = new javax.swing.JButton();
         volverButton = new javax.swing.JButton();
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         CompraLabel.setText("Compra");
 
@@ -140,7 +147,7 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
 
         selectionButton.setText("seleccionar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -159,7 +166,7 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Table);
 
         finalizarButton.setText("finalizar");
 
@@ -234,9 +241,10 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CompraLabel;
+    private javax.swing.JTable Table;
     private javax.swing.JButton comprobarButton;
     private javax.swing.JButton finalizarButton;
     private javax.swing.JLabel iDCompraLabel;
@@ -244,11 +252,7 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     private javax.swing.JTextField idCompraTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel nombreBodegaLabel;
     private javax.swing.JButton selectionButton;
     private javax.swing.JLabel unidadesLabel;
