@@ -9,6 +9,7 @@ import dominio.Abonado;
 import dominio.ContCUProcesarPedido;
 import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
+import excepciones.BDException;
 import excepciones.PedidosNotFoundException;
 
 /**
@@ -41,12 +42,14 @@ public class ControlVistaProcesarPedido {
     }
     
   // Comprobamos que el abonado no tenga pagos pendientes
-    protected void comprobarPagosPendientes(){
+    protected void comprobarPagosPendientes() {
           
         try{
             int numAbonado =Integer.parseInt(vista.getNumAbonado());
             ContCUProcesarPedido.compruebaPagos(numAbonado);               
         }catch(AbNotPaidException ex){
+            vista.lanzaError(ex.getMessage());
+        }catch(BDException ex){
             vista.lanzaError(ex.getMessage());
         }
     }
