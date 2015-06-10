@@ -10,14 +10,27 @@ package presentacion;
  * @author nurcanc
  */
 public class VistaCURegistrarCompra extends javax.swing.JPanel {
-
+    protected ControlVistaRegistrarCompra c;
     /**
      * Creates new form VistaCURegistrarCompra
      */
     public VistaCURegistrarCompra() {
         initComponents();
+        c=new ControlVistaRegistrarCompra(this);
     }
 
+    protected boolean compruebaElementosCompra(){
+        boolean val=true;
+        
+        /*Mirar si tienen los campos por defecto*/
+        /*Mirar si los campos estan vacios*/
+        if(getIdCompra()==0) val = false;
+        
+        return val;
+    }
+    protected int getIdCompra(){
+        return Integer.parseInt(idCompraTextField.getText());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
