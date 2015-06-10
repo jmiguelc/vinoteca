@@ -78,8 +78,8 @@ public class GestorPersistenciaPedido {
         int numeroAbonado=jsonObject.getInt("numeroAbonado");
         //int numeroFactura=jsonObject.getInt("numeroFactura");
         
-        String sql = "INSERT APP.PEDIDO(NUMERO,FECHAREALIZACION,IMPORTE,ESTADO,NUMEROABONADO) VALUES('"
-                       +numeroPedido+","+fechaRealizacion+","+importe+","+estado+","+numeroAbonado+"')";
+        String sql = "INSERT INTO APP.PEDIDO(NUMERO,FECHAREALIZACION,IMPORTE,ESTADO,NUMEROABONADO) VALUES("
+                       +numeroPedido+",'"+fechaRealizacion+"',"+importe+",'"+estado+"',"+numeroAbonado+")";
         int resutado=ConexionBD.creaInstancia().ejecutaUpdate(sql);
         
         

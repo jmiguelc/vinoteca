@@ -102,7 +102,11 @@ public class ContCUProcesarPedido {
      
      public static void finalizarPedido(Pedido p) throws BDException{
          double importe = p.getTotal();
+         /* Obtiene la factura de este mes, sino es null, se crea. */
          
+         /* Añadir el pedido actual a la factura */
+         
+         /*Persistencia de la factura, la del pedido y la de linea de pedido */
          Pedido.guardarPedido(p, importe);
      }
 }
