@@ -11,6 +11,7 @@ import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
 import excepciones.BDException;
 import excepciones.PedidosNotFoundException;
+import javax.swing.JFrame;
 
 /**
  *
@@ -19,12 +20,17 @@ import excepciones.PedidosNotFoundException;
 public class ControlVistaProcesarPedido {
     
     protected VistaCUProcesarPedido vista;
+    protected VistaCrearLineaPedido vistaLP;
     protected Abonado ab;
 
     public ControlVistaProcesarPedido(VistaCUProcesarPedido vista) {
-        this.vista=vista;
-    
+        this.vista=vista;    
     }
+    
+     public ControlVistaProcesarPedido(VistaCrearLineaPedido vistaLP) {
+        this.vistaLP=vistaLP;
+    }
+    
     // Comprobamos que el numero de abonado existe y mostramos la informacion
     protected void comprobarAbonado(){
         
@@ -55,8 +61,10 @@ public class ControlVistaProcesarPedido {
     }
     
     protected void comprobarPedido(){
-        int refencia = vista.getReferencia();
-        int cantidad = vista.getCantidad();
+        int refencia = vistaLP.getReferencia();
+        int cantidad = vistaLP.getCantidad();
+        
+        
     }
 }
 
