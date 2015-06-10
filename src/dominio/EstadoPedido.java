@@ -34,4 +34,16 @@ public enum EstadoPedido {
           default: return null;
         }
     }
+
+    public String toString(){
+        switch(this){
+            case pendiente: return "P";
+            case tramitado: return "T";
+            case completado: return "C";
+            case servido: return "S";
+            case facturado: return "F";
+            case abonado: return "A";
+            default: return null;
+        }
+    }
 }

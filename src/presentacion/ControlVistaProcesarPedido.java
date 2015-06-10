@@ -68,9 +68,18 @@ public class ControlVistaProcesarPedido {
         try{
             ref = ContCUProcesarPedido.comprobarReferencia(referencia);
             ContCUProcesarPedido.nuevaLineaPedido( cantidad, ref, p);
+            vista.setTerminarEnabled(true);
                 
         }catch(RefNotAvaliableException | BDException ex){
             vista.lanzaError(ex.getMessage());
         }
     }
+   
+   protected void finalizarPedido(){
+       try{
+            ContCUProcesarPedido.finalizarPedido(p);
+       }catch(BDException ex){
+           vista.lanzaError(ex.getMessage());
+       }
+   }
 }

@@ -76,6 +76,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     public void setAddEnabled(){
         this.addButton.setEnabled(true);
     }
+    
+    public void setTerminarEnabled(boolean enabled){
+        this.addButton.setEnabled(enabled);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +96,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         referenciaField = new javax.swing.JTextField();
         cantidadField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        terminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         pedidoLabel = new javax.swing.JLabel();
         numAbLabel = new javax.swing.JLabel();
@@ -125,10 +129,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         cantidadField.setText("cantidad");
 
-        jButton1.setText("Terminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        terminar.setText("Terminar");
+        terminar.setEnabled(false);
+        terminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                terminarActionPerformed(evt);
             }
         });
 
@@ -146,7 +151,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cantidadField)
                     .addComponent(referenciaField, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(terminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -163,7 +168,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
-                    .addComponent(jButton1))
+                    .addComponent(terminar))
                 .addContainerGap())
         );
 
@@ -315,9 +320,9 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void terminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarActionPerformed
+        c.finalizarPedido();
+    }//GEN-LAST:event_terminarActionPerformed
      
     /**
      * @param args the command line arguments
@@ -361,7 +366,6 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private javax.swing.JButton comprobarButton;
     private javax.swing.JButton confirmarButton;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -373,6 +377,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JLabel refLabel;
     private javax.swing.JTextField referenciaField;
+    private javax.swing.JButton terminar;
     private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

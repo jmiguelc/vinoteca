@@ -99,4 +99,10 @@ public class ContCUProcesarPedido {
          
          p.addLineaPedido(lineaPedido);
      }
+     
+     public static void finalizarPedido(Pedido p) throws BDException{
+         double importe = p.getTotal();
+         
+         Pedido.guardarPedido(p, importe);
+     }
 }

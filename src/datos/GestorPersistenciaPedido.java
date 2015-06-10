@@ -85,4 +85,22 @@ public class GestorPersistenciaPedido {
         
         return resutado;
     }
+    
+    public static int getNextPedido()throws BDException{
+        ResultSet rs;
+        String sql = "SELECT * FROM APP.PEDIDO";
+        int nextPedido = 1;
+        
+        try{
+            /*Lectura de la BD y creación de la cadena Json*/
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            while(rs.next())
+                nextPedido++; 
+        
+        }catch(SQLException e){
+            throw new BDException(e.getMessage());
+        }
+        
+        return nextPedido;
+    }
 }
