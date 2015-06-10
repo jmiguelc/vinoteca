@@ -61,11 +61,12 @@ public class ContCUProcesarPedido {
             throw new PedidosNotFoundException("Error al buscar los pedidos: "+ ex.getMessage());
         }
     }
-   /* public static String comprobarPedido(int ref, int cant){
-        Pedido p;
+    // Método para comprobar si la referencia del pedido existe    
+    public static String comprobarPedido(int ref, int cant){
+        Referencia ref;
         
         try{
-         p = Pedido.    
+           
             
         }catch(){
         }

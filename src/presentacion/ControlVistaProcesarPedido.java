@@ -67,7 +67,9 @@ public class ControlVistaProcesarPedido {
         int refencia = vistaLP.getReferencia();
         int cantidad = vistaLP.getCantidad();
         
-        
+        try{
+            ContCUProcesarPedido
+        }
     }
 }
 
