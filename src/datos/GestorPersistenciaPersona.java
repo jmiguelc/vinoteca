@@ -18,6 +18,13 @@ import javax.json.JsonWriter;
  * @author nurcanc
  */
 public class GestorPersistenciaPersona {
+    
+    /**
+     * Se obtiene una persona por su nif
+     * @param nif
+     * @return la persona buscada por su nif
+     * @throws BDException
+     */
     public static String getPersonaByNif(String nif) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.PERSONA WHERE NIF ='"+nif+"'";

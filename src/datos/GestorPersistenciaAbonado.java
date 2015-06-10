@@ -18,6 +18,13 @@ import javax.json.JsonWriter;
  * @author ruben
  */
 public class GestorPersistenciaAbonado {
+    
+    /**
+     * Se obtiene un abonado a partir de su numero de abonado
+     * @param numeroAbonado
+     * @return el numero de un abonado
+     * @throws BDException
+     */
     public static String getAbonadoByNumeroAbonado(int numeroAbonado) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.ABONADO WHERE NUMEROABONADO ="+numeroAbonado;

@@ -18,6 +18,14 @@ import javax.json.JsonWriter;
  * @author ruben
  */
 public class GestorPersistenciaEmpleado {
+    
+    /**
+     * Se obtiene un empleado por su login 
+     * @param login
+     * @param password
+     * @return un empleado 
+     * @throws BDException
+     */
     public static String getEmpleadoByLogin(String login, String password) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.EMPLEADO WHERE LOGIN ='"+login+"' AND PASSWORD='"+password+"'";

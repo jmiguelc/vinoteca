@@ -20,6 +20,13 @@ import javax.json.JsonWriter;
  * @author monrae
  */
 public class GestorPersistenciaFactura {
+    
+    /**
+     * Se obtiene las facturas vencidas por la fecha
+     * @param fecha
+     * @return las facturas vencidas por fecha
+     * @throws BDException
+     */
     public static String getFacturasVencidasByFecha(Date fecha) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.FACTURA WHERE ESTADO='V' AND FECHAEMISION<'"+fecha.toString()+"'";
@@ -52,6 +59,12 @@ public class GestorPersistenciaFactura {
        
     }
     
+    /**
+     * Se obtiene el estado de la factura por el numero de factura
+     * @param numFactura
+     * @return el estado de una factura 
+     * @throws BDException
+     */
     public static String getEstadoFactura(String numFactura)throws BDException{
         ResultSet rs;
         String sql = "SELECT ESTADO FROM APP.FACTURA WHERE NUMEROFACTURA='"+ numFactura +"'";

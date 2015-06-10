@@ -19,6 +19,13 @@ import javax.json.JsonWriter;
  * @author monrae
  */
 public class GestorPersistenciaPedido {
+    
+    /**
+     * Se obtiene el pedido por el numero de factura
+     * @param numeroFactura
+     * @return el pedido buscado por el numero de factura
+     * @throws BDException
+     */
     public static String getPedidosByFactura(int numeroFactura) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.PEDIDO WHERE NUMEROFACTURA="+numeroFactura;
@@ -55,6 +62,13 @@ public class GestorPersistenciaPedido {
         }
        
     }
+
+    /**
+     * Se recuperan los pedidos de un abonado por su numero de abonado
+     * @param numAbonado
+     * @return los pedidos del numero de abonado 
+     * @throws BDException
+     */
     public static String recuperarPedidosAbonado(int numAbonado) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.PEDIDO WHERE NUMEROABONADO="+numAbonado;
@@ -95,6 +109,12 @@ public class GestorPersistenciaPedido {
         }       
     }
     
+    /**
+     * Se obtiene el numero de factura
+     * @param num
+     * @return el numero de factura
+     * @throws BDException
+     */
     public static String getNumFactura (int num)throws BDException{
         ResultSet rs;
         String sql = "SELECT NUMEROFACTURA FROM APP.PEDIDO WHERE NUMERO="+num;
