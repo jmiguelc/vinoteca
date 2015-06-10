@@ -5,10 +5,13 @@
  */
 package dominio;
 
+import datos.GestorPersistenciaFactura;
 import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
 import excepciones.BDException;
 import excepciones.PedidosNotFoundException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +34,8 @@ public class ContCUProcesarPedido {
             if(ab==null){
                 throw new AbNotFoundException("El número de abonado no es correcto");
             }
-            System.out.println("Existe el abonado");
+            System.out.println("El abonado existe y es válido");
+            
         }catch(BDException ex){
             throw new AbNotFoundException("Abonado no Encontrado: "+ex.getMessage());   
         }
@@ -47,7 +51,9 @@ public class ContCUProcesarPedido {
      */
         public static void compruebaPagos(int numAbonado)throws AbNotPaidException, PedidosNotFoundException{
         try{
-            String numFactura;
+           Date today =Date.valueOf(LocalDate.now());
+           ArrayList<Factura> facturas=GestorPersistenciaFactura.getFacturasVencidasByFecha(today);
+            /*String numFactura;
             // Obtenemos todos los pedidos del abonado
             ArrayList<Pedido> pedidos = Pedido.getPedidosAbonado(numAbonado);
             // Comprobamos si las facturas estan vencidas con su numero de factura incluida en los pedidos
@@ -56,7 +62,7 @@ public class ContCUProcesarPedido {
                     if(Factura.comprobarFacturaVencida(numFactura))
                         throw new AbNotPaidException("Tiene facturas vencidas, no puede realizar otro pedido");
                 }
-            System.out.println("No tiene facturas pendientes");
+            System.out.println("No tiene facturas pendientes");*/
         }catch(BDException ex){
             throw new PedidosNotFoundException("Error al buscar los pedidos: "+ ex.getMessage());
         }

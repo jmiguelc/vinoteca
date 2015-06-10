@@ -26,25 +26,25 @@ public class ControlVistaProcesarPedido {
     }
     // Comprobamos que el numero de abonado existe y mostramos la informacion
     protected void comprobarAbonado(){
-
-        int numAbonado = vista.getNumAbonado();
         
         try{
+            int numAbonado = Integer.parseInt(vista.getNumAbonado());
             ab = ContCUProcesarPedido.comprobarAbonado(numAbonado);
             vista.setEmailLabel(ab.getEmail());
             vista.setNombreLabel(ab.getNombre());
             vista.setTelefonoLabel(ab.getTelefono());
             vista.setapellidoLabel(ab.getApellidos());
-        }catch(AbNotFoundException ex){
+            vista.setConfirmarEnabled();
+        }catch(AbNotFoundException | NumberFormatException ex){
             vista.lanzaError(ex.getMessage());
         }
     }
     
   // Comprobamos que el abonado no tenga pagos pendientes
     protected void comprobarPagosPendientes(){
-        int numAbonado = vista.getNumAbonado();
-        
+          
         try{
+            int numAbonado =Integer.parseInt(vista.getNumAbonado());
             ContCUProcesarPedido.compruebaPagos(numAbonado);               
         }catch(AbNotPaidException ex){
             vista.lanzaError(ex.getMessage());
