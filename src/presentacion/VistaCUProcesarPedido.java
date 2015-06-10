@@ -72,6 +72,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     public void setConfirmarEnabled(){
         this.confirmarButton.setEnabled(true);
     }
+    
+    public void setAddEnabled(){
+        this.addButton.setEnabled(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,6 +114,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         addButton.setText("Añadir");
         addButton.setEnabled(false);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         referenciaField.setText("referencia");
 
@@ -288,16 +297,16 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         c.comprobarPagosPendientes();
     }//GEN-LAST:event_confirmarButtonActionPerformed
-     
-     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        /*Comprobamos los campos*/
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+         /*Comprobamos los campos*/
         if(compruebaElementosPedido()){
             /*Procesamos la los datos del pedido*/
            c.comprobarPedido();
         }else{
             lanzaError("Número de referencia y la cantidad vacio(s)\no con el valor por defecto");
         }
-    }
+    }//GEN-LAST:event_addButtonActionPerformed
      
     /**
      * @param args the command line arguments

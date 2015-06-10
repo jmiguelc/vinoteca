@@ -55,30 +55,6 @@ public class GestorPersistenciaFactura {
             
         }catch(SQLException e){
             throw new BDException(e.getMessage());
-        }
-       
-    }
-    
-    /**
-     * Se obtiene el estado de la factura por el numero de factura
-     * @param numFactura
-     * @return el estado de una factura 
-     * @throws BDException
-     */
-    public static String getEstadoFactura(String numFactura)throws BDException{
-        ResultSet rs;
-        String sql = "SELECT ESTADO FROM APP.FACTURA WHERE NUMEROFACTURA='"+ numFactura +"'";
-        String estado = null;
-        
-        // Leemos de la BD y comprobamos si la factura está vencida o no
-        try{
-            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
-            while(rs.next()){
-                estado = rs.getString("ESTADO"); 
-            }
-        }catch(SQLException e){
-            throw new BDException(e.getMessage());
-        }
-        return estado;
+        }  
     }
 }

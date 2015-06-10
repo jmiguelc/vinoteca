@@ -5,11 +5,10 @@
  */
 package dominio;
 
-import datos.GestorPersistenciaFactura;
 import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
 import excepciones.BDException;
-import excepciones.PedidosNotFoundException;
+import excepciones.RefNotAvaliableException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -72,8 +71,17 @@ public class ContCUProcesarPedido {
         }else{
             System.out.println("No tiene facturas pendientes");
         }
-        
         return val;
-       
     }
+        
+     public static void comprobarReferencia(int numRef)throws BDException, RefNotAvaliableException{
+         Referencia ref = Referencia.getReferencia(numRef);
+         boolean val = false;
+         
+         if(ref != null && ref.isDisponible())
+             val = true;
+             
+         if (val == false)
+             throw new RefNotAvaliableException("Producto no disponible");
+     }
 }

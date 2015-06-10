@@ -10,8 +10,7 @@ import dominio.ContCUProcesarPedido;
 import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
 import excepciones.BDException;
-import excepciones.PedidosNotFoundException;
-import javax.swing.JFrame;
+import excepciones.RefNotAvaliableException;
 
 /**
  *
@@ -20,15 +19,10 @@ import javax.swing.JFrame;
 public class ControlVistaProcesarPedido {
     
     protected VistaCUProcesarPedido vista;
-    protected VistaCrearLineaPedido vistaLP;
     protected Abonado ab;
 
     public ControlVistaProcesarPedido(VistaCUProcesarPedido vista) {
         this.vista=vista;    
-    }
-    
-     public ControlVistaProcesarPedido(VistaCrearLineaPedido vistaLP) {
-        this.vistaLP=vistaLP;
     }
     
     // Comprobamos que el numero de abonado existe y mostramos la informacion
@@ -52,21 +46,22 @@ public class ControlVistaProcesarPedido {
           
         try{
             int numAbonado =Integer.parseInt(vista.getNumAbonado());
-            ContCUProcesarPedido.compruebaPagos(numAbonado);               
-        }catch(AbNotPaidException ex){
-            vista.lanzaError(ex.getMessage());
-        }catch(BDException ex){
+            ContCUProcesarPedido.compruebaPagos(numAbonado);
+            vista.setAddEnabled();
+        }catch(AbNotPaidException | BDException ex){
             vista.lanzaError(ex.getMessage());
         }
     }
     
-    protected void comprobarPedido(){
-        int refencia = vistaLP.getReferencia();
-        int cantidad = vistaLP.getCantidad();
+   protected void comprobarPedido(){
+        int referencia = vista.getReferencia();
+        int cantidad = vista.getCantidad();
         
         try{
-            ContCUProcesarPedido
+            ContCUProcesarPedido.comprobarReferencia(referencia);
+                
+        }catch(RefNotAvaliableException | BDException ex){
+            vista.lanzaError(ex.getMessage());
         }
     }
 }
-
