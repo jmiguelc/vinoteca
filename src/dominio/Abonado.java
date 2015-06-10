@@ -21,6 +21,11 @@ public class Abonado extends Persona{
     private int numeroAbonado;
     private String openIdRef;
     
+    /**
+     * Constructor no vacio de Abonado
+     * @param jsonAbonado
+     * @param jsonPersona
+     */
     protected Abonado(String jsonAbonado,String jsonPersona) {
         /*Conversion de String a Json*/
         super(jsonPersona);
@@ -34,22 +39,42 @@ public class Abonado extends Persona{
         
     }
 
+    /**
+     * Se obtiene el numero de abonado
+     * @return el numero de abonado
+     */
     public int getNumeroAbonado() {
         return numeroAbonado;
     }
-
+    /**
+     * Establece eñ numero de abonado
+     * @param numeroAbondo 
+     */
     private void setNumeroAbonado(int numeroAbondo) {
         this.numeroAbonado = numeroAbondo;
     }
 
+    /**
+     * Se obtiene el identificador de la referencia al Abonado
+     * @return un identificador de la referencia
+     */
     public String getOpenIdRef() {
         return openIdRef;
     }
-
+    /**
+     * Establece un identificador de la referncia al Abonado
+     * @param openIdRef 
+     */
     private void setOpenIdRef(String openIdRef) {
         this.openIdRef = openIdRef;
     }
   
+    /**
+     * Se obtiene un Abonado
+     * @param num
+     * @return un Abonado
+     * @throws BDException
+     */
     protected static Abonado obtenerAbonado (int num) throws BDException{
         String jsonAb=GestorPersistenciaAbonado.getAbonadoByNumeroAbonado(num);
         Abonado ab=null;

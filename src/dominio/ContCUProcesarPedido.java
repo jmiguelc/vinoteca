@@ -17,8 +17,13 @@ import java.util.ArrayList;
  */
 public class ContCUProcesarPedido {
     
-    // Método para comprobar que el número de abonado es correcto
-    public static Abonado comprobarAbonado(int numAbonado) throws AbNotFoundException{
+    /**
+     * Comprobar que el número de abonado es correcto
+     * @param numAbonado
+     * @return el abonado
+     * @throws AbNotFoundException
+     */
+        public static Abonado comprobarAbonado(int numAbonado) throws AbNotFoundException{
         Abonado ab;
         try{    
             // Obtenemos el abonado, si no existe, devuelve null y gestionamos el error
@@ -34,8 +39,13 @@ public class ContCUProcesarPedido {
         return ab;
     }
     
-    // Método que comprueba si hay alguna factura vencida
-    public static void compruebaPagos(int numAbonado)throws AbNotPaidException, PedidosNotFoundException{
+    /**
+     * Comprueba si hay alguna factura vencida
+     * @param numAbonado
+     * @throws AbNotPaidException
+     * @throws PedidosNotFoundException
+     */
+        public static void compruebaPagos(int numAbonado)throws AbNotPaidException, PedidosNotFoundException{
         try{
             String numFactura;
             // Obtenemos todos los pedidos del abonado

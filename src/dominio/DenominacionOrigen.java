@@ -12,14 +12,25 @@ package dominio;
 public class DenominacionOrigen {
     private String nombre;
 
+    /**
+     * Constructor no vacio de DenominacionOrigen
+     * @param nombre
+     */
     public DenominacionOrigen(String nombre) {
         setNombre(nombre);
     }
 
+    /**
+     * Se obtiene el nombre de DenominacionOrigen
+     * @return el nombre
+     */
     public String getNombre() {
         return nombre;
     }
-
+    /**
+     * Establece el nombre de DenominacionOrigen
+     * @param nombre 
+     */
     private void setNombre(String nombre) {
         this.nombre = nombre;
     }

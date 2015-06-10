@@ -18,7 +18,7 @@ public enum EstadoPedido {
     abonado;  
     
     /**
-     * Trasnforma una cadena correspondiente en el valor de EstadPedido
+     * Trasnforma una cadena correspondiente en el valor de EstadoPedido
      * que le corresponda.
      * @param estado cadena de caracteres que indica el estado
      * @return devuelve una valor del tipo estado
