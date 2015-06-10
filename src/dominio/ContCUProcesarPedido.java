@@ -135,7 +135,7 @@ public class ContCUProcesarPedido {
         }
         
         if(factura==null){
-            /*crear factura*/
+            Factura f=new Factura(null);
         }
        
          /* Añadir el pedido actual a la factura */

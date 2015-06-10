@@ -58,6 +58,12 @@ public class Factura {
         setPedidos(pedidos); 
        
     }
+    
+    public Factura(int numeroFactura,Date fechaEmision,EstadoFactura estado){
+        setNumeroFactura(numeroFactura);
+        setFechaEmision(fechaEmision);
+        setEstado(estado);
+    }
 
     /**
      * Obtiene el identificador de factura asociado a la factura
