@@ -78,7 +78,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     }
     
     public void setTerminarEnabled(boolean enabled){
-        this.addButton.setEnabled(enabled);
+        this.terminarButton.setEnabled(enabled);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,7 +96,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         referenciaField = new javax.swing.JTextField();
         cantidadField = new javax.swing.JTextField();
-        terminar = new javax.swing.JButton();
+        terminarButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         pedidoLabel = new javax.swing.JLabel();
         numAbLabel = new javax.swing.JLabel();
@@ -129,11 +129,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
 
         cantidadField.setText("cantidad");
 
-        terminar.setText("Terminar");
-        terminar.setEnabled(false);
-        terminar.addActionListener(new java.awt.event.ActionListener() {
+        terminarButton.setText("Terminar");
+        terminarButton.setEnabled(false);
+        terminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                terminarActionPerformed(evt);
+                terminarButtonActionPerformed(evt);
             }
         });
 
@@ -151,7 +151,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cantidadField)
                     .addComponent(referenciaField, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                    .addComponent(terminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(terminarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -168,7 +168,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
-                    .addComponent(terminar))
+                    .addComponent(terminarButton))
                 .addContainerGap())
         );
 
@@ -320,9 +320,9 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void terminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarActionPerformed
+    private void terminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarButtonActionPerformed
         c.finalizarPedido();
-    }//GEN-LAST:event_terminarActionPerformed
+    }//GEN-LAST:event_terminarButtonActionPerformed
      
     /**
      * @param args the command line arguments
@@ -377,7 +377,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JLabel refLabel;
     private javax.swing.JTextField referenciaField;
-    private javax.swing.JButton terminar;
+    private javax.swing.JButton terminarButton;
     private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

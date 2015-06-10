@@ -39,7 +39,7 @@ public class Referencia {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    private void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
@@ -47,7 +47,7 @@ public class Referencia {
         return esPorCajas;
     }
 
-    public void setEsPorCajas(boolean esPorCajas) {
+    private void setEsPorCajas(boolean esPorCajas) {
         this.esPorCajas = esPorCajas;
     }
 
@@ -55,7 +55,7 @@ public class Referencia {
         return contenidoENCL;
     }
 
-    public void setContenidoENCL(int contenidoENCL) {
+    private void setContenidoENCL(int contenidoENCL) {
         this.contenidoENCL = contenidoENCL;
     }
 
@@ -63,7 +63,7 @@ public class Referencia {
         return importe;
     }
 
-    public void setImporte(double importe) {
+    private void setImporte(double importe) {
         this.importe = importe;
     }
 
@@ -71,7 +71,7 @@ public class Referencia {
         return disponible;
     }
 
-    public void setDisponible(boolean disponible) {
+    private void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
     

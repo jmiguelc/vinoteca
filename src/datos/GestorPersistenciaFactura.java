@@ -57,4 +57,36 @@ public class GestorPersistenciaFactura {
             throw new BDException(e.getMessage());
         }  
     }
+    
+     public static String getFacturasMensuales(Date fecha) throws BDException{
+        ResultSet rs;
+        String sql = "SELECT * FROM APP.FACTURA WHERE FECHAEMISION>='"+fecha.toString()+"'";
+        
+       try{
+            /*Lectura de la BD y creación de la cadena Json*/
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            JsonArrayBuilder jsonFacturas= Json.createArrayBuilder();
+            while(rs.next()){
+                JsonObject jsonObj=Json.createObjectBuilder()
+                .add("numeroFactura",rs.getInt("NUMEROFACTURA"))
+                .add("fechaEmision",rs.getString("FECHAEMISION"))
+                .add("importe",rs.getFloat("IMPORTE"))
+                .add("estado", rs.getString("ESTADO"))
+                .build();
+                
+                jsonFacturas.add(jsonObj);
+            }
+            
+            /*Conversion de Json a String*/
+            StringWriter jsonstr=new StringWriter();
+            JsonWriter writer = Json.createWriter(jsonstr);
+            writer.writeArray(jsonFacturas.build());
+
+            return jsonstr.toString();
+            
+        }catch(SQLException e){
+            throw new BDException(e.getMessage());
+        }  
+    }
+     
 }

@@ -5,6 +5,7 @@
  */
 package dominio;
 
+import datos.GestorPersistenciaFactura;
 import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
 import excepciones.BDException;
@@ -12,6 +13,7 @@ import excepciones.RefNotAvaliableException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -51,7 +53,7 @@ public class ContCUProcesarPedido {
      */
         public static boolean compruebaPagos(int numAbonado) throws BDException, AbNotPaidException{
         
-        Date today =Date.valueOf(LocalDate.now());
+        Date today = Date.valueOf(LocalDate.now());
         ArrayList<Factura> facturas=Factura.obtenerFacturasVencidas(today);
         ArrayList<Pedido> pedidos;
         Pedido pedido;
@@ -101,8 +103,47 @@ public class ContCUProcesarPedido {
      }
      
      public static void finalizarPedido(Pedido p) throws BDException{
-         double importe = p.getTotal();
+        double importe = p.getTotal();
+        /* Obtiene la factura de este mes, sino es null, se crea. */
+        ArrayList<Factura> facturas;
+        ArrayList<Pedido> pedidos;
+        Abonado abonado;
+        Abonado abonadoPedActual=p.getAbonado();
+        Pedido pedido;
+        Factura factura=null;
+        
+        Calendar cal=Calendar.getInstance();
+        cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
+            cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+        System.out.println(cal.getTime().toString());
+        Date mes=new Date(cal.getTimeInMillis());
          
-         Pedido.guardarPedido(p, importe);
+        facturas=Factura.obtenerFacturasMensuales(mes);
+        
+        if(!facturas.isEmpty()){
+            int i=0;
+            boolean existeFactura=false;
+            do{
+                pedidos=facturas.get(i).getPedidos();
+                abonado=pedidos.get(0).getAbonado();
+                if (abonadoPedActual.getNumeroAbonado()==abonado.getNumeroAbonado()) {
+                    existeFactura=true;
+                    factura=facturas.get(i);
+                }
+                i++;
+            }while(i<facturas.size() && existeFactura==false);   
+        }
+        
+        if(factura==null){
+            /*crear factura*/
+        }
+       
+         /* Añadir el pedido actual a la factura */
+        factura.addPedido(p);
+         
+        /*Persistencia de la factura, la del pedido y la de linea de pedido */
+        //Factura
+        //Pedido.guardarPedido(p, importe);
+        //LineaPedido
      }
 }

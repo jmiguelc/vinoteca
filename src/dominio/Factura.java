@@ -164,6 +164,10 @@ public class Factura {
         this.pedidos = pedidos;
     }
     
+     protected void addPedido(Pedido pedido){
+        this.pedidos.add(pedido);
+    }
+    
     /**
      * Se obtiene una lista de facturas vencidas de Factura
      * @param fecha
@@ -195,6 +199,32 @@ public class Factura {
         
         /*ir a pedidos y recuperar los pedidos para cada factura*/
         
+        return facturas;
+    }
+    
+    protected static ArrayList<Factura> obtenerFacturasMensuales(Date fecha) throws BDException{
+        ArrayList<Factura> facturas=new ArrayList<>();
+        
+        /*Recuperamos las facturas*/
+        String jsonListaFacturas=GestorPersistenciaFactura.getFacturasMensuales(fecha);
+        String jsonFactura;
+        Factura f;
+        
+        /*Deshacemos el jsonArray*/
+        StringReader strReader=new StringReader(jsonListaFacturas);
+        JsonReader jReader=Json.createReader(strReader);    
+        JsonArray jsonArray=jReader.readArray();
+        
+        /*mandamos construir los objetos y generamos la lista de facturas*/
+        for(int i=0;i<jsonArray.size();i++){
+            jsonFactura = jsonArray.getJsonObject(i).toString();
+            if (jsonFactura!=null){
+                f=new Factura(jsonFactura);
+                facturas.add(f);
+            }            
+        }
+        
+        /*ir a pedidos y recuperar los pedidos para cada factura*/       
         return facturas;
     }
 }

@@ -46,6 +46,7 @@ public class Pedido {
         this.estado = estado;
         this.fechaRealizacion = fechaRealizacion;
         this.abonado = abonado;
+        this.lineasPedido = new ArrayList<>();
     }
 
     public Pedido(String jsonPedido) throws BDException {
