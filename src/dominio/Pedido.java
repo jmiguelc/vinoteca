@@ -31,6 +31,13 @@ public class Pedido {
 
     /*Seguramente haya que hacer un constructor para Json 
     y otro normal para procesar pedido*/
+
+    /**
+     * Constructor no vacio para procesar un Pedido
+     * @param jsonPedido
+     * @throws BDException
+     */
+    
     public Pedido(String jsonPedido) throws BDException {
         StringReader strReader=new StringReader(jsonPedido);
         JsonReader jReader=Json.createReader(strReader);
@@ -67,70 +74,132 @@ public class Pedido {
     
     }
 
+    /**
+     * Se obtiene el numero de pedido de Pedido
+     * @return el numero de un pedido
+     */
     public int getNumeroPedido() {
         return numeroPedido;
     }
-
+    /**
+     * Establece el numero de un pedido de Pedido
+     * @param numeroPedido 
+     */
     private void setNumeroPedido(int numeroPedido) {
         this.numeroPedido = numeroPedido;
     }
 
+    /**
+     * Se obtiene el estado de Pedido
+     * @return un estado de un pedido
+     */
     public EstadoPedido getEstado() {
         return estado;
     }
-
+    /**
+     * Establece el estado de Pedido
+     * @param estado 
+     */
     private void setEstado(EstadoPedido estado) {
         this.estado = estado;
     }
 
+    /**
+     * Se obtiene la fecha de realizacion de Pedido
+     * @return una fecha de realizacion de un pedido
+     */
     public Date getFechaRealizacion() {
         return fechaRealizacion;
     }
-
+    /**
+     * Establece la fecha de realizacion de Pedido
+     * @param fechaRealizacion 
+     */
     private void setFechaRealizacion(Date fechaRealizacion) {
         this.fechaRealizacion = fechaRealizacion;
     }
 
+    /**
+     * Se obtiene una nota de entrega de Pedido
+     * @return un string con una nota de entrega de un pedido
+     */
     public String getNotaEntrega() {
         return NotaEntrega;
     }
-
+    /**
+     * Establece una nota de entrega de Pedido
+     * @param NotaEntrega 
+     */
     private void setNotaEntrega(String NotaEntrega) {
         this.NotaEntrega = NotaEntrega;
     }
 
+    /**
+     * Se obtiene el importe de Pedido
+     * @return el importe de un pedido
+     */
     public double getImporte() {
         return importe;
     }
-
+    /**
+     * Establece el importe de Pedido
+     * @param importe 
+     */
     private void setImporte(double importe) {
         this.importe = importe;
     }
 
+    /**
+     * Se obtiene la fecha de recepcion de Pedido
+     * @return la fecha de recepcion de un pedido
+     */
     public Date getFechaRecepcion() {
         return fechaRecepcion;
     }
-
+    /**
+     * Establece la fecha de recepcion de Pedido
+     * @param fechaRecepcion 
+     */
     private void setFechaRecepcion(Date fechaRecepcion) {
         this.fechaRecepcion = fechaRecepcion;
     }
 
+    /**
+     * Se obtiene la fecha de entrega de Pedido
+     * @return una fecha de entrega de un pedido
+     */
     public Date getFechaEntrega() {
         return fechaEntrega;
     }
-
+    /**
+     * Establece la fecha de entrega de Pedido
+     * @param fechaEntrega 
+     */
     private void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
+    /**
+     *Se obtiene el abonado de Pedido
+     * @return el abonado de un pedido
+     */
     public Abonado getAbonado() {
         return abonado;
     }
-
+    /**
+     * Establece el abonado de Pedido
+     * @param abonado 
+     */
     private void setAbonado(Abonado abonado) {
         this.abonado = abonado;
     }
     
+    /**
+     * Se obtiene una lista de pedidos por el numero de factura de Pedido
+     * @param numeroFactura
+     * @return la lista de pedidos por numero de factura
+     * @throws BDException
+     */
     protected static ArrayList<Pedido> obtenerPedidos(int numeroFactura) throws BDException{
         ArrayList<Pedido> pedidos=new ArrayList<>();
         Pedido p;
