@@ -48,8 +48,6 @@ public class ControlVistaProcesarPedido {
             ContCUProcesarPedido.compruebaPagos(numAbonado);               
         }catch(AbNotPaidException ex){
             vista.lanzaError(ex.getMessage());
-        }catch(PedidosNotFoundException ex){
-            vista.lanzaError(ex.getMessage());
         }
     }
     
