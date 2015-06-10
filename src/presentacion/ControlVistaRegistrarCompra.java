@@ -6,6 +6,8 @@
 package presentacion;
 
 import dominio.Compra;
+import dominio.ContCURegistrarCompra;
+import excepciones.AbNotFoundException;
 
 /**
  *
@@ -20,6 +22,6 @@ public class ControlVistaRegistrarCompra {
         this.vista=vista;
     }
     protected void comprobarIDCompra(){
-    
+       
     }
 }

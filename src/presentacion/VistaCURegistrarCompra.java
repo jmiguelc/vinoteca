@@ -48,18 +48,31 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
+    public void setComprobarEnabled(){
+        this.comprobarButton.setEnabled(true);
+    } 
+    public void setSeleccionarEnabled(){
+        this.selectionButton.setEnabled(true);
+    }
+    
+    public void setFinalizarEnabled(boolean enabled){
+        this.finalizarButton.setEnabled(enabled);
+    }
     protected void showInforme(Referencia ref){
-        DefaultTableModel modelo;
-       
-        modelo=(DefaultTableModel)Table.getModel();
-        modelo.setRowCount(ref.getCodigo());
-        Table.setModel(modelo); 
-        mostrarTablas(true);
+
     }
     protected void mostrarTablas(boolean show){
-        jScrollPane1.setVisible(show);
-        getContentPane().validate();
-        getContentPane().repaint();
+
+    }
+    private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
+         /*Comprobamos los campos*/
+        if(compruebaElementosCompra()){
+            /*Procesamos la comprobacion de abonado*/
+           c.comprobarIDCompra();
+           
+        }else{
+            lanzaError("Identificador de compra vacio(s)\no con el valor por defecto");
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -228,7 +241,7 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CompraLabel;
     private javax.swing.JTable Table;
