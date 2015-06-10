@@ -61,21 +61,15 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="refLabel" max="32767" attributes="0"/>
-                              <Component id="totalLabel" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cantidadField" max="32767" attributes="0"/>
-                              <Component id="referenciaField" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="addButton" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="refLabel" max="32767" attributes="0"/>
+                      <Component id="totalLabel" max="32767" attributes="0"/>
+                      <Component id="addButton" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="cantidadField" max="32767" attributes="0"/>
+                      <Component id="referenciaField" pref="84" max="32767" attributes="0"/>
+                      <Component id="jButton1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -95,7 +89,10 @@
                       <Component id="cantidadField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="addButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -130,6 +127,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="cantidad"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Terminar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -214,7 +219,7 @@
                       <Component id="apellidoLabel" alignment="0" max="32767" attributes="0"/>
                       <Component id="phoneLabel" alignment="0" max="32767" attributes="0"/>
                       <Component id="emailLabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="confirmarButton" alignment="0" pref="176" max="32767" attributes="0"/>
+                      <Component id="confirmarButton" alignment="0" pref="175" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

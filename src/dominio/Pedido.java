@@ -28,6 +28,7 @@ public class Pedido {
     private Date fechaRecepcion;
     private Date fechaEntrega;
     private Abonado abonado;
+    private ArrayList<LineaPedido> lineasPedido; 
 
     /*Seguramente haya que hacer un constructor para Json 
     y otro normal para procesar pedido*/
@@ -38,6 +39,12 @@ public class Pedido {
      * @throws BDException
      */
     
+    public Pedido( EstadoPedido estado, Date fechaRealizacion, Abonado abonado) {
+        this.estado = estado;
+        this.fechaRealizacion = fechaRealizacion;
+        this.abonado = abonado;
+    }
+
     public Pedido(String jsonPedido) throws BDException {
         StringReader strReader=new StringReader(jsonPedido);
         JsonReader jReader=Json.createReader(strReader);
@@ -71,7 +78,6 @@ public class Pedido {
         int numeroAbonado=jsonObject.getInt("numeroAbonado");
         Abonado ab=Abonado.obtenerAbonado(numeroAbonado);
         setAbonado(ab);
-    
     }
 
     /**
@@ -222,4 +228,9 @@ public class Pedido {
         
         return pedidos;
     }  
+    
+    protected void addLineaPedido(LineaPedido lineaPedido){
+        this.lineasPedido.add(lineaPedido);
+    }
+    
 }

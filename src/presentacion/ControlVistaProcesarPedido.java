@@ -7,10 +7,14 @@ package presentacion;
 
 import dominio.Abonado;
 import dominio.ContCUProcesarPedido;
+import dominio.Pedido;
+import dominio.Referencia;
 import excepciones.AbNotFoundException;
 import excepciones.AbNotPaidException;
 import excepciones.BDException;
 import excepciones.RefNotAvaliableException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -20,6 +24,8 @@ public class ControlVistaProcesarPedido {
     
     protected VistaCUProcesarPedido vista;
     protected Abonado ab;
+    protected Pedido p;
+    protected Referencia ref;
 
     public ControlVistaProcesarPedido(VistaCUProcesarPedido vista) {
         this.vista=vista;    
@@ -43,10 +49,12 @@ public class ControlVistaProcesarPedido {
     
   // Comprobamos que el abonado no tenga pagos pendientes
     protected void comprobarPagosPendientes() {
-          
+        Date today =Date.valueOf(LocalDate.now());
+        
         try{
             int numAbonado =Integer.parseInt(vista.getNumAbonado());
             ContCUProcesarPedido.compruebaPagos(numAbonado);
+            p = ContCUProcesarPedido.nuevoPedido(today, ab);
             vista.setAddEnabled();
         }catch(AbNotPaidException | BDException ex){
             vista.lanzaError(ex.getMessage());
@@ -58,7 +66,8 @@ public class ControlVistaProcesarPedido {
         int cantidad = vista.getCantidad();
         
         try{
-            ContCUProcesarPedido.comprobarReferencia(referencia);
+            ref = ContCUProcesarPedido.comprobarReferencia(referencia);
+            ContCUProcesarPedido.nuevaLineaPedido( cantidad, ref, p);
                 
         }catch(RefNotAvaliableException | BDException ex){
             vista.lanzaError(ex.getMessage());

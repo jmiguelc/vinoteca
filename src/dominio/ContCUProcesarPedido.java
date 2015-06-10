@@ -74,7 +74,7 @@ public class ContCUProcesarPedido {
         return val;
     }
         
-     public static void comprobarReferencia(int numRef)throws BDException, RefNotAvaliableException{
+     public static Referencia comprobarReferencia(int numRef)throws BDException, RefNotAvaliableException{
          Referencia ref = Referencia.getReferencia(numRef);
          boolean val = false;
          
@@ -83,5 +83,20 @@ public class ContCUProcesarPedido {
              
          if (val == false)
              throw new RefNotAvaliableException("Producto no disponible");
+         return ref;
+     }
+     
+     public static Pedido nuevoPedido(Date fecha,Abonado ab){
+         EstadoPedido estado = null;
+         Pedido p = new Pedido(estado.pendiente,fecha,ab);
+         
+         return p;
+     }
+     
+     public static void nuevaLineaPedido( int cantidad, Referencia ref, Pedido p){
+         boolean completada = false;
+         LineaPedido lineaPedido = new LineaPedido(cantidad,completada, ref);
+         
+         p.addLineaPedido(lineaPedido);
      }
 }
