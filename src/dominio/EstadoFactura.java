@@ -10,10 +10,17 @@ package dominio;
  * @author juacelo
  */
 public enum EstadoFactura {
+
     emitida,
     pagada,
     vencida;
     
+    /**
+      * Trasnforma una cadena correspondiente en el valor de EstadoFactura
+     * que le corresponda.
+     * @param estado cadena de caracteres que indica el estado
+     * @return devuelve una valor del tipo estado
+     */
     public static EstadoFactura getEstado(String estado) {
         switch(estado){
           case "E": return emitida;
