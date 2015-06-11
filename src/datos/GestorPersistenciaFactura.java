@@ -89,4 +89,22 @@ public class GestorPersistenciaFactura {
         }  
     }
      
+     public static int getNextFactura()throws BDException{
+        ResultSet rs;
+        String sql = "SELECT * FROM APP.FACTURA";
+        int nextFactura = 1;
+        
+        try{
+            /*Lectura de la BD y creación de la cadena Json*/
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            while(rs.next())
+                nextFactura++; 
+        
+        }catch(SQLException e){
+            throw new BDException(e.getMessage());
+        }
+        
+        return nextFactura;
+    }
+     
 }

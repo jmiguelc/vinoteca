@@ -63,6 +63,7 @@ public class Factura {
         setNumeroFactura(numeroFactura);
         setFechaEmision(fechaEmision);
         setEstado(estado);
+        setPedidos(new ArrayList<Pedido>());
     }
 
     /**
