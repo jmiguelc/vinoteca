@@ -20,7 +20,10 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
         initComponents();
         c=new ControlVistaIdentificarse(this);
     }
-    
+    /**
+     * Comprobamos que los elementos del usuario son correctos
+     * @return un booleano si son correctos o no
+     */
     protected boolean compruebaElementosVista(){
         boolean val=true;
         
@@ -34,15 +37,24 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
         
         return val;
     }
-    
+    /**
+     * Se obtiene el usuario 
+     * @return una cadena de caracteres de usuario
+     */
     protected String getUsuario(){
         return userTextField.getText();
     }
-    
+    /**
+     * Se obtiene la contraseña
+     * @return un array de caracteres de password
+     */
     protected char[] getPassword(){
         return passwordField.getPassword();        
     }
-    
+    /**
+     * Lanza por pantalla un mensaje si existe un error
+     * @param msg 
+     */
     protected void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
@@ -137,7 +149,10 @@ public class VistaCUIdentificarse extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Evento de pulsado
+     * @param evt 
+     */
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
         /*Comprobamos los campos*/
         if(compruebaElementosVista()){

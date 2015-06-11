@@ -60,7 +60,12 @@ public class Factura {
         setPedidos(pedidos); 
        
     }
-    
+    /**
+     * Constructor no vacio de Factura
+     * @param numeroFactura
+     * @param fechaEmision
+     * @param estado 
+     */
     public Factura(int numeroFactura,Date fechaEmision,EstadoFactura estado){
         setNumeroFactura(numeroFactura);
         setFechaEmision(fechaEmision);
@@ -172,8 +177,11 @@ public class Factura {
     private void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-    
-     protected void addPedido(Pedido pedido){
+    /**
+     * Añade un pedido
+     * @param pedido 
+     */
+    protected void addPedido(Pedido pedido){
         this.pedidos.add(pedido);
     }
     
@@ -210,7 +218,12 @@ public class Factura {
         
         return facturas;
     }
-    
+    /**
+     * Se obtiene una lista de las facturas mensuales dependiendo la fecha
+     * @param fecha
+     * @return una lista de facturas mensuales
+     * @throws BDException 
+     */
     protected static ArrayList<Factura> obtenerFacturasMensuales(Date fecha) throws BDException{
         ArrayList<Factura> facturas=new ArrayList<>();
         
@@ -236,7 +249,12 @@ public class Factura {
         /*ir a pedidos y recuperar los pedidos para cada factura*/       
         return facturas;
     }
-    
+    /**
+     * Se guarda la factura indicada
+     * @param factura
+     * @param importe
+     * @throws BDException 
+     */
     protected static void guardarFactura(Factura factura, double importe) throws BDException{
         JsonObject jsonObj=Json.createObjectBuilder()
             .add("numeroFactura",factura.getNumeroFactura())

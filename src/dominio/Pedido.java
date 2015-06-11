@@ -13,7 +13,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import javax.json.Json;
 import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.json.JsonWriter;
@@ -50,6 +49,11 @@ public class Pedido {
         setLineasPedido(new ArrayList<LineaPedido>());
     }
 
+    /**
+     * Constructor no vacio de Pedido
+     * @param jsonPedido
+     * @throws BDException
+     */
     public Pedido(String jsonPedido) throws BDException {
         StringReader strReader=new StringReader(jsonPedido);
         JsonReader jReader=Json.createReader(strReader);
@@ -206,10 +210,17 @@ public class Pedido {
         this.abonado = abonado;
     }
 
+    /**
+     * Se obtiene la lista de linea de pedido de Pedido
+     * @return la lista con las lineas de pedido de un pedido
+     */
     public ArrayList<LineaPedido> getLineasPedido() {
         return lineasPedido;
     }
-
+    /**
+     * Establece la lista de lineas de pedido de un pedido
+     * @param lineasPedido 
+     */
     private void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
         this.lineasPedido = lineasPedido;
     }
@@ -245,10 +256,21 @@ public class Pedido {
         return pedidos;
     }  
     
+    /**
+     *Añade una linea de pedido de Pedido
+     * @param lineaPedido
+     */
     protected void addLineaPedido(LineaPedido lineaPedido){
         this.lineasPedido.add(lineaPedido);
     }
     
+    /**
+     * Guarda un pedido dependiendo del importe, el numero de factura y del pedido mismo.
+     * @param p
+     * @param importe
+     * @param numFactura
+     * @throws BDException
+     */
     protected static void guardarPedido(Pedido p, double importe, int numFactura) throws BDException{
         int numPedido = GestorPersistenciaPedido.getNextPedido();
         p.setNumeroPedido(numPedido);

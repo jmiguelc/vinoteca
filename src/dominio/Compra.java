@@ -27,7 +27,10 @@ public class Compra {
     private Date fechaPago;
     private boolean pagada;
     private ArrayList<LineaCompra> lineaCompra;
-
+    /**
+     * Constructor no vacio de Compra
+     * @param jsonCompra 
+     */
     public Compra(String jsonCompra) {
         /*Conversion de String a Json*/
         StringReader strReader=new StringReader(jsonCompra);
@@ -45,59 +48,117 @@ public class Compra {
         setPagada(jsonObject.getBoolean("pagada"));
     }
     
+    /**
+     * Se obtiene el identificador de la compra
+     * @return un identificador de compra
+     */
     public int getIdCompra() {
         return idCompra;
     }
-
+    /**
+     * Establece un identificador de compra
+     * @param idCompra 
+     */
     private void setIdCompra(int idCompra) {
         this.idCompra = idCompra;
     }
 
+    /**
+     *Se obtiene la fecha de inicio de Compra
+     * @return una fecha de inicio de una compra
+     */
     public Date getFechaInicio() {
         return fechaInicio;
     }
-
+    /**
+     * Establece una fecha de inicio de la compra
+     * @param fechaInicio 
+     */
     private void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
+    /**
+     *Se obtiene la fecha de compra finalizada
+     * @return una fecha de compra finalizada
+     */
     public Date getFechaCompraCompletada() {
         return fechaCompraCompletada;
     }
-
+    /**
+     * Establece la fecha de compra finalizada
+     * @param fechaCompraCompletada 
+     */
     private void setFechaCompraCompletada(Date fechaCompraCompletada) {
         this.fechaCompraCompletada = fechaCompraCompletada;
     }
 
+    /**
+     * Se obtiene el estado de la compra recibida si esta completada o no
+     * @return un booleano si la compra recibida es completada o no
+     */
     public boolean isRecibidaCompletada() {
         return recibidaCompletada;
     }
-
+    /**
+     * Establece el estado de la compra recibida si esta completada o no
+     * @param recibidaCompletada 
+     */
     private void setRecibidaCompletada(boolean recibidaCompletada) {
         this.recibidaCompletada = recibidaCompletada;
     }
 
+    /**
+     * Se obtiene la fecha de pago de compra
+     * @return una fecha de pago de una compra
+     */
     public Date getFechaPago() {
         return fechaPago;
     }
-
+    /**
+     * Establece la fecha de pago de la compra
+     * @param fechaPago 
+     */
     private void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
 
+    /**
+     * Se obtiene el estado de la compra si esta pagada o no
+     * @return un booleano si la compra es pagada o no
+     */
     public boolean isPagada() {
         return pagada;
     }
-
+    /**
+     * Establece el estado de la compra si esta pagada o no
+     * @param pagada 
+     */
     private void setPagada(boolean pagada) {
         this.pagada = pagada;
     }
+
+    /**
+     *Se obtiene una lista de linea de compra
+     * @return una lista de las lineas de compra
+     */
     public ArrayList<LineaCompra> getLineaCompra() {
         return lineaCompra;
     }
+    /**
+     * Establece  la lista de las lineas de compra
+     * @param lineaCompra 
+     */
     private void setLineaCompra(ArrayList<LineaCompra> lineaCompra) {
         this.lineaCompra = lineaCompra;
     }
+
+    /**
+     * Se obtiene la compra mediante el identificador de compra
+     * @param idCompra
+     * @return la compra
+     * @throws BDException
+     */
     protected static Compra obtenerCompra (int idCompra) throws BDException{
         String jsonCompra=GestorPersistenciaCompra.getCompraByidCompra(idCompra);
         Compra comp=null;

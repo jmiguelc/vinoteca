@@ -21,36 +21,70 @@ public class LineaPedido {
     private boolean completada;
     private Referencia ref;
 
+    /**
+     *Constructor no vacio de linea de pedido
+     * @param unidades
+     * @param completada
+     * @param ref
+     */
     public LineaPedido(int unidades, boolean completada, Referencia ref) {
         this.unidades = unidades;
         this.completada = completada;
         this.ref = ref;
     }
 
+    /**
+     * Se obtiene las unidades de linea de pedido
+     * @return las unidades de una linea de pedido
+     */
     public int getUnidades() {
         return unidades;
     }
 
+    /**
+     *Establece las unidades de la linea de pedido
+     * @param unidades
+     */
     public void setUnidades(int unidades) {
         this.unidades = unidades;
     }
 
+    /**
+     * Se obtiene el estado de si la linea de pedido esta completada o no
+     * @return un booleano de si esta completada la linea de pedido o no
+     */
     public boolean isCompletada() {
         return completada;
     }
 
+    /**
+     * Establece el estado de si la linea de pedido esta completada o no
+     * @param completada
+     */
     public void setCompletada(boolean completada) {
         this.completada = completada;
     }
 
+    /**
+     * Se obtiene la referencia de la linea de pedido
+     * @return la referencia de una linea de pedido
+     */
     public Referencia getRef() {
         return ref;
     }
 
+    /**
+     * Establece la referencia de la linea de pedido
+     * @param ref
+     */
     public void setRef(Referencia ref) {
         this.ref = ref;
     }
     
+    /**
+     * Se obtiene el importe total de la linea de pedido
+     * @return el importe total de la linea de pedido
+     */
     protected double getTotal(){
         double importe;
         double total;

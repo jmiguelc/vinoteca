@@ -5,10 +5,8 @@
  */
 package presentacion;
 
-import dominio.Compra;
 import dominio.Referencia;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,7 +21,10 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         initComponents();
         c=new ControlVistaRegistrarCompra(this);
     }
-
+    /**
+     * Comprobamos que los elementos de la Compra son correctos
+     * @return un booleano si son correctos o no
+     */
     protected boolean compruebaElementosCompra(){
         boolean val=true;
         
@@ -33,26 +34,49 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         
         return val;
     }
+    /**
+     * Se obtiene el identificador de la compra
+     * @return un identificador de la compra
+     */
     protected int getIdCompra(){
         return Integer.parseInt(idCompraTextField.getText());
     }
+    /**
+     * Establece el identificador de la compra en la etiqueta
+     * @param idCompra 
+     */
     protected void setidComLabel(int idCompra){
-        this.idComLabel.setText("idCompra");
+        this.idCompraOutLabel.setText("idCompra");
     }
+    /**
+     * Establece el nombre de la bodega en la etiqueta
+     * @param nombreBodega 
+     */
     protected void setNombreBodegaLabel(String nombreBodega){
         this.nombreBodegaLabel.setText(nombreBodega);    
     }
+    /**
+     * Establece las unidades en la etiqueta
+     * @param unidades 
+     */
     protected void setUnidadesLabel(int unidades){
         this.unidadesLabel.setText("unidades");
     }
+    /**
+     * Lanza por pantalla un mensaje si existe un error
+     * @param msg 
+     */
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
+    /**
+     * 
+     */
     public void setComprobarEnabled(){
         this.comprobarButton.setEnabled(true);
     } 
     public void setSeleccionarEnabled(){
-        this.selectionButton.setEnabled(true);
+        this.seleccionarButton.setEnabled(true);
     }
     
     public void setFinalizarEnabled(boolean enabled){
@@ -64,10 +88,14 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     protected void mostrarTablas(boolean show){
 
     }
+    /**
+     * Evento de pulsado
+     * @param evt 
+     */
     private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
          /*Comprobamos los campos*/
         if(compruebaElementosCompra()){
-            /*Procesamos la comprobacion de abonado*/
+            /*Procesamos la comprobacion de idcompra*/
            c.comprobarIDCompra();
            
         }else{
@@ -83,71 +111,82 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        CompraLabel = new javax.swing.JLabel();
-        iDCompraLabel = new javax.swing.JLabel();
+        entradaPanel = new javax.swing.JPanel();
+        compraPanelLabel = new javax.swing.JLabel();
+        idCompraLabel = new javax.swing.JLabel();
         comprobarButton = new javax.swing.JButton();
         idCompraTextField = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        idComLabel = new javax.swing.JLabel();
+        volverButton = new javax.swing.JButton();
+        salidaPanel = new javax.swing.JPanel();
+        idCompraOutLabel = new javax.swing.JLabel();
         nombreBodegaLabel = new javax.swing.JLabel();
         unidadesLabel = new javax.swing.JLabel();
-        selectionButton = new javax.swing.JButton();
+        seleccionarButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Table = new javax.swing.JTable();
+        referenciaTable = new javax.swing.JTable();
         finalizarButton = new javax.swing.JButton();
-        volverButton = new javax.swing.JButton();
 
-        CompraLabel.setText("Compra");
+        compraPanelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        compraPanelLabel.setText("Compra");
 
-        iDCompraLabel.setText("IDCompra");
+        idCompraLabel.setText("IDCompra");
 
         comprobarButton.setText("Comprobar");
 
         idCompraTextField.setText(" idCompra");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(CompraLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(iDCompraLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(idCompraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(comprobarButton)
-                .addGap(42, 42, 42))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        volverButton.setText("volver");
+
+        javax.swing.GroupLayout entradaPanelLayout = new javax.swing.GroupLayout(entradaPanel);
+        entradaPanel.setLayout(entradaPanelLayout);
+        entradaPanelLayout.setHorizontalGroup(
+            entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(entradaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CompraLabel)
+                .addGroup(entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(entradaPanelLayout.createSequentialGroup()
+                        .addComponent(volverButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(compraPanelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(entradaPanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comprobarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(entradaPanelLayout.createSequentialGroup()
+                        .addComponent(idCompraLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(idCompraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
+        );
+        entradaPanelLayout.setVerticalGroup(
+            entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(entradaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(compraPanelLabel)
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(iDCompraLabel)
+                .addGroup(entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idCompraLabel)
                     .addComponent(idCompraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(comprobarButton)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(volverButton)
+                .addContainerGap())
         );
 
-        idComLabel.setText("iDCompra");
+        idCompraOutLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        idCompraOutLabel.setText("iDCompra");
 
+        nombreBodegaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreBodegaLabel.setText("nombreBodega");
 
+        unidadesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         unidadesLabel.setText("unidades");
 
-        selectionButton.setText("seleccionar");
+        seleccionarButton.setText("seleccionar");
 
-        Table.setModel(new javax.swing.table.DefaultTableModel(
+        referenciaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -166,57 +205,47 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Table);
+        jScrollPane1.setViewportView(referenciaTable);
 
         finalizarButton.setText("finalizar");
 
-        volverButton.setText("volver");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout salidaPanelLayout = new javax.swing.GroupLayout(salidaPanel);
+        salidaPanel.setLayout(salidaPanelLayout);
+        salidaPanelLayout.setHorizontalGroup(
+            salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salidaPanelLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
-                .addComponent(selectionButton)
-                .addGap(76, 76, 76)
-                .addComponent(finalizarButton)
-                .addGap(57, 57, 57))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(unidadesLabel))
-                            .addComponent(nombreBodegaLabel)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(idComLabel))))
-                    .addComponent(volverButton))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                    .addGroup(salidaPanelLayout.createSequentialGroup()
+                        .addComponent(seleccionarButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(finalizarButton))
+                    .addComponent(idCompraOutLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombreBodegaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(unidadesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(idComLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nombreBodegaLabel)
-                .addGap(12, 12, 12)
-                .addComponent(unidadesLabel)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectionButton)
-                    .addComponent(finalizarButton))
+        salidaPanelLayout.setVerticalGroup(
+            salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salidaPanelLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(idCompraOutLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(volverButton))
+                .addComponent(nombreBodegaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(unidadesLabel)
+                .addGroup(salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(salidaPanelLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 74, Short.MAX_VALUE))
+                    .addGroup(salidaPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(seleccionarButton)
+                            .addComponent(finalizarButton))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -224,19 +253,19 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(35, 35, 35))
+                .addContainerGap()
+                .addComponent(entradaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(salidaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(entradaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(salidaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -277,18 +306,18 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel CompraLabel;
-    private javax.swing.JTable Table;
+    private javax.swing.JLabel compraPanelLabel;
     private javax.swing.JButton comprobarButton;
+    private javax.swing.JPanel entradaPanel;
     private javax.swing.JButton finalizarButton;
-    private javax.swing.JLabel iDCompraLabel;
-    private javax.swing.JLabel idComLabel;
+    private javax.swing.JLabel idCompraLabel;
+    private javax.swing.JLabel idCompraOutLabel;
     private javax.swing.JTextField idCompraTextField;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombreBodegaLabel;
-    private javax.swing.JButton selectionButton;
+    private javax.swing.JTable referenciaTable;
+    private javax.swing.JPanel salidaPanel;
+    private javax.swing.JButton seleccionarButton;
     private javax.swing.JLabel unidadesLabel;
     private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables

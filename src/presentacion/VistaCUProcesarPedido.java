@@ -20,7 +20,11 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         initComponents();
         c=new ControlVistaProcesarPedido(this);
     }
-     protected boolean compruebaElementosAbonado(){
+    /**
+     * Comprobamos que los elementos del abonado son correctos
+     * @return un booleano si son correctos o no
+     */
+    protected boolean compruebaElementosAbonado(){
         boolean val=true;
         
         /*Mirar si tienen los campos por defecto*/
@@ -32,6 +36,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         
         return val;
     }
+    /**
+     * Comprueba si los elementos referencia y cantidad son correctos
+     * @return un booleano si son correctos o no
+     */
     protected boolean compruebaElementosPedido(){
         boolean val=true;
         
@@ -42,29 +50,59 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         
         return val;
     }
+    /**
+     * Se obtiene el numero del abonado
+     * @return el numero del abonado
+     */
    protected String getNumAbonado(){
       return nAbonadoField.getText();
     }
-    
+    /**
+     * Se obtiene la referencia 
+     * @return  una cadena de caracteres de referencia
+     */
     protected String getReferencia(){
         return referenciaField.getText();
     }
-    
+    /**
+     * Se obtiene la cantidad
+     * @return una cadena de caracteres de cantidad
+     */
     protected String getCantidad(){
         return cantidadField.getText();
     }
+    /**
+     * Establece el nombre en la etiqueta
+     * @param nombre 
+     */
     protected void setNombreLabel(String nombre){
         this.nombreLabel.setText(nombre);
     }
-     protected void setapellidoLabel(String apellidos){
+    /**
+     * Establece los apellidos en la etiqueta
+     * @param apellidos 
+     */
+    protected void setapellidoLabel(String apellidos){
         this.apellidoLabel.setText(apellidos);
     }
-     protected void setTelefonoLabel(String telefono){
+    /**
+     * Establece el telefono en la etiqueta
+     * @param telefono 
+     */
+    protected void setTelefonoLabel(String telefono){
         this.phoneLabel.setText(telefono);
     }
+    /**
+     * Establece el correo electronico en la etiqueta
+     * @param email 
+     */
     protected void setEmailLabel(String email){
         this.emailLabel.setText(email);
     }
+    /**
+     * Lanza por pantalla un mensaje si existe un error
+     * @param msg 
+     */
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
@@ -309,7 +347,10 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
             lanzaError("Número de abonado vacio(s)\no con el valor por defecto");
         }
     }//GEN-LAST:event_comprobarButtonActionPerformed
-
+    /**
+     * Evento de pulsado
+     * @param evt 
+     */
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         c.comprobarPagosPendientes();
     }//GEN-LAST:event_confirmarButtonActionPerformed

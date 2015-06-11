@@ -26,12 +26,17 @@ public class ControlVistaProcesarPedido {
     protected Abonado ab;
     protected Pedido p;
     protected Referencia ref;
-
+    /**
+     * Constructor no vacio de ControlVistaProcesarPedido
+     * @param vista 
+     */
     public ControlVistaProcesarPedido(VistaCUProcesarPedido vista) {
         this.vista=vista;    
     }
     
-    // Comprobamos que el numero de abonado existe y mostramos la informacion
+    /**
+     * Comprobamos que el numero de abonado existe y mostramos la informacion
+     */
     protected void comprobarAbonado(){
         
         try{
@@ -48,8 +53,10 @@ public class ControlVistaProcesarPedido {
             vista.lanzaError("Formato de Número de Abonado Incorrecto");
         }
     }
-    
-  // Comprobamos que el abonado no tenga pagos pendientes
+     
+    /**
+     * Comprobamos que el abonado no tenga pagos pendientes
+     */
     protected void comprobarPagosPendientes() {
         Date today =Date.valueOf(LocalDate.now());
         
@@ -64,11 +71,11 @@ public class ControlVistaProcesarPedido {
             vista.lanzaError(ex.getMessage());
         }
     }
-    
+   /**
+    * Comprobamos que la referencia y la cantidad existen
+    */ 
    protected void comprobarPedido(){
-        
-        
-        
+
         try{
             int referencia = Integer.parseInt(vista.getReferencia());
             int cantidad = Integer.parseInt(vista.getCantidad());
@@ -82,7 +89,9 @@ public class ControlVistaProcesarPedido {
             vista.lanzaError("Formato de Referencia o Cantidad Erroneos");
         }
     }
-   
+   /**
+    * Comprobamos que el pedido ha finalizado
+    */
    protected void finalizarPedido(){
        try{
             ContCUProcesarPedido.finalizarPedido(p);
