@@ -7,6 +7,8 @@ package datos;
 
 import excepciones.BDException;
 import java.io.StringReader;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -21,14 +23,36 @@ public class GestorPersistenciaLineaPedido {
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
         
+        int id = jsonObject.getInt("id");
         int unidades=jsonObject.getInt("unidades");
         boolean completada=jsonObject.getBoolean("completada");
+        int numPedido = jsonObject.getInt("numPedido");
+        int idLineaCompra = jsonObject.getInt("idLineaCompra");
+        int codigo = jsonObject.getInt("codigo");
         
-        String sql = "INSERT INTO APP.LINEAPEDIDO(UNIDADES,COMPLETADA) VALUES("
-                       +unidades+",'"+completada+"')";
+        String sql = "INSERT INTO APP.LINEAPEDIDO VALUES("+id+","
+                       +unidades+",'"+completada+"',"+numPedido+","+idLineaCompra+","+codigo+")";
         int resutado=ConexionBD.creaInstancia().ejecutaUpdate(sql);
         
         
         return resutado;
+    }
+     
+     public static int getNextLineaPedido()throws BDException{
+        ResultSet rs;
+        String sql = "SELECT * FROM APP.LINEAPEDIDO";
+        int nextPedido = 1;
+        
+        try{
+            /*Lectura de la BD y creación de la cadena Json*/
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            while(rs.next())
+                nextPedido++; 
+        
+        }catch(SQLException e){
+            throw new BDException(e.getMessage());
+        }
+        
+        return nextPedido;
     }
 }

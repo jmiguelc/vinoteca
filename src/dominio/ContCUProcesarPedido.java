@@ -158,7 +158,7 @@ public class ContCUProcesarPedido {
         Pedido.guardarPedido(p, importe);
         ArrayList<LineaPedido> lineasPedidos = p.getLineasPedido();
         for(LineaPedido lp: lineasPedidos){
-            lp.guardarLineaPedido(lp);
+            lp.guardarLineaPedido(lp,p.getNumeroPedido());
         }
      }
 }
