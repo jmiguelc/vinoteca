@@ -60,7 +60,8 @@ public class Pedido {
         Date fechaRealizacion=Date.valueOf(jsonObject.getString("fechaRealizacion"));
         setFechaRealizacion(fechaRealizacion);
         
-        setNotaEntrega(jsonObject.getString("notaEntrega"));
+        if(jsonObject.containsKey("notaEntrega"))
+            setNotaEntrega(jsonObject.getString("notaEntrega"));
         
         double importe=(jsonObject.getJsonNumber("importe").doubleValue());
         setImporte(importe);
@@ -250,6 +251,7 @@ public class Pedido {
     
     protected static void guardarPedido(Pedido p, double importe, int numFactura) throws BDException{
         int numPedido = GestorPersistenciaPedido.getNextPedido();
+        p.setNumeroPedido(numPedido);
         
         JsonObject jsonObj=Json.createObjectBuilder()
             .add("numeroPedido",numPedido)
@@ -266,13 +268,13 @@ public class Pedido {
         GestorPersistenciaPedido.insertPedido(jsonstr.toString());
     }
     
-    protected double getTotal(){
+    protected void setTotal(){
         double importeTotal = 0.0;
         
         ArrayList<LineaPedido> lineasPedidos = getLineasPedido();
         for(LineaPedido lp: lineasPedidos){
             importeTotal += lp.getTotal();
         }
-        return importeTotal;
+        setImporte(importeTotal);
     }
 }

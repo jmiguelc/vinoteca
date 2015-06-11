@@ -25,7 +25,7 @@ public class GestorPersistenciaLineaPedido {
         
         int id = jsonObject.getInt("id");
         int unidades=jsonObject.getInt("unidades");
-        boolean completada=jsonObject.getBoolean("completada");
+        String completada=jsonObject.getString("completada");
         int numPedido = jsonObject.getInt("numPedido");
         int idLineaCompra = jsonObject.getInt("idLineaCompra");
         int codigo = jsonObject.getInt("codigo");

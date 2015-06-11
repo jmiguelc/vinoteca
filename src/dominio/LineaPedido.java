@@ -62,13 +62,23 @@ public class LineaPedido {
         return total;
     }
     
+    protected String completada(){
+        String valor;
+        if(isCompletada())
+            valor = "T";
+        else
+            valor = "F";
+        return valor;
+    }
+    
     protected void guardarLineaPedido(LineaPedido lineaPedido, int numPedido)throws BDException{
         int id = GestorPersistenciaLineaPedido.getNextLineaPedido();
+        String completada = completada();
         
         JsonObject jsonObj=Json.createObjectBuilder()
             .add("id",id)
             .add("unidades",lineaPedido.getUnidades())
-            .add("completada",lineaPedido.isCompletada())
+            .add("completada",completada)
             .add("numPedido",numPedido)
             .add("idLineaCompra",id)    
             .add("codigo",getRef().getCodigo())    

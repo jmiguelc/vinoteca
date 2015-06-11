@@ -251,11 +251,19 @@ public class Factura {
         GestorPersistenciaFactura.insertFactura(jsonstr.toString());
     }
     /* Sumamos el importe del pedido al total de la facura */
-    protected double importeTotal(double importePedido)throws BDException{
-        double importeFactura = GestorPersistenciaFactura.getImporte(getNumeroFactura());
-        double importeTotal = importeFactura + importePedido;
+    protected void actualizaImporteFactura(){
+        double total = 0;
+        ArrayList<Pedido> pedidos = getPedidos();
         
-        return importeTotal;
+        for(Pedido p: pedidos){
+            total += p.getImporte();
+        }
+        
+        setImporte(total);
     } 
+    
+    protected void actualizaFactura()throws BDException{
+        GestorPersistenciaFactura.actualizaFactura(getImporte(), getNumeroFactura());
+    }
 }
     
