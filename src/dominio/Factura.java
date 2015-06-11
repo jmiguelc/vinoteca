@@ -283,5 +283,11 @@ public class Factura {
     protected void actualizaFactura()throws BDException{
         GestorPersistenciaFactura.actualizaFactura(getImporte(), getNumeroFactura());
     }
+    
+    protected static Factura crearFactura(int numeroFactura,Date fechaEmision,EstadoFactura estado){
+        Factura f = new Factura(numeroFactura,fechaEmision,estado);
+        
+        return f;
+    }
 }
     

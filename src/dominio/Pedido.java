@@ -289,7 +289,10 @@ public class Pedido {
         writer.writeObject(jsonObj);
         GestorPersistenciaPedido.insertPedido(jsonstr.toString());
     }
-    
+     /**
+     * Se obtiene el importe total de Pedido
+     * @return el importe total de un pedido
+     */
     protected void setTotal(){
         double importeTotal = 0.0;
         
@@ -298,5 +301,10 @@ public class Pedido {
             importeTotal += lp.getTotal();
         }
         setImporte(importeTotal);
+    }
+    
+    protected static Pedido crearPedido(EstadoPedido estado, Date fechaRealizacion, Abonado abonado){
+        Pedido p = new Pedido(estado, fechaRealizacion, abonado);
+        return p;
     }
 }

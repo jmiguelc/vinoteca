@@ -104,7 +104,12 @@ public class LineaPedido {
             valor = "F";
         return valor;
     }
-    
+    /**
+     * Se guarda la linea de pedido dependiendo de ella misma y del numero de pedido
+     * @param lineaPedido
+     * @param numPedido
+     * @throws BDException
+     */
     protected void guardarLineaPedido(LineaPedido lineaPedido, int numPedido)throws BDException{
         int id = GestorPersistenciaLineaPedido.getNextLineaPedido();
         String completada = completada();
@@ -121,5 +126,11 @@ public class LineaPedido {
         JsonWriter writer = Json.createWriter(jsonstr);
         writer.writeObject(jsonObj);
         GestorPersistenciaLineaPedido.insertLineaPedido(jsonstr.toString());
+    }
+    
+    protected static LineaPedido crearLineaPedido(int unidades, boolean completada, Referencia ref){
+        LineaPedido lp = new LineaPedido(unidades, completada, ref);
+        
+        return lp;
     }
 }

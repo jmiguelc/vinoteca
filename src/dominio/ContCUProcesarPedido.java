@@ -101,7 +101,7 @@ public class ContCUProcesarPedido {
      */ 
     public static Pedido nuevoPedido(Date fecha,Abonado ab){
          EstadoPedido estado = null;
-         Pedido p = new Pedido(estado.pendiente,fecha,ab);
+         Pedido p = Pedido.crearPedido(estado.pendiente,fecha,ab);
          
          return p;
      }
@@ -113,13 +113,17 @@ public class ContCUProcesarPedido {
      */ 
     public static void nuevaLineaPedido( int cantidad, Referencia ref, Pedido p){
          boolean completada = false;
-         LineaPedido lineaPedido = new LineaPedido(cantidad,completada, ref);
+         LineaPedido lineaPedido = LineaPedido.crearLineaPedido(cantidad,completada, ref);
          
          p.addLineaPedido(lineaPedido);
      }
-     
+     /**
+     * Finaliza el pedido indicado
+     * @param p
+     * @throws BDException 
+     */ 
      public static void finalizarPedido(Pedido p) throws BDException{
-        p.setTotal();//porque get si podemos hacer set??
+        p.setTotal();
         /* Obtiene la factura de este mes, sino es null, se crea. */
         ArrayList<Factura> facturas;
         ArrayList<Pedido> pedidos;
@@ -162,7 +166,7 @@ public class ContCUProcesarPedido {
             Date today = Date.valueOf(LocalDate.now());
             EstadoFactura estado=EstadoFactura.emitida;
             int numFactura=GestorPersistenciaFactura.getNextFactura();
-            factura=new Factura(numFactura,today,estado);
+            factura= Factura.crearFactura(numFactura,today,estado);
             factura.addPedido(p);
             Factura.guardarFactura(factura, p.getImporte());
         }
