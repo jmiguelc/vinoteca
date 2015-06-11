@@ -6,21 +6,27 @@
 package presentacion;
 
 import dominio.Compra;
-import dominio.ContCURegistrarCompra;
-import excepciones.AbNotFoundException;
 
 /**
  *
  * @author nurcanc
  */
 public class ControlVistaRegistrarCompra {
-    
+
     protected VistaCURegistrarCompra vista;
     protected Compra comp;
     
+    /**
+     *Constructor no vacio de ControlVistaRegistrarCompra
+     * @param vista
+     */
     public ControlVistaRegistrarCompra(VistaCURegistrarCompra vista){
         this.vista=vista;
     }
+
+    /**
+     *
+     */
     protected void comprobarIDCompra(){
        
     }

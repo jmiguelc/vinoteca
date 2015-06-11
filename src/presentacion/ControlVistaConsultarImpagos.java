@@ -21,10 +21,18 @@ public class ControlVistaConsultarImpagos {
     
     protected VistaCUConsultarImpagos v;
 
+    /**
+     * Constructor no vacio de ControlVistaConsultarImpagos
+     * @param v
+     */
     public ControlVistaConsultarImpagos(VistaCUConsultarImpagos v) {
         this.v=v;
     }
     
+    /**
+     * Se procesa los datos de una consulta 
+     * para comprobar posibles impagos de facturas
+     */
     protected void procesarDatosConsulta(){
         ArrayList<Factura> facturas;
         try{    
@@ -48,8 +56,11 @@ public class ControlVistaConsultarImpagos {
         
         
     }
-    
-    /*Comparamos si hay 30 dias entre una fecha y la actual*/
+    /**
+     * Comparamos si hay 30 dias entre una fecha y la actual
+     * @param fecha
+     * @return un booleano si se cumple la condicion de la comparacion
+     */
     private static boolean compararFechas(Date fecha){
         Date fechaComp=new Date();
         boolean val=false;

@@ -17,12 +17,17 @@ import javax.swing.JFrame;
 public class ControlVistaIdentificarse {
 
     protected VistaCUIdentificarse vista;
-    
+    /**
+     * Constructor no vacio de ControlVistaIdentificarse
+     * @param vista 
+     */
     protected ControlVistaIdentificarse(VistaCUIdentificarse vista) {
         this.vista=vista;
     }
     
-    
+    /**
+     * Comprobamos que el usuario y su password existe y el tipo de empleado
+     */
     protected void procesaIdentificacion(){
         /*Traemos el contenido de los elementos*/
         String login=vista.getUsuario();

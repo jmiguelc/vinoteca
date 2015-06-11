@@ -5,10 +5,8 @@
  */
 package presentacion;
 
-import dominio.Compra;
 import dominio.Referencia;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,7 +21,10 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         initComponents();
         c=new ControlVistaRegistrarCompra(this);
     }
-
+    /**
+     * Comprobamos que los elementos de la Compra son correctos
+     * @return un booleano si son correctos o no
+     */
     protected boolean compruebaElementosCompra(){
         boolean val=true;
         
@@ -33,21 +34,44 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         
         return val;
     }
+    /**
+     * Se obtiene el identificador de la compra
+     * @return un identificador de la compra
+     */
     protected int getIdCompra(){
         return Integer.parseInt(idCompraTextField.getText());
     }
+    /**
+     * Establece el identificador de la compra en la etiqueta
+     * @param idCompra 
+     */
     protected void setidComLabel(int idCompra){
         this.idComLabel.setText("idCompra");
     }
+    /**
+     * Establece el nombre de la bodega en la etiqueta
+     * @param nombreBodega 
+     */
     protected void setNombreBodegaLabel(String nombreBodega){
         this.nombreBodegaLabel.setText(nombreBodega);    
     }
+    /**
+     * Establece las unidades en la etiqueta
+     * @param unidades 
+     */
     protected void setUnidadesLabel(int unidades){
         this.unidadesLabel.setText("unidades");
     }
+    /**
+     * Lanza por pantalla un mensaje si existe un error
+     * @param msg 
+     */
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
+    /**
+     * 
+     */
     public void setComprobarEnabled(){
         this.comprobarButton.setEnabled(true);
     } 
@@ -64,10 +88,14 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     protected void mostrarTablas(boolean show){
 
     }
+    /**
+     * Evento de pulsado
+     * @param evt 
+     */
     private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
          /*Comprobamos los campos*/
         if(compruebaElementosCompra()){
-            /*Procesamos la comprobacion de abonado*/
+            /*Procesamos la comprobacion de idcompra*/
            c.comprobarIDCompra();
            
         }else{
