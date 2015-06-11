@@ -62,10 +62,16 @@ public class LineaPedido {
         return total;
     }
     
-    protected void guardarLineaPedido(LineaPedido lineaPedido)throws BDException{
+    protected void guardarLineaPedido(LineaPedido lineaPedido, int numPedido)throws BDException{
+        int id = GestorPersistenciaLineaPedido.getNextLineaPedido();
+        
         JsonObject jsonObj=Json.createObjectBuilder()
+            .add("id",id)
             .add("unidades",lineaPedido.getUnidades())
-            .add("completada",lineaPedido.isCompletada())         
+            .add("completada",lineaPedido.isCompletada())
+            .add("numPedido",numPedido)
+            .add("idLineaCompra",id)    
+            .add("codigo",getRef().getCodigo())    
             .build();
         
         StringWriter jsonstr=new StringWriter();
