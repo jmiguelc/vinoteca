@@ -6,7 +6,6 @@
 package dominio;
 
 import datos.GestorPersistenciaCompra;
-import datos.GestorPersistenciaPersona;
 import excepciones.BDException;
 import java.io.StringReader;
 import java.sql.Date;
@@ -50,7 +49,7 @@ public class Compra {
         return idCompra;
     }
 
-    public void setIdCompra(int idCompra) {
+    private void setIdCompra(int idCompra) {
         this.idCompra = idCompra;
     }
 
@@ -58,7 +57,7 @@ public class Compra {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    private void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
@@ -66,7 +65,7 @@ public class Compra {
         return fechaCompraCompletada;
     }
 
-    public void setFechaCompraCompletada(Date fechaCompraCompletada) {
+    private void setFechaCompraCompletada(Date fechaCompraCompletada) {
         this.fechaCompraCompletada = fechaCompraCompletada;
     }
 
@@ -74,7 +73,7 @@ public class Compra {
         return recibidaCompletada;
     }
 
-    public void setRecibidaCompletada(boolean recibidaCompletada) {
+    private void setRecibidaCompletada(boolean recibidaCompletada) {
         this.recibidaCompletada = recibidaCompletada;
     }
 
@@ -82,7 +81,7 @@ public class Compra {
         return fechaPago;
     }
 
-    public void setFechaPago(Date fechaPago) {
+    private void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
 
@@ -90,7 +89,7 @@ public class Compra {
         return pagada;
     }
 
-    public void setPagada(boolean pagada) {
+    private void setPagada(boolean pagada) {
         this.pagada = pagada;
     }
     public ArrayList<LineaCompra> getLineaCompra() {
