@@ -59,8 +59,13 @@ public class GestorPersistenciaFactura {
             throw new BDException(e.getMessage());
         }  
     }
-    
-     public static String getFacturasMensuales(Date fecha) throws BDException{
+    /**
+     * 
+     * @param fecha
+     * @return
+     * @throws BDException 
+     */
+    public static String getFacturasMensuales(Date fecha) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.FACTURA WHERE FECHAEMISION>='"+fecha.toString()+"'";
         

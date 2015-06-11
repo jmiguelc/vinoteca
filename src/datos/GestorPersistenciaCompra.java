@@ -22,6 +22,12 @@ import javax.json.JsonWriter;
  * @author nurcanc
  */
 public class GestorPersistenciaCompra {
+    /**
+     * Se obtiene la compra mediante el identificador de compra
+     * @param idCompra
+     * @return una cadena de caracteres de la compra
+     * @throws BDException 
+     */
     public static String getCompraByidCompra(int idCompra) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.COMPRA WHERE IDCOMPRA="+idCompra;
@@ -55,7 +61,12 @@ public class GestorPersistenciaCompra {
         }
        
     }
-    
+    /**
+     * Se introduce un pedido
+     * @param jsonPedido
+     * @return una nueva tupla de un pedido
+     * @throws BDException 
+     */
     public static int insertPedido(String jsonPedido) throws BDException {
         StringReader strReader=new StringReader(jsonPedido);
         JsonReader jReader=Json.createReader(strReader);

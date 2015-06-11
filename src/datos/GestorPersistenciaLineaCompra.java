@@ -18,6 +18,13 @@ import javax.json.JsonWriter;
  * @author nurcanc
  */
 public class GestorPersistenciaLineaCompra {
+    /**
+     * Se obtiene una linea de compra por las unidades
+     * @param unidades
+     * @return una cadena de caracteres de una linea de compra
+     * @throws BDException 
+     */
+    
     public static String getLineaCompra(int unidades) throws BDException{
         ResultSet rs;
         String sql = "SELECT * FROM APP.REFERENCIA WHERE UNIDADES ="+unidades;
