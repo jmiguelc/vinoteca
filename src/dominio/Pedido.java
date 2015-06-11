@@ -248,7 +248,7 @@ public class Pedido {
         this.lineasPedido.add(lineaPedido);
     }
     
-    protected static void guardarPedido(Pedido p, double importe) throws BDException{
+    protected static void guardarPedido(Pedido p, double importe, int numFactura) throws BDException{
         int numPedido = GestorPersistenciaPedido.getNextPedido();
         
         JsonObject jsonObj=Json.createObjectBuilder()
@@ -257,7 +257,7 @@ public class Pedido {
             .add("importe",importe)           
             .add("estado",p.getEstado().toString())
             .add("numeroAbonado",p.getAbonado().getNumeroAbonado())
-            //.add("numeroFactura",rs.getInt("NUMEROFACTURA"))
+            .add("numeroFactura",numFactura)
             .build();
         
         StringWriter jsonstr=new StringWriter();
