@@ -22,14 +22,14 @@ import javax.json.JsonWriter;
 public class GestorPersistenciaLineaCompra {
     /**
      * Se obtiene una linea de compra por las unidades
-     * @param numeroFactura número de factura a la que pertenece la LineaCompra
+     * @param idCompra número de Compra a la que pertenece la LineaCompra 
      * @return una cadena de caracteres de una linea de compra
      * @throws BDException 
      */
     
-    public static String getLineasCompra(int numeroFactura) throws BDException{
+    public static String getLineasCompra(int idCompra) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.PEDIDO WHERE NUMEROFACTURA="+numeroFactura;
+        String sql = "SELECT * FROM APP.LINEACOMPRA WHERE IDCOMPRA="+idCompra;
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/
@@ -37,10 +37,9 @@ public class GestorPersistenciaLineaCompra {
             JsonArrayBuilder jsonLineaCompra= Json.createArrayBuilder();
             while(rs.next()){
                 JsonObject jsonObj=Json.createObjectBuilder()
-                .add("idLineaCompra",rs.getInt("ID"))
-                .add("unidades",rs.getDouble("UNIDADES"))
-                .add("RECIBIDA",rs.getString("RECIBIDA"))
-                .add("numeroAbonado",rs.getInt("FECHARECEPCION")).build();
+                .add("unidades",rs.getInt("UNIDADES"))
+                .add("recibida",rs.getString("RECIBIDA"))
+                .add("fechaRecepcion",rs.getString("FECHARECEPCION")).build();
                 
                 
                 jsonLineaCompra.add(jsonObj);

@@ -5,7 +5,16 @@
  */
 package dominio;
 
+import datos.GestorPersistenciaLineaCompra;
+import datos.GestorPersistenciaPedido;
+import excepciones.BDException;
+import java.io.StringReader;
 import java.sql.Date;
+import java.util.ArrayList;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 /**
  *
@@ -15,17 +24,18 @@ public class LineaCompra {
     private int unidades;
     private boolean recibida;
     private Date fechaRecepcion;
-    /**
-     * Constructor no vacio de linea de compra
-     * @param unidades
-     * @param recibida
-     * @param fechaRecepcion 
-     */
-    public LineaCompra(int unidades, boolean recibida, Date fechaRecepcion) {
-        setUnidades(unidades);
-        setRecibida(recibida);
-        setFechaRecepcion(fechaRecepcion);
+   
+    public LineaCompra(String jsonLineaCompra) {
+        StringReader strReader=new StringReader(jsonLineaCompra);
+        JsonReader jReader=Json.createReader(strReader);
+        JsonObject jsonObject=jReader.readObject();
+        
+        setRecibida(jsonObject.getString("recibida"));
+        setUnidades(jsonObject.getInt("unidades"));
+        String fechaRecepcion=jsonObject.getString("fechaRecepcion");
+        setFechaRecepcion(Date.valueOf(fechaRecepcion));
     }
+    
     
     /**
      * Se obtiene las unidades de la linea de compra
@@ -53,8 +63,15 @@ public class LineaCompra {
      * Establece el estado de si la linea de compra esta recibida o no
      * @param recibida 
      */
-    private void setRecibida(boolean recibida) {
-        this.recibida = recibida;
+    private void setRecibida(String recibida) {
+        switch(recibida){
+            case "T":
+                this.recibida=true;
+                break;
+            case "F":
+                this.recibida=false;
+                break;
+        }
     }
 
     /**
@@ -72,4 +89,26 @@ public class LineaCompra {
         this.fechaRecepcion = fechaRecepcion;
     }
     
+    protected static ArrayList<LineaCompra> obtenerLineasCompra(int idCompra) throws BDException{
+        ArrayList<LineaCompra> lineaCompras=new ArrayList<>();
+        LineaCompra lineaCompra;
+        
+        /*recuperar pedidos */
+         String jsonLineasCompra=GestorPersistenciaLineaCompra.getLineasCompra(idCompra);
+         String jsonLineaCompra;
+        
+        /*Deshacemos el jsonArray*/
+        StringReader strReader=new StringReader(jsonLineasCompra);
+        JsonReader jReader=Json.createReader(strReader);    
+        JsonArray jsonArray=jReader.readArray();
+        
+        /*mandamos construir los objetos y generamos la lista de Pedidos*/
+        for(int i=0;i<jsonArray.size();i++){
+            jsonLineaCompra = jsonArray.getJsonObject(i).toString();
+            lineaCompra=new LineaCompra(jsonLineaCompra);
+            lineaCompras.add(lineaCompra);
+        }
+        
+        return lineaCompras;
+    }  
 }

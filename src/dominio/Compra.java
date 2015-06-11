@@ -6,6 +6,7 @@
 package dominio;
 
 import datos.GestorPersistenciaCompra;
+import datos.GestorPersistenciaLineaCompra;
 import excepciones.BDException;
 import java.io.StringReader;
 import java.sql.Date;
@@ -31,13 +32,14 @@ public class Compra {
     /**
      * Constructor no vacio de Compra
      * @param jsonCompra 
+     * @throws excepciones.BDException 
      */
     public Compra(String jsonCompra) throws BDException {
         /*Conversion de String a Json*/
         StringReader strReader=new StringReader(jsonCompra);
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
-        Date fechaInicio=null;
+        Date fechaInicio;
         
         setIdCompra(jsonObject.getInt("idCompra"));
         if(jsonObject.containsKey("fechaInicio")){
@@ -61,6 +63,9 @@ public class Compra {
         int idBodega=jsonObject.getInt("idBodega");
         Bodega bodega=Bodega.obtenerBodega(idBodega);
         setBodega(bodega);
+        
+        ArrayList<LineaCompra> lineaCompras=LineaCompra.obtenerLineasCompra(idCompra);
+        setLineaCompras(lineaCompras);
     }
     
     /**
@@ -171,14 +176,14 @@ public class Compra {
      *Se obtiene una lista de linea de compra
      * @return una lista de las lineas de compra
      */
-    public ArrayList<LineaCompra> getLineaCompra() {
+    public ArrayList<LineaCompra> getLineaCompras() {
         return lineaCompra;
     }
     /**
      * Establece  la lista de las lineas de compra
      * @param lineaCompra 
      */
-    private void setLineaCompra(ArrayList<LineaCompra> lineaCompra) {
+    private void setLineaCompras(ArrayList<LineaCompra> lineaCompra) {
         this.lineaCompra = lineaCompra;
     }
 
