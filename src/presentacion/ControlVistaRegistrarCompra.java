@@ -6,6 +6,8 @@
 package presentacion;
 
 import dominio.Compra;
+import dominio.ContCURegistrarCompra;
+import excepciones.CompraNotFoundException;
 
 /**
  *
@@ -28,6 +30,14 @@ public class ControlVistaRegistrarCompra {
      *
      */
     protected void comprobarIDCompra(){
-       
+       try{
+           int idCompra = Integer.parseInt(vista.getIdCompra());
+           ContCURegistrarCompra.comprobarIDCompra(idCompra);
+           
+       }catch(NumberFormatException ex){
+            vista.lanzaError("Formato de identificador de Compra Incorrecto"); 
+       }catch(CompraNotFoundException ex){
+           vista.lanzaError(ex.getMessage());
+       }
     }
 }

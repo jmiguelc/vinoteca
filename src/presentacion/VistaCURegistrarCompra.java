@@ -5,23 +5,22 @@
  */
 package presentacion;
 
-import dominio.Referencia;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author nurcanc
+ * @author ruben
  */
-public class VistaCURegistrarCompra extends javax.swing.JPanel {
+public class VistaCURegistrarCompra extends javax.swing.JFrame {
     protected ControlVistaRegistrarCompra c;
     /**
-     * Creates new form VistaCURegistrarCompra
+     * Creates new form VistaCURegistrarCompra2
      */
     public VistaCURegistrarCompra() {
         initComponents();
         c=new ControlVistaRegistrarCompra(this);
     }
-    /**
+ /**
      * Comprobamos que los elementos de la Compra son correctos
      * @return un booleano si son correctos o no
      */
@@ -30,7 +29,8 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         
         /*Mirar si tienen los campos por defecto*/
         /*Mirar si los campos estan vacios*/
-        if(getIdCompra()==0) val = false;
+        if(getIdCompra().isEmpty() ) 
+            val = false;
         
         return val;
     }
@@ -38,8 +38,8 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
      * Se obtiene el identificador de la compra
      * @return un identificador de la compra
      */
-    protected int getIdCompra(){
-        return Integer.parseInt(idCompraTextField.getText());
+    protected String getIdCompra(){
+        return idCompraTextField.getText();
     }
     /**
      * Establece el identificador de la compra en la etiqueta
@@ -82,26 +82,13 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
     public void setFinalizarEnabled(boolean enabled){
         this.finalizarButton.setEnabled(enabled);
     }
-    protected void showInforme(Referencia ref){
+    /*protected void showInforme(Referencia ref){
 
-    }
+    }*/
     protected void mostrarTablas(boolean show){
 
     }
-    /**
-     * Evento de pulsado
-     * @param evt 
-     */
-    private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
-         /*Comprobamos los campos*/
-        if(compruebaElementosCompra()){
-            /*Procesamos la comprobacion de idcompra*/
-           c.comprobarIDCompra();
-           
-        }else{
-            lanzaError("Identificador de compra vacio(s)\no con el valor por defecto");
-        }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,12 +113,19 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         referenciaTable = new javax.swing.JTable();
         finalizarButton = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         compraPanelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         compraPanelLabel.setText("Compra");
 
         idCompraLabel.setText("IDCompra");
 
         comprobarButton.setText("Comprobar");
+        comprobarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprobarButtonActionPerformed(evt);
+            }
+        });
 
         idCompraTextField.setText(" idCompra");
 
@@ -216,7 +210,7 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
             .addGroup(salidaPanelLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                     .addGroup(salidaPanelLayout.createSequentialGroup()
                         .addComponent(seleccionarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -248,8 +242,8 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
                         .addContainerGap())))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -262,15 +256,26 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(entradaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(salidaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(salidaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-     /**
+    private void comprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprobarButtonActionPerformed
+        /*Comprobamos los campos*/
+        if(compruebaElementosCompra()){
+            /*Procesamos la comprobacion de idcompra*/
+           c.comprobarIDCompra();
+        }else{
+            lanzaError("Identificador de compra vacio(s)\n");
+        }
+    }//GEN-LAST:event_comprobarButtonActionPerformed
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -287,14 +292,21 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaCUProcesarPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCURegistrarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaCUProcesarPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCURegistrarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaCUProcesarPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCURegistrarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaCUProcesarPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCURegistrarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -304,7 +316,7 @@ public class VistaCURegistrarCompra extends javax.swing.JPanel {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel compraPanelLabel;
     private javax.swing.JButton comprobarButton;

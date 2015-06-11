@@ -5,8 +5,8 @@
  */
 package dominio;
 
-import excepciones.AbNotFoundException;
 import excepciones.BDException;
+import excepciones.CompraNotFoundException;
 
 /**
  *
@@ -19,18 +19,18 @@ public class ContCURegistrarCompra {
      * @return el identificador de compra
      * @throws AbNotFoundException 
      */
-    public static Compra comprobarIDCompra(int idCompra) throws AbNotFoundException{
+    public static Compra comprobarIDCompra(int idCompra) throws CompraNotFoundException{
         Compra comp;
         try{    
             // Obtenemos el identificador de compra, si no existe, devuelve null y gestionamos el error
             comp= Compra.obtenerCompra(idCompra);
             if(comp==null){
-                throw new AbNotFoundException("El identificador de compra no es correcto");
+                throw new CompraNotFoundException("El identificador de compra no es correcto");
             }
             System.out.println("El identificador de compra existe y es válido");
             
         }catch(BDException ex){
-            throw new AbNotFoundException("identificador no Encontrado: "+ex.getMessage());   
+            throw new CompraNotFoundException("Identificador de compra no Encontrado: "+ex.getMessage());   
         }
         // Devolvemos el identificador de compra
         return comp;
