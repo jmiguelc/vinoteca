@@ -214,8 +214,6 @@ public class Factura {
             
         }
         
-        /*ir a pedidos y recuperar los pedidos para cada factura*/
-        
         return facturas;
     }
     /**
