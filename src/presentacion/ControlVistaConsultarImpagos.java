@@ -19,14 +19,14 @@ import java.util.Date;
  */
 public class ControlVistaConsultarImpagos {
     
-    protected VistaCUConsultarImpagos v;
+    protected VistaCUConsultarImpagos vista;
 
     /**
      * Constructor no vacio de ControlVistaConsultarImpagos
      * @param v
      */
     public ControlVistaConsultarImpagos(VistaCUConsultarImpagos v) {
-        this.v=v;
+        this.vista=v;
     }
     
     /**
@@ -36,22 +36,22 @@ public class ControlVistaConsultarImpagos {
     protected void procesarDatosConsulta(){
         ArrayList<Factura> facturas;
         try{    
-            Date fecha=v.getFecha();
+            Date fecha=vista.getFecha();
             java.sql.Date fechaSQL=new java.sql.Date(fecha.getTime());
             
             if(!compararFechas(fecha)){
-                v.lanzaError("El plazo introducido es menor a 30 dias");
+                vista.lanzaAdvertencia("El plazo introducido es menor a 30 dias");
             }
             
             /*comprobar impagos*/
             facturas=ContCUConsultarImpagos.obtenerInformacion(fechaSQL);
             
-            v.showInforme(facturas);
+            vista.showInforme(facturas);
             
         }catch(ParseException|PrivilegedActionException ex){
-            v.lanzaError("Error Formato de fecha Incorrecto. " +ex.getMessage());
+            vista.lanzaError("Error Formato de fecha Incorrecto. " +ex.getMessage());
         } catch (BDException ex) {
-            v.lanzaError(ex.getMessage());
+            vista.lanzaError(ex.getMessage());
         }
         
         

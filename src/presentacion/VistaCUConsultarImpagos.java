@@ -210,6 +210,10 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     
+    public void lanzaAdvertencia(String msg){
+        JOptionPane.showMessageDialog(this, msg, "WARNING", JOptionPane.WARNING_MESSAGE);
+    }
+    
     protected Date getFecha() throws ParseException,PrivilegedActionException{
         SimpleDateFormat df=new SimpleDateFormat("dd/MM/yyyy");
         Date fecha=null;
