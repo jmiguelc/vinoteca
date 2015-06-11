@@ -79,8 +79,7 @@ public class LineaPedido {
             .add("id",id)
             .add("unidades",lineaPedido.getUnidades())
             .add("completada",completada)
-            .add("numPedido",numPedido)
-            .add("idLineaCompra",id)    
+            .add("numPedido",numPedido)    
             .add("codigo",getRef().getCodigo())    
             .build();
         

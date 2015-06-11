@@ -27,11 +27,10 @@ public class GestorPersistenciaLineaPedido {
         int unidades=jsonObject.getInt("unidades");
         String completada=jsonObject.getString("completada");
         int numPedido = jsonObject.getInt("numPedido");
-        int idLineaCompra = jsonObject.getInt("idLineaCompra");
         int codigo = jsonObject.getInt("codigo");
         
-        String sql = "INSERT INTO APP.LINEAPEDIDO VALUES("+id+","
-                       +unidades+",'"+completada+"',"+numPedido+","+idLineaCompra+","+codigo+")";
+        String sql = "INSERT INTO APP.LINEAPEDIDO(ID,UNIDADES,COMPLETADA,NUMEROPEDIDO,CODIGO) VALUES("+id+","
+                       +unidades+",'"+completada+"',"+numPedido+","+codigo+")";
         int resutado=ConexionBD.creaInstancia().ejecutaUpdate(sql);
         
         
