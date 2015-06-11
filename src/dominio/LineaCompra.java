@@ -17,16 +17,16 @@ public class LineaCompra {
     private Date fechaRecepcion;
 
     public LineaCompra(int unidades, boolean recibida, Date fechaRecepcion) {
-        this.unidades = unidades;
-        this.recibida = recibida;
-        this.fechaRecepcion = fechaRecepcion;
+        setUnidades(unidades);
+        setRecibida(recibida);
+        setFechaRecepcion(fechaRecepcion);
     }
     
     public int getUnidades() {
         return unidades;
     }
 
-    public void setUnidades(int unidades) {
+    private void setUnidades(int unidades) {
         this.unidades = unidades;
     }
 
@@ -34,7 +34,7 @@ public class LineaCompra {
         return recibida;
     }
 
-    public void setRecibida(boolean recibida) {
+    private void setRecibida(boolean recibida) {
         this.recibida = recibida;
     }
 
@@ -42,7 +42,7 @@ public class LineaCompra {
         return fechaRecepcion;
     }
 
-    public void setFechaRecepcion(Date fechaRecepcion) {
+    private void setFechaRecepcion(Date fechaRecepcion) {
         this.fechaRecepcion = fechaRecepcion;
     }
     
