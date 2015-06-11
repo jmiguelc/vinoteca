@@ -10,7 +10,9 @@ import java.io.StringWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonWriter;
 
 /**
@@ -20,35 +22,40 @@ import javax.json.JsonWriter;
 public class GestorPersistenciaLineaCompra {
     /**
      * Se obtiene una linea de compra por las unidades
-     * @param unidades
+     * @param numeroFactura número de factura a la que pertenece la LineaCompra
      * @return una cadena de caracteres de una linea de compra
      * @throws BDException 
      */
     
-    public static String getLineaCompra(int unidades) throws BDException{
+    public static String getLineasCompra(int numeroFactura) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.REFERENCIA WHERE UNIDADES ="+unidades;
+        String sql = "SELECT * FROM APP.PEDIDO WHERE NUMEROFACTURA="+numeroFactura;
+        
         try{
             /*Lectura de la BD y creación de la cadena Json*/
             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
-            if(rs.next()){
+            JsonArrayBuilder jsonLineaCompra= Json.createArrayBuilder();
+            while(rs.next()){
                 JsonObject jsonObj=Json.createObjectBuilder()
-                .add("unidades",rs.getInt("UNIDADES"))
-                .add("recibida", rs.getBoolean("RECIBIDA"))
-                .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
-                .build();
-
-                /*Conversion de Json a String*/
-                StringWriter jsonstr=new StringWriter();
-                JsonWriter writer = Json.createWriter(jsonstr);
-                writer.writeObject(jsonObj);
-
-                return jsonstr.toString();
+                .add("idLineaCompra",rs.getInt("ID"))
+                .add("unidades",rs.getDouble("UNIDADES"))
+                .add("RECIBIDA",rs.getString("RECIBIDA"))
+                .add("numeroAbonado",rs.getInt("FECHARECEPCION")).build();
+                
+                
+                jsonLineaCompra.add(jsonObj);
             }
+            
+            /*Conversion de Json a String*/
+            StringWriter jsonstr=new StringWriter();
+            JsonWriter writer = Json.createWriter(jsonstr);
+            writer.writeArray(jsonLineaCompra.build());
+
+            return jsonstr.toString();
+            
         }catch(SQLException e){
             throw new BDException(e.getMessage());
         }
-        
-        return null;
+       
     }
 }
