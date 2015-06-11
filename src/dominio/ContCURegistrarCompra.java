@@ -16,8 +16,8 @@ public class ContCURegistrarCompra {
     /**
      * Se comprueba que el identificador de compra es correcto o no
      * @param idCompra
-     * @return el identificador de compra
-     * @throws AbNotFoundException 
+     * @return el identificador de compra 
+     * @throws excepciones.CompraNotFoundException 
      */
     public static Compra comprobarIDCompra(int idCompra) throws CompraNotFoundException{
         Compra comp;

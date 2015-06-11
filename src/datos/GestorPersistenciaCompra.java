@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonWriter;
 
 /**
@@ -26,21 +27,30 @@ public class GestorPersistenciaCompra {
      */
     public static String getCompraByidCompra(int idCompra) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.COMPRA WHERE IDCOMPRA="+idCompra+" AND RECIBIDACOMPLETA='T'";
+        String sql = "SELECT * FROM APP.COMPRA WHERE IDCOMPRA="+idCompra+" AND RECIBIDACOMPLETA='F'";
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/
             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
             if(rs.next()){
-                JsonObject jsonObj=Json.createObjectBuilder()
-                .add("idCompra",rs.getInt("IDCOMPRA"))
-                .add("fechaInicio",rs.getString("FECHAINICIOCOMPRA"))
-                .add("fechaCompraCompletada",rs.getString("FECHACOMPRACOMPLETADA"))
-                .add("recibidaCompleta",rs.getString("RECIBIDACOMPLETA"))
+                JsonObjectBuilder jsonObjBuilder=Json.createObjectBuilder()
+                .add("idCompra",rs.getInt("IDCOMPRA"));
+                
+                if(rs.getString("FECHAINICIOCOMPRA")!=null)
+                    jsonObjBuilder.add("fechaInicioCompra",rs.getString("FECHAINICIOCOMPRA"));
+                
+                if(rs.getString("FECHACOMPRACOMPLETADA")!=null)
+                    jsonObjBuilder.add("fechaCompraCompletada",rs.getString("FECHACOMPRACOMPLETADA"));
+                
+                jsonObjBuilder.add("recibidaCompleta",rs.getString("RECIBIDACOMPLETA"))
                 .add("importe",rs.getDouble("IMPORTE"))
                 .add("pagada",rs.getString("PAGADA"))
-                .add("fechaPago",rs.getString("FECHAPAGO"))
-                .build();
+                .add("idBodega",rs.getInt("IDBODEGA"));
+                
+                if(rs.getString("FECHACOMPRACOMPLETADA")!=null)
+                    jsonObjBuilder.add("fechaPago",rs.getString("FECHAPAGO"));
+                
+                JsonObject jsonObj=jsonObjBuilder.build();
                 
                 /*Conversion de Json a String*/
                 StringWriter jsonstr=new StringWriter();

@@ -27,25 +27,40 @@ public class Compra {
     private Date fechaPago;
     private boolean pagada;
     private ArrayList<LineaCompra> lineaCompra;
+    private Bodega bodega;
     /**
      * Constructor no vacio de Compra
      * @param jsonCompra 
      */
-    public Compra(String jsonCompra) {
+    public Compra(String jsonCompra) throws BDException {
         /*Conversion de String a Json*/
         StringReader strReader=new StringReader(jsonCompra);
         JsonReader jReader=Json.createReader(strReader);
         JsonObject jsonObject=jReader.readObject();
+        Date fechaInicio=null;
         
         setIdCompra(jsonObject.getInt("idCompra"));
-        Date fechaInicio=Date.valueOf(jsonObject.getString("fechaInicio"));
-        setFechaInicio(fechaInicio);
-        Date fechaCompraCompletada=Date.valueOf(jsonObject.getString("fechaCompraCompletada"));
-        setFechaCompraCompletada(fechaCompraCompletada);
-        Date fechaPago=Date.valueOf(jsonObject.getString("fechaPago"));
-        setFechaPago(fechaPago);
-        setRecibidaCompletada(jsonObject.getBoolean("recibidaCompletada"));
-        setPagada(jsonObject.getBoolean("pagada"));
+        if(jsonObject.containsKey("fechaInicio")){
+            fechaInicio=Date.valueOf(jsonObject.getString("fechaInicio"));
+            setFechaInicio(fechaInicio);
+        }
+        
+        if(jsonObject.containsKey("fechaCompraCompletada")){
+            Date fechaCompraCompletada=Date.valueOf(jsonObject.getString("fechaCompraCompletada"));
+            setFechaCompraCompletada(fechaCompraCompletada);
+        }
+        
+        if(jsonObject.containsKey("fechaPago")){
+            Date fechaPago=Date.valueOf(jsonObject.getString("fechaPago"));
+            setFechaPago(fechaPago);
+        }
+        
+        setRecibidaCompletada(jsonObject.getString("recibidaCompleta"));
+        setPagada(jsonObject.getString("pagada"));
+        
+        int idBodega=jsonObject.getInt("idBodega");
+        Bodega bodega=Bodega.obtenerBodega(idBodega);
+        setBodega(bodega);
     }
     
     /**
@@ -104,8 +119,15 @@ public class Compra {
      * Establece el estado de la compra recibida si esta completada o no
      * @param recibidaCompletada 
      */
-    private void setRecibidaCompletada(boolean recibidaCompletada) {
-        this.recibidaCompletada = recibidaCompletada;
+    private void setRecibidaCompletada(String recibidaCompletada) {
+        switch (recibidaCompletada) {
+            case "T":
+                this.recibidaCompletada = true;
+                break;
+            case "F":
+                this.recibidaCompletada = false;
+                break;
+        }
     }
 
     /**
@@ -134,8 +156,15 @@ public class Compra {
      * Establece el estado de la compra si esta pagada o no
      * @param pagada 
      */
-    private void setPagada(boolean pagada) {
-        this.pagada = pagada;
+    private void setPagada(String pagada) {
+        switch(pagada){
+            case "T": 
+                this.pagada = true;
+                break;
+            case "F": 
+                this.pagada = false;
+                break;
+        }
     }
 
     /**
@@ -152,6 +181,15 @@ public class Compra {
     private void setLineaCompra(ArrayList<LineaCompra> lineaCompra) {
         this.lineaCompra = lineaCompra;
     }
+
+    public Bodega getBodega() {
+        return bodega;
+    }
+
+    private void setBodega(Bodega bodega) {
+        this.bodega = bodega;
+    }
+    
 
     /**
      * Se obtiene la compra mediante el identificador de compra

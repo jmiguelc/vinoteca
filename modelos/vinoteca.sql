@@ -41,7 +41,8 @@ CREATE TABLE Compra (
  fechaCompraCompletada DATE,
  importe REAL,
  pagada CHAR,
- fechaPago DATE
+ fechaPago DATE,
+ idBodega INT NOT NULL
 );
 
 ALTER TABLE Compra ADD CONSTRAINT PK_Compra PRIMARY KEY (idCompra);
@@ -220,4 +221,4 @@ ALTER TABLE LineaPedido ADD CONSTRAINT FK_LineaPedido_0 FOREIGN KEY (numeroPedid
 ALTER TABLE LineaPedido ADD CONSTRAINT FK_LineaPedido_1 FOREIGN KEY (idLineaCompra) REFERENCES LineaCompra (id);
 ALTER TABLE LineaPedido ADD CONSTRAINT FK_LineaPedido_2 FOREIGN KEY (codigo) REFERENCES Referencia (codigo);
 
-
+ALTER TABLE Compra ADD CONSTRAINT FK_Compra_0 FOREIGN KEY (idBodega) REFERENCES Bodega (id);

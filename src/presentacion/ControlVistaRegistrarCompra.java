@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import dominio.Bodega;
 import dominio.Compra;
 import dominio.ContCURegistrarCompra;
 import excepciones.CompraNotFoundException;
@@ -32,7 +33,11 @@ public class ControlVistaRegistrarCompra {
     protected void comprobarIDCompra(){
        try{
            int idCompra = Integer.parseInt(vista.getIdCompra());
-           ContCURegistrarCompra.comprobarIDCompra(idCompra);
+           Compra compra=ContCURegistrarCompra.comprobarIDCompra(idCompra);
+           vista.setIdCompraOutLabel(idCompra);
+           Bodega bodega=compra.getBodega();
+           vista.setNombreBodegaLabel(bodega.getNombre());
+           
            
        }catch(NumberFormatException ex){
             vista.lanzaError("Formato de identificador de Compra Incorrecto"); 

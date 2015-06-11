@@ -45,23 +45,17 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
      * Establece el identificador de la compra en la etiqueta
      * @param idCompra 
      */
-    protected void setidComLabel(int idCompra){
-        this.idCompraOutLabel.setText("idCompra");
+    protected void setIdCompraOutLabel(int idCompra){
+        this.idCompraOutLabel.setText("Id. Compra: "+idCompra);
     }
     /**
      * Establece el nombre de la bodega en la etiqueta
      * @param nombreBodega 
      */
     protected void setNombreBodegaLabel(String nombreBodega){
-        this.nombreBodegaLabel.setText(nombreBodega);    
+        this.nombreBodegaLabel.setText("Nombre Bodega: "+nombreBodega);    
     }
-    /**
-     * Establece las unidades en la etiqueta
-     * @param unidades 
-     */
-    protected void setUnidadesLabel(int unidades){
-        this.unidadesLabel.setText("unidades");
-    }
+    
     /**
      * Lanza por pantalla un mensaje si existe un error
      * @param msg 
@@ -107,7 +101,6 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         salidaPanel = new javax.swing.JPanel();
         idCompraOutLabel = new javax.swing.JLabel();
         nombreBodegaLabel = new javax.swing.JLabel();
-        unidadesLabel = new javax.swing.JLabel();
         seleccionarButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         referenciaTable = new javax.swing.JTable();
@@ -127,7 +120,7 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
             }
         });
 
-        idCompraTextField.setText(" idCompra");
+        idCompraTextField.setText("idCompra");
 
         volverButton.setText("volver");
 
@@ -175,31 +168,42 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         nombreBodegaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreBodegaLabel.setText("nombreBodega");
 
-        unidadesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        unidadesLabel.setText("unidades");
-
         seleccionarButton.setText("seleccionar");
 
         referenciaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "codigo", "cajas", "contenidoENCL", "precio", "disponible"
+                "codigo", "cajas", "contenidoENCL", "precio", "disponible", "unidades"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(referenciaTable);
+        if (referenciaTable.getColumnModel().getColumnCount() > 0) {
+            referenciaTable.getColumnModel().getColumn(0).setResizable(false);
+            referenciaTable.getColumnModel().getColumn(2).setResizable(false);
+            referenciaTable.getColumnModel().getColumn(3).setResizable(false);
+            referenciaTable.getColumnModel().getColumn(4).setResizable(false);
+            referenciaTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         finalizarButton.setText("finalizar");
 
@@ -210,14 +214,13 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
             .addGroup(salidaPanelLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                     .addGroup(salidaPanelLayout.createSequentialGroup()
                         .addComponent(seleccionarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(finalizarButton))
                     .addComponent(idCompraOutLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nombreBodegaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(unidadesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nombreBodegaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         salidaPanelLayout.setVerticalGroup(
@@ -227,15 +230,13 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
                 .addComponent(idCompraOutLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nombreBodegaLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(unidadesLabel)
                 .addGroup(salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(salidaPanelLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(45, 45, 45)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 74, Short.MAX_VALUE))
                     .addGroup(salidaPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                         .addGroup(salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(seleccionarButton)
                             .addComponent(finalizarButton))
@@ -330,7 +331,6 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
     private javax.swing.JTable referenciaTable;
     private javax.swing.JPanel salidaPanel;
     private javax.swing.JButton seleccionarButton;
-    private javax.swing.JLabel unidadesLabel;
     private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 }

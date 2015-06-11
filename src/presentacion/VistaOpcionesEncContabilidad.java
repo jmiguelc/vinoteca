@@ -92,6 +92,7 @@ public class VistaOpcionesEncContabilidad extends javax.swing.JFrame {
     private void cImpagosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cImpagosButtonActionPerformed
         VistaCUConsultarImpagos vista=new VistaCUConsultarImpagos();
         vista.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cImpagosButtonActionPerformed
 
     /**
