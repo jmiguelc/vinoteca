@@ -156,6 +156,9 @@ public class ContCUProcesarPedido {
         /*Persistencia de la factura, la del pedido y la de linea de pedido */
         Factura.guardarFactura(factura, importeFactura);
         Pedido.guardarPedido(p, importe);
-        LineaPedido.guardarLineaPedido();
+        ArrayList<LineaPedido> lineasPedidos = p.getLineasPedido();
+        for(LineaPedido lp: lineasPedidos){
+            lp.guardarLineaPedido(lp);
+        }
      }
 }

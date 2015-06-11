@@ -5,8 +5,12 @@
  */
 package dominio;
 
+import datos.GestorPersistenciaLineaPedido;
 import excepciones.BDException;
+import java.io.StringWriter;
 import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonWriter;
 
 /**
  *
@@ -61,14 +65,12 @@ public class LineaPedido {
     protected void guardarLineaPedido(LineaPedido lineaPedido)throws BDException{
         JsonObject jsonObj=Json.createObjectBuilder()
             .add("unidades",lineaPedido.getUnidades())
-            .add("completada",lineaPedido.isCompletada()
-            .add("importe",lineaPedido.)           
-            .add("estado",factura.getEstado().toString())
+            .add("completada",lineaPedido.isCompletada())         
             .build();
         
         StringWriter jsonstr=new StringWriter();
         JsonWriter writer = Json.createWriter(jsonstr);
         writer.writeObject(jsonObj);
-        GestorPersistenciaFactura.insertFactura(jsonstr.toString());
+        GestorPersistenciaLineaPedido.insertLineaPedido(jsonstr.toString());
     }
 }
