@@ -41,9 +41,11 @@ public class ControlVistaProcesarPedido {
             vista.setNombreLabel(ab.getNombre());
             vista.setTelefonoLabel(ab.getTelefono());
             vista.setapellidoLabel(ab.getApellidos());
-            vista.setConfirmarEnabled();
-        }catch(AbNotFoundException | NumberFormatException ex){
+            vista.setConfirmarEnabled(true);
+        }catch(AbNotFoundException ex){
             vista.lanzaError(ex.getMessage());
+        }catch(NumberFormatException ex){
+            vista.lanzaError("Formato de Número de Abonado Incorrecto");
         }
     }
     
@@ -55,6 +57,8 @@ public class ControlVistaProcesarPedido {
             int numAbonado =Integer.parseInt(vista.getNumAbonado());
             ContCUProcesarPedido.compruebaPagos(numAbonado);
             p = ContCUProcesarPedido.nuevoPedido(today, ab);
+            vista.setComprobarEnabled(false);
+            vista.setConfirmarEnabled(false);
             vista.setAddEnabled();
         }catch(AbNotPaidException | BDException ex){
             vista.lanzaError(ex.getMessage());
@@ -62,16 +66,20 @@ public class ControlVistaProcesarPedido {
     }
     
    protected void comprobarPedido(){
-        int referencia = vista.getReferencia();
-        int cantidad = vista.getCantidad();
+        
+        
         
         try{
+            int referencia = Integer.parseInt(vista.getReferencia());
+            int cantidad = Integer.parseInt(vista.getCantidad());
             ref = ContCUProcesarPedido.comprobarReferencia(referencia);
             ContCUProcesarPedido.nuevaLineaPedido( cantidad, ref, p);
             vista.setTerminarEnabled(true);
                 
         }catch(RefNotAvaliableException | BDException ex){
             vista.lanzaError(ex.getMessage());
+        }catch(NumberFormatException ex){
+            vista.lanzaError("Formato de Referencia o Cantidad Erroneos");
         }
     }
    

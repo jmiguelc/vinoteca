@@ -38,15 +38,16 @@ public class Pedido {
 
     /**
      * Constructor no vacio para procesar un Pedido
-     * @param jsonPedido
-     * @throws BDException
+     * @param estado
+     * @param fechaRealizacion
+     * @param abonado
      */
     
     public Pedido( EstadoPedido estado, Date fechaRealizacion, Abonado abonado) {
-        this.estado = estado;
-        this.fechaRealizacion = fechaRealizacion;
-        this.abonado = abonado;
-        this.lineasPedido = new ArrayList<>();
+        setEstado(estado);
+        setFechaRealizacion (fechaRealizacion);
+        setAbonado(abonado);
+        setLineasPedido(new ArrayList<LineaPedido>());
     }
 
     public Pedido(String jsonPedido) throws BDException {
@@ -208,7 +209,7 @@ public class Pedido {
         return lineasPedido;
     }
 
-    public void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
+    private void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
         this.lineasPedido = lineasPedido;
     }
     

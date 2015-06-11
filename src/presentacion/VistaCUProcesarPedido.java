@@ -38,7 +38,7 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         /*Mirar si tienen los campos por defecto*/
         
         /*Mirar si los campos estan vacios*/
-       if(getReferencia()==0 || getCantidad()==0) val=false;
+       if(getReferencia().isEmpty() || getCantidad().isEmpty()) val=false;
         
         return val;
     }
@@ -46,12 +46,12 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
       return nAbonadoField.getText();
     }
     
-    protected int getReferencia(){
-        return Integer.parseInt(referenciaField.getText());
+    protected String getReferencia(){
+        return referenciaField.getText();
     }
     
-    protected int getCantidad(){
-        return Integer.parseInt(cantidadField.getText());
+    protected String getCantidad(){
+        return cantidadField.getText();
     }
     protected void setNombreLabel(String nombre){
         this.nombreLabel.setText(nombre);
@@ -69,8 +69,12 @@ public class VistaCUProcesarPedido extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     
-    public void setConfirmarEnabled(){
-        this.confirmarButton.setEnabled(true);
+     public void setComprobarEnabled(boolean enable){
+        this.comprobarButton.setEnabled(enable);
+    }
+     
+    public void setConfirmarEnabled(boolean enable){
+        this.confirmarButton.setEnabled(enable);
     }
     
     public void setAddEnabled(){

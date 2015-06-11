@@ -68,7 +68,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cantidadField" max="32767" attributes="0"/>
-                      <Component id="referenciaField" pref="84" max="32767" attributes="0"/>
+                      <Component id="referenciaField" max="32767" attributes="0"/>
                       <Component id="terminarButton" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>

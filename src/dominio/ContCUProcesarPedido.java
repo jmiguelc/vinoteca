@@ -103,23 +103,25 @@ public class ContCUProcesarPedido {
      }
      
      public static void finalizarPedido(Pedido p) throws BDException{
-        double importe = p.getTotal();
+        double importe = p.getTotal();//porque get si podemos hacer set??
         /* Obtiene la factura de este mes, sino es null, se crea. */
         ArrayList<Factura> facturas;
         ArrayList<Pedido> pedidos;
         Abonado abonado;
         Abonado abonadoPedActual=p.getAbonado();
-        Pedido pedido;
         Factura factura=null;
         
+        /*obtenemos la fecha*/
         Calendar cal=Calendar.getInstance();
         cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
             cal.getActualMinimum(Calendar.DAY_OF_MONTH));
         System.out.println(cal.getTime().toString());
         Date mes=new Date(cal.getTimeInMillis());
-         
+        
+        /*Obtenemos Facturas*/
         facturas=Factura.obtenerFacturasMensuales(mes);
         
+        /*comprobamos si alguna factura es la de nuestro Abonado*/
         if(!facturas.isEmpty()){
             int i=0;
             boolean existeFactura=false;
@@ -134,16 +136,21 @@ public class ContCUProcesarPedido {
             }while(i<facturas.size() && existeFactura==false);   
         }
         
+        /*Si no hay factura la creamos*/
         if(factura==null){
-            /*crear factura*/
+            //obtener nextFactura
+            Date today = Date.valueOf(LocalDate.now());
+            EstadoFactura estado=EstadoFactura.emitida;
+            int numFactura=GestorPersistenciaFactura.getNextFactura();
+            factura=new Factura(numFactura,today,estado);
         }
        
-         /* Añadir el pedido actual a la factura */
+        /* Añadir el pedido actual a la factura */
         factura.addPedido(p);
          
         /*Persistencia de la factura, la del pedido y la de linea de pedido */
-        //Factura
+        //Factura.guardarFactura();
         //Pedido.guardarPedido(p, importe);
-        //LineaPedido
+        //LineaPedido.guardarLineaPedido();
      }
 }
