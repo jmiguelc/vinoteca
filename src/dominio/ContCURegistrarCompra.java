@@ -13,7 +13,12 @@ import excepciones.BDException;
  * @author nurcanc
  */
 public class ContCURegistrarCompra {
-    
+    /**
+     * Se comprueba que el identificador de compra es correcto o no
+     * @param idCompra
+     * @return el identificador de compra
+     * @throws AbNotFoundException 
+     */
     public static Compra comprobarIDCompra(int idCompra) throws AbNotFoundException{
         Compra comp;
         try{    

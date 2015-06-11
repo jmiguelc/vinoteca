@@ -34,7 +34,10 @@ public enum EstadoPedido {
           default: return null;
         }
     }
-
+    /**
+     * Funcion tipo String
+     * @return el tipo de estado del pedido
+     */
     public String toString(){
         switch(this){
             case pendiente: return "P";

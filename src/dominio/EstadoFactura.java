@@ -29,7 +29,10 @@ public enum EstadoFactura {
           default: return null;
         }
     }
-    
+    /**
+     * Funcion tipo String
+     * @return el tipo de estado de la factura
+     */
     public String toString(){
         switch(this){
             case emitida: return "E";

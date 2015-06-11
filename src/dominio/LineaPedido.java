@@ -21,36 +21,70 @@ public class LineaPedido {
     private boolean completada;
     private Referencia ref;
 
+    /**
+     *Constructor no vacio de linea de pedido
+     * @param unidades
+     * @param completada
+     * @param ref
+     */
     public LineaPedido(int unidades, boolean completada, Referencia ref) {
         this.unidades = unidades;
         this.completada = completada;
         this.ref = ref;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getUnidades() {
         return unidades;
     }
 
+    /**
+     *
+     * @param unidades
+     */
     public void setUnidades(int unidades) {
         this.unidades = unidades;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isCompletada() {
         return completada;
     }
 
+    /**
+     *
+     * @param completada
+     */
     public void setCompletada(boolean completada) {
         this.completada = completada;
     }
 
+    /**
+     *
+     * @return
+     */
     public Referencia getRef() {
         return ref;
     }
 
+    /**
+     *
+     * @param ref
+     */
     public void setRef(Referencia ref) {
         this.ref = ref;
     }
     
+    /**
+     *
+     * @return
+     */
     protected double getTotal(){
         double importe;
         double total;
@@ -62,6 +96,12 @@ public class LineaPedido {
         return total;
     }
     
+    /**
+     *
+     * @param lineaPedido
+     * @param numPedido
+     * @throws BDException
+     */
     protected void guardarLineaPedido(LineaPedido lineaPedido, int numPedido)throws BDException{
         int id = GestorPersistenciaLineaPedido.getNextLineaPedido();
         

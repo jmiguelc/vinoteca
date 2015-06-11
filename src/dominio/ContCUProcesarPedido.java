@@ -27,7 +27,7 @@ public class ContCUProcesarPedido {
      * @return el abonado
      * @throws AbNotFoundException
      */
-        public static Abonado comprobarAbonado(int numAbonado) throws AbNotFoundException{
+    public static Abonado comprobarAbonado(int numAbonado) throws AbNotFoundException{
         Abonado ab;
         try{    
             // Obtenemos el abonado, si no existe, devuelve null y gestionamos el error
@@ -51,7 +51,7 @@ public class ContCUProcesarPedido {
      * @throws excepciones.BDException 
      * @throws AbNotPaidException
      */
-        public static boolean compruebaPagos(int numAbonado) throws BDException, AbNotPaidException{
+    public static boolean compruebaPagos(int numAbonado) throws BDException, AbNotPaidException{
         
         Date today = Date.valueOf(LocalDate.now());
         ArrayList<Factura> facturas=Factura.obtenerFacturasVencidas(today);
@@ -75,8 +75,14 @@ public class ContCUProcesarPedido {
         }
         return val;
     }
-        
-     public static Referencia comprobarReferencia(int numRef)throws BDException, RefNotAvaliableException{
+    /**
+     * Se comprueba la referencia a partir del numero de referencia
+     * @param numRef
+     * @return el numero de referencia
+     * @throws BDException
+     * @throws RefNotAvaliableException 
+     */    
+    public static Referencia comprobarReferencia(int numRef)throws BDException, RefNotAvaliableException{
          Referencia ref = Referencia.getReferencia(numRef);
          boolean val = false;
          
@@ -87,22 +93,36 @@ public class ContCUProcesarPedido {
              throw new RefNotAvaliableException("Producto no disponible");
          return ref;
      }
-     
-     public static Pedido nuevoPedido(Date fecha,Abonado ab){
+    /**
+     * Crea un pedido nuevo
+     * @param fecha
+     * @param ab
+     * @return el pedido creado
+     */ 
+    public static Pedido nuevoPedido(Date fecha,Abonado ab){
          EstadoPedido estado = null;
          Pedido p = new Pedido(estado.pendiente,fecha,ab);
          
          return p;
      }
-     
-     public static void nuevaLineaPedido( int cantidad, Referencia ref, Pedido p){
+    /**
+     * Crea una nueva linea de pedido
+     * @param cantidad
+     * @param ref
+     * @param p 
+     */ 
+    public static void nuevaLineaPedido( int cantidad, Referencia ref, Pedido p){
          boolean completada = false;
          LineaPedido lineaPedido = new LineaPedido(cantidad,completada, ref);
          
          p.addLineaPedido(lineaPedido);
      }
-     
-     public static void finalizarPedido(Pedido p) throws BDException{
+    /**
+     * Finaliza el pedido indicado
+     * @param p
+     * @throws BDException 
+     */ 
+    public static void finalizarPedido(Pedido p) throws BDException{
         double importe = p.getTotal();//porque get si podemos hacer set??
         /* Obtiene la factura de este mes, sino es null, se crea. */
         ArrayList<Factura> facturas;
