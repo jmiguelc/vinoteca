@@ -8,12 +8,14 @@ package dominio;
 import datos.GestorPersistenciaFactura;
 import excepciones.BDException;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import javax.json.JsonWriter;
 
 /**
  *
@@ -234,5 +236,26 @@ public class Factura {
         /*ir a pedidos y recuperar los pedidos para cada factura*/       
         return facturas;
     }
+    
+    protected static void guardarFactura(Factura factura, double importe) throws BDException{
+        JsonObject jsonObj=Json.createObjectBuilder()
+            .add("numeroFactura",factura.getNumeroFactura())
+            .add("fechaEmision",factura.getFechaEmision().toString())
+            .add("importe",importe)           
+            .add("estado",factura.getEstado().toString())
+            .build();
+        
+        StringWriter jsonstr=new StringWriter();
+        JsonWriter writer = Json.createWriter(jsonstr);
+        writer.writeObject(jsonObj);
+        GestorPersistenciaFactura.insertFactura(jsonstr.toString());
+    }
+    /* Sumamos el importe del pedido al total de la facura */
+    protected double importeTotal(double importePedido)throws BDException{
+        double importeFactura = GestorPersistenciaFactura.getImporte(getNumeroFactura());
+        double importeTotal = importeFactura + importePedido;
+        
+        return importeTotal;
+    } 
 }
     

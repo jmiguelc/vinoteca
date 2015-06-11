@@ -5,6 +5,9 @@
  */
 package dominio;
 
+import excepciones.BDException;
+import javax.json.Json;
+
 /**
  *
  * @author ruben
@@ -53,5 +56,19 @@ public class LineaPedido {
         total = importe * getUnidades();
         
         return total;
+    }
+    
+    protected void guardarLineaPedido(LineaPedido lineaPedido)throws BDException{
+        JsonObject jsonObj=Json.createObjectBuilder()
+            .add("unidades",lineaPedido.getUnidades())
+            .add("completada",lineaPedido.isCompletada()
+            .add("importe",lineaPedido.)           
+            .add("estado",factura.getEstado().toString())
+            .build();
+        
+        StringWriter jsonstr=new StringWriter();
+        JsonWriter writer = Json.createWriter(jsonstr);
+        writer.writeObject(jsonObj);
+        GestorPersistenciaFactura.insertFactura(jsonstr.toString());
     }
 }

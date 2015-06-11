@@ -29,4 +29,13 @@ public enum EstadoFactura {
           default: return null;
         }
     }
+    
+    public String toString(){
+        switch(this){
+            case emitida: return "E";
+            case pagada: return "P";
+            case vencida: return "V";
+            default: return null;
+        }
+    }
 }

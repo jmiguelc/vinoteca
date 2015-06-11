@@ -147,10 +147,15 @@ public class ContCUProcesarPedido {
        
         /* Añadir el pedido actual a la factura */
         factura.addPedido(p);
+        
+        /* Obtenemos el importe total acumulado de la factura */
+        /* cogemos importe y luego guardamos factura pasandole importe??? O hacemos un setImporte
+        y despues solo necesitamos pasar la factura para guardarla? */
+        double importeFactura = factura.importeTotal(importe);
          
         /*Persistencia de la factura, la del pedido y la de linea de pedido */
-        //Factura.guardarFactura();
-        //Pedido.guardarPedido(p, importe);
-        //LineaPedido.guardarLineaPedido();
+        Factura.guardarFactura(factura, importeFactura);
+        Pedido.guardarPedido(p, importe);
+        LineaPedido.guardarLineaPedido();
      }
 }

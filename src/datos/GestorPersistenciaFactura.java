@@ -6,6 +6,7 @@
 package datos;
 
 import excepciones.BDException;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.json.JsonWriter;
 
 /**
@@ -95,7 +97,7 @@ public class GestorPersistenciaFactura {
         int nextFactura = 1;
         
         try{
-            /*Lectura de la BD y creación de la cadena Json*/
+            /*Lectura de la BD y obtencion del dato requerido*/
             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
             while(rs.next())
                 nextFactura++; 
@@ -107,4 +109,38 @@ public class GestorPersistenciaFactura {
         return nextFactura;
     }
      
+     public static double getImporte(int numFactura)throws BDException{
+         ResultSet rs;
+         String sql = "SELECT IMPORTE FROM APP.FACTURA WHERE NUMEROFACTURA="+numFactura;
+         double importe = 0.0;
+         
+         try{
+             /*Lectura de la BD y obtencion del dato requerido*/
+             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+             while(rs.next()){
+                 importe = rs.getDouble("IMPORTE");
+             }
+         }catch(SQLException e){
+             throw new BDException(e.getMessage());
+         }
+         return importe;
+     }
+     
+     public static int insertFactura(String jsonFactura) throws BDException {
+        StringReader strReader=new StringReader(jsonFactura);
+        JsonReader jReader=Json.createReader(strReader);
+        JsonObject jsonObject=jReader.readObject();
+        
+        int numeroFactura=jsonObject.getInt("numeroFactura");
+        Date fechaEmision=Date.valueOf(jsonObject.getString("fechaEmision"));
+        double importe=jsonObject.getJsonNumber("importe").doubleValue();
+        String estado=jsonObject.getString("estado");
+        
+        String sql = "INSERT INTO APP.FACTURA(NUMEROFACTURA,FECHAEMISION,IMPORTE,ESTADO) VALUES("
+                       +numeroFactura+",'"+fechaEmision+"',"+importe+",'"+estado+"')";
+        int resutado=ConexionBD.creaInstancia().ejecutaUpdate(sql);
+        
+        
+        return resutado;
+    }
 }
