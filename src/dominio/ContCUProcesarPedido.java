@@ -117,13 +117,9 @@ public class ContCUProcesarPedido {
          
          p.addLineaPedido(lineaPedido);
      }
-    /**
-     * Finaliza el pedido indicado
-     * @param p
-     * @throws BDException 
-     */ 
-    public static void finalizarPedido(Pedido p) throws BDException{
-        double importe = p.getTotal();//porque get si podemos hacer set??
+     
+     public static void finalizarPedido(Pedido p) throws BDException{
+        p.setTotal();//porque get si podemos hacer set??
         /* Obtiene la factura de este mes, sino es null, se crea. */
         ArrayList<Factura> facturas;
         ArrayList<Pedido> pedidos;
@@ -151,10 +147,14 @@ public class ContCUProcesarPedido {
                 if (abonadoPedActual.getNumeroAbonado()==abonado.getNumeroAbonado()) {
                     existeFactura=true;
                     factura=facturas.get(i);
+                    factura.addPedido(p);
+                    factura.actualizaImporteFactura();
+                    factura.actualizaFactura();
                 }
                 i++;
-            }while(i<facturas.size() && existeFactura==false);   
+            }while(i<facturas.size() && existeFactura==false);            
         }
+            
         
         /*Si no hay factura la creamos*/
         if(factura==null){
@@ -163,19 +163,13 @@ public class ContCUProcesarPedido {
             EstadoFactura estado=EstadoFactura.emitida;
             int numFactura=GestorPersistenciaFactura.getNextFactura();
             factura=new Factura(numFactura,today,estado);
+            factura.addPedido(p);
+            Factura.guardarFactura(factura, p.getImporte());
         }
-       
-        /* Añadir el pedido actual a la factura */
-        factura.addPedido(p);
-        
-        /* Obtenemos el importe total acumulado de la factura */
-        /* cogemos importe y luego guardamos factura pasandole importe??? O hacemos un setImporte
-        y despues solo necesitamos pasar la factura para guardarla? */
-        double importeFactura = factura.importeTotal(importe);
-         
+          
         /*Persistencia de la factura, la del pedido y la de linea de pedido */
-        Factura.guardarFactura(factura, importeFactura);
-        Pedido.guardarPedido(p, importe,factura.getNumeroFactura());
+        
+        Pedido.guardarPedido(p, p.getImporte(),factura.getNumeroFactura());
         ArrayList<LineaPedido> lineasPedidos = p.getLineasPedido();
         for(LineaPedido lp: lineasPedidos){
             lp.guardarLineaPedido(lp,p.getNumeroPedido());

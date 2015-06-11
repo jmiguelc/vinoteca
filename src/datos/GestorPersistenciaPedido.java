@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 import javax.json.JsonWriter;
 
@@ -38,17 +39,23 @@ public class GestorPersistenciaPedido {
             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
             JsonArrayBuilder jsonPedidos= Json.createArrayBuilder();
             while(rs.next()){
-                JsonObject jsonObj=Json.createObjectBuilder()
+                JsonObjectBuilder jObj=Json.createObjectBuilder()
                 .add("numeroPedido",rs.getInt("NUMERO"))
-                .add("fechaRealizacion",rs.getString("FECHAREALIZACION"))
-                .add("notaEntrega",rs.getString("NOTAENTREGA"))
-                .add("importe",rs.getFloat("IMPORTE"))
-                .add("fechaRecepcion",rs.getString("FECHARECEPCION"))
-                .add("fechaEntrega",rs.getString("FECHAENTREGA"))
-                .add("estado",rs.getString("ESTADO"))
+                .add("fechaRealizacion",rs.getString("FECHAREALIZACION"));
+                if(rs.getString("NOTAENTREGA")!=null)
+                    jObj.add("notaEntrega",rs.getString("NOTAENTREGA"));
+                
+                jObj.add("importe",rs.getFloat("IMPORTE"));
+                if(rs.getString("FECHARECEPCION")!=null)
+                    jObj.add("fechaRecepcion",rs.getString("FECHARECEPCION"));
+                
+                if(rs.getString("FECHAENTREGA")!=null)
+                    jObj.add("fechaEntrega",rs.getString("FECHAENTREGA"));
+                jObj.add("estado",rs.getString("ESTADO"))
                 .add("numeroAbonado",rs.getInt("NUMEROABONADO"))
-                .add("numeroFactura",rs.getInt("NUMEROFACTURA"))
-                .build();
+                .add("numeroFactura",rs.getInt("NUMEROFACTURA"));
+                
+                JsonObject jsonObj=jObj.build();
                 
                 jsonPedidos.add(jsonObj);
             }

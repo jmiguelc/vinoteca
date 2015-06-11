@@ -114,13 +114,13 @@ public class GestorPersistenciaFactura {
         return nextFactura;
     }
      
-     public static double getImporte(int numFactura)throws BDException{
+   /*  public static double getImporte(int numFactura)throws BDException{
          ResultSet rs;
          String sql = "SELECT IMPORTE FROM APP.FACTURA WHERE NUMEROFACTURA="+numFactura;
          double importe = 0.0;
          
          try{
-             /*Lectura de la BD y obtencion del dato requerido*/
+             /*Lectura de la BD y obtencion del dato requerido
              rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
              while(rs.next()){
                  importe = rs.getDouble("IMPORTE");
@@ -130,7 +130,7 @@ public class GestorPersistenciaFactura {
          }
          return importe;
      }
-     
+     */
      public static int insertFactura(String jsonFactura) throws BDException {
         StringReader strReader=new StringReader(jsonFactura);
         JsonReader jReader=Json.createReader(strReader);
@@ -148,4 +148,10 @@ public class GestorPersistenciaFactura {
         
         return resutado;
     }
+     
+     public static void actualizaFactura(double importe, int numFactura) throws BDException{
+        String sql = "UPDATE APP.FACTURA SET IMPORTE="+importe+" WHERE NUMEROFACTURA="+numFactura;
+        
+        ConexionBD.creaInstancia().ejecutaUpdate(sql);
+     }
 }
