@@ -98,12 +98,15 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         referenciaTable.setModel(modelo);
      
         for (int i=0;i<lineasCompra.size();i++) {
-            referenciaTable.setValueAt(referencias.get(i).getCodigo(), i, 0);
-            referenciaTable.setValueAt(referencias.get(i).isEsPorCajas(), i, 1);
-            referenciaTable.setValueAt(referencias.get(i).getContenidoENCL(), i, 2);
-            referenciaTable.setValueAt(referencias.get(i).getImporte(), i, 3);
-            referenciaTable.setValueAt(referencias.get(i).isDisponible(), i, 4);
-            referenciaTable.setValueAt(lineasCompra.get(i).getUnidades(),i ,5);
+            
+            referenciaTable.setValueAt(lineasCompra.get(i).getIdLineaCompra(), i, 0);
+            referenciaTable.setValueAt(referencias.get(i).getCodigo(), i, 1);
+            referenciaTable.setValueAt(referencias.get(i).isEsPorCajas(), i, 2);
+            referenciaTable.setValueAt(referencias.get(i).getContenidoENCL(), i, 3);
+            referenciaTable.setValueAt(referencias.get(i).getImporte(), i, 4);
+            referenciaTable.setValueAt(referencias.get(i).isDisponible(), i, 5);
+            referenciaTable.setValueAt(lineasCompra.get(i).getUnidades(),i ,6);
+            
         }
     }
     /**
@@ -200,20 +203,20 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
 
         referenciaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "codigo", "cajas", "contenidoENCL", "precio", "disponible", "unidades"
+                "IdLineaCompra", "codigo", "cajas", "contenidoENCL", "precio", "disponible", "unidades"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -227,10 +230,11 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         jScrollPane1.setViewportView(referenciaTable);
         if (referenciaTable.getColumnModel().getColumnCount() > 0) {
             referenciaTable.getColumnModel().getColumn(0).setResizable(false);
-            referenciaTable.getColumnModel().getColumn(2).setResizable(false);
+            referenciaTable.getColumnModel().getColumn(1).setResizable(false);
             referenciaTable.getColumnModel().getColumn(3).setResizable(false);
             referenciaTable.getColumnModel().getColumn(4).setResizable(false);
             referenciaTable.getColumnModel().getColumn(5).setResizable(false);
+            referenciaTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         finalizarButton.setText("finalizar");
@@ -247,7 +251,7 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
             .addGroup(salidaPanelLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(salidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                     .addGroup(salidaPanelLayout.createSequentialGroup()
                         .addComponent(seleccionarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
