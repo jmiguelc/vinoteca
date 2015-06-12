@@ -58,11 +58,11 @@ public class GestorPersistenciaReferencia {
             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
             if(rs.next()){
                 JsonObject jsonObj=Json.createObjectBuilder()
-                .add("codigo",rs.getInt("R.CODIGO"))
-                .add("porCajas", rs.getBoolean("R.ESPORCAJAS"))
-                .add("contenido", rs.getShort("R.CONTENIDOENCL"))
-                .add("importe", rs.getDouble("R.PRECIO"))
-                .add("disponible", rs.getBoolean("R.DISPONIBLE"))
+                .add("codigo",rs.getInt("CODIGO"))
+                .add("porCajas", rs.getBoolean("ESPORCAJAS"))
+                .add("contenido", rs.getShort("CONTENIDOENCL"))
+                .add("importe", rs.getDouble("PRECIO"))
+                .add("disponible", rs.getBoolean("DISPONIBLE"))
                 .build();
 
                 /*Conversion de Json a String*/

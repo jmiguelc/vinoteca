@@ -10,6 +10,8 @@ import dominio.Compra;
 import dominio.Factura;
 import dominio.LineaCompra;
 import dominio.Pedido;
+import dominio.Referencia;
+import java.lang.ref.Reference;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -86,7 +88,7 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
     /*protected void showInforme(Referencia ref){
 
     }*/
-    protected void showInforme(Compra compra){
+    protected void showInforme(Compra compra,ArrayList<Referencia> referencias){
         ArrayList<LineaCompra> lineasCompra=compra.getLineaCompras();
         DefaultTableModel modelo;
 
@@ -96,8 +98,12 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         referenciaTable.setModel(modelo);
      
         for (int i=0;i<lineasCompra.size();i++) {
+            referenciaTable.setValueAt(referencias.get(i).getCodigo(), i, 0);
+            referenciaTable.setValueAt(referencias.get(i).isEsPorCajas(), i, 1);
+            referenciaTable.setValueAt(referencias.get(i).getContenidoENCL(), i, 2);
+            referenciaTable.setValueAt(referencias.get(i).getImporte(), i, 3);
+            referenciaTable.setValueAt(referencias.get(i).isDisponible(), i, 4);
             referenciaTable.setValueAt(lineasCompra.get(i).getUnidades(),i ,5);
- 
         }
     }
     /**
