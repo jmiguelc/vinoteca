@@ -7,6 +7,7 @@ package datos;
 
 import excepciones.BDException;
 import java.io.StringWriter;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
@@ -60,4 +61,48 @@ public class GestorPersistenciaLineaCompra {
         }
        
     }
+    
+     public static String getLineaCompraByid(int id) throws BDException{
+        ResultSet rs;
+        String sql = "SELECT * FROM APP.LINEACOMPRA WHERE ID="+id;
+        
+        try{
+            /*Lectura de la BD y creación de la cadena Json*/
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            if(rs.next()){
+                JsonObjectBuilder jsonObjBuilder=Json.createObjectBuilder()
+                .add("idLineaCompra",rs.getInt("ID"));
+                
+                if(rs.getString("FECHARECEPCION")!=null)
+                    jsonObjBuilder.add("fechaRecepcion",rs.getString("FECHARECEPCION"));
+                
+                jsonObjBuilder.add("recibida",rs.getString("RECIBIDA"))
+                .add("unidades",rs.getInt("UNIDADES"));
+                JsonObject jsonObj=jsonObjBuilder.build();
+                
+                /*Conversion de Json a String*/
+                StringWriter jsonstr=new StringWriter();
+                JsonWriter writer = Json.createWriter(jsonstr);
+                writer.writeObject(jsonObj);
+
+                return jsonstr.toString();
+            }
+        }catch(SQLException e){
+            throw new BDException(e.getMessage());
+        }
+       
+        return null;
+     }
+     
+     public static void lineaCompraRecibida(int id) throws BDException{
+        String sql = "UPDATE APP.LINEACOMPRA SET RECIBIDA='T' WHERE ID="+id;
+        
+        ConexionBD.creaInstancia().ejecutaUpdate(sql);
+     }
+     
+      public static void fechaRecepcionLC(int id, Date fecha) throws BDException{
+        String sql = "UPDATE APP.LINEACOMPRA SET FECHARECEPCION='"+fecha+"' WHERE ID="+id;
+        
+        ConexionBD.creaInstancia().ejecutaUpdate(sql);
+     }
 }

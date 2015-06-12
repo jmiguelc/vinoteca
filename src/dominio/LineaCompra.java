@@ -121,4 +121,22 @@ public class LineaCompra {
         
         return lineaCompras;
     }  
+    
+    protected static LineaCompra obtenerLineaCompra (int id) throws BDException{
+        String jsonLineaCompra=GestorPersistenciaLineaCompra.getLineaCompraByid(id);
+        LineaCompra lineaCompra=null;
+        
+        /*Creación del empleado*/
+        if(jsonLineaCompra!=null) lineaCompra=new LineaCompra(jsonLineaCompra);
+              
+        return lineaCompra;
+    } 
+    
+    protected void lineaCompraRecibida() throws BDException{
+        GestorPersistenciaLineaCompra.lineaCompraRecibida(getIdLineaCompra());
+    }
+    
+    protected void fechaRecepcionLC(Date fecha)throws BDException{
+        GestorPersistenciaLineaCompra.fechaRecepcionLC(getIdLineaCompra(), fecha);
+    }
 }

@@ -12,6 +12,8 @@ import dominio.LineaCompra;
 import dominio.Referencia;
 import excepciones.LineaCompraNotFoundException;
 import excepciones.ReferenciaNotFoundException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -55,6 +57,21 @@ public class ControlVistaRegistrarCompra {
        }catch(NumberFormatException ex){
             vista.lanzaError("Formato de identificador de Compra Incorrecto"); 
        }catch(LineaCompraNotFoundException | ReferenciaNotFoundException ex){
+           vista.lanzaError(ex.getMessage());
+       }
+    }
+    
+    protected void lineaCompraSeleccionada(int codigo, boolean esCajas, int contenido, 
+            double importe, boolean disponible,int unidades){
+        try{
+            ContCURegistrarCompra.lineaCompraRecibida(codigo);
+             
+            Date today =Date.valueOf(LocalDate.now());
+            
+            ContCURegistrarCompra.recepcionLineaCompra(codigo,today);
+            
+            
+        }catch(LineaCompraNotFoundException ex){
            vista.lanzaError(ex.getMessage());
        }
     }

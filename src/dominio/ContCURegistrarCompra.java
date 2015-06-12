@@ -8,6 +8,8 @@ package dominio;
 import excepciones.BDException;
 import excepciones.LineaCompraNotFoundException;
 import excepciones.ReferenciaNotFoundException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -50,5 +52,26 @@ public class ContCURegistrarCompra {
         }
         
         return ref;
+    }
+    
+    public static void lineaCompraRecibida(int id)throws LineaCompraNotFoundException {
+        try{
+            LineaCompra lineaCompra = LineaCompra.obtenerLineaCompra(id);
+        
+            lineaCompra.lineaCompraRecibida();   
+        }catch(BDException ex){
+            throw new LineaCompraNotFoundException("Linea de compra no encontrada: "+ex.getMessage());   
+        }
+    }
+    
+    public static void recepcionLineaCompra(int id,Date fecha) throws LineaCompraNotFoundException{
+        try{ 
+            LineaCompra lineaCompra = LineaCompra.obtenerLineaCompra(id);
+   
+            
+            lineaCompra.fechaRecepcionLC(fecha);
+        }catch(BDException ex){
+            throw new LineaCompraNotFoundException("Linea de compra no encontrada: "+ex.getMessage());   
+        }   
     }
 }

@@ -5,13 +5,9 @@
  */
 package presentacion;
 
-import dominio.Abonado;
 import dominio.Compra;
-import dominio.Factura;
 import dominio.LineaCompra;
-import dominio.Pedido;
 import dominio.Referencia;
-import java.lang.ref.Reference;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -71,6 +67,10 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
      */
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void lanzaConfirmacion(String msg){
+        JOptionPane.showMessageDialog(this, msg, "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
     }
     /**
      * 
@@ -192,6 +192,11 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         nombreBodegaLabel.setText("nombreBodega");
 
         seleccionarButton.setText("seleccionar");
+        seleccionarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionarButtonActionPerformed(evt);
+            }
+        });
 
         referenciaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -298,6 +303,21 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
             lanzaError("Identificador de compra vacio(s)\n");
         }
     }//GEN-LAST:event_comprobarButtonActionPerformed
+
+    private void seleccionarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarButtonActionPerformed
+        int i = referenciaTable.getSelectedRow();
+        if(i != -1){
+            int codigo = (int)referenciaTable.getValueAt(i, 0);
+            boolean esCajas = (boolean)referenciaTable.getValueAt(i, 1);
+            int contenido = (int)referenciaTable.getValueAt(i, 2);
+            double importe = (double)referenciaTable.getValueAt(i, 3);
+            boolean disponible = (boolean)referenciaTable.getValueAt(i, 4);
+            int unidades = (int)referenciaTable.getValueAt(i, 5);
+            c.lineaCompraSeleccionada(codigo,esCajas,contenido,importe,disponible,unidades);
+            lanzaConfirmacion("Linea de compra recibida");
+        }else
+            lanzaError("No ha seleccionado ninguna linea de compra");
+    }//GEN-LAST:event_seleccionarButtonActionPerformed
 
     /**
      * @param args the command line arguments
