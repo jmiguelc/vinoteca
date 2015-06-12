@@ -50,7 +50,7 @@ public class ControlVistaRegistrarCompra {
            vista.setIdCompraOutLabel(idCompra);
            Bodega bodega=compra.getBodega();
            vista.setNombreBodegaLabel(bodega.getNombre());
-           vista.showInforme(compra);
+           vista.showInforme(compra,listaReferencias);
            
        }catch(NumberFormatException ex){
             vista.lanzaError("Formato de identificador de Compra Incorrecto"); 
