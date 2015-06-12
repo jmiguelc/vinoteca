@@ -149,6 +149,11 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         idCompraTextField.setText("idCompra");
 
         volverButton.setText("volver");
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout entradaPanelLayout = new javax.swing.GroupLayout(entradaPanel);
         entradaPanel.setLayout(entradaPanelLayout);
@@ -328,6 +333,12 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         c.finalizarSeleccion();
         
     }//GEN-LAST:event_finalizarButtonActionPerformed
+
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        VistaOpcionesEncAlmacen v=new VistaOpcionesEncAlmacen();
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverButtonActionPerformed
 
     /**
      * @param args the command line arguments

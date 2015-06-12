@@ -88,6 +88,10 @@ public class Pedido {
         int numeroAbonado=jsonObject.getInt("numeroAbonado");
         Abonado ab=Abonado.obtenerAbonado(numeroAbonado);
         setAbonado(ab);
+        
+        ArrayList<LineaPedido> lineasPedido;
+        lineasPedido=LineaPedido.obtenerlineasPedidosByPedido(getNumeroPedido());
+        setLineasPedido(lineasPedido);
     }
 
     /**
@@ -256,12 +260,50 @@ public class Pedido {
         return pedidos;
     }  
     
+     protected static ArrayList<Pedido> obtenerPedidostramitados() throws BDException{
+        ArrayList<Pedido> pedidos=new ArrayList<>();
+        Pedido p;
+        
+        /*recuperar pedidos */
+         String jsonListaPedidos=GestorPersistenciaPedido.getPedidosTramitados();
+         String jsonPedido;
+        
+        /*Deshacemos el jsonArray*/
+        StringReader strReader=new StringReader(jsonListaPedidos);
+        JsonReader jReader=Json.createReader(strReader);    
+        JsonArray jsonArray=jReader.readArray();
+        
+        /*mandamos construir los objetos y generamos la lista de Pedidos*/
+        for(int i=0;i<jsonArray.size();i++){
+            jsonPedido = jsonArray.getJsonObject(i).toString();
+            p=new Pedido(jsonPedido);
+            pedidos.add(p);
+        }
+        
+        return pedidos;
+    }  
+    
+    
     /**
      *Añade una linea de pedido de Pedido
      * @param lineaPedido
      */
     protected void addLineaPedido(LineaPedido lineaPedido){
         this.lineasPedido.add(lineaPedido);
+    }
+    
+    protected void cambiaCompletado() throws BDException{
+        boolean completado=true;
+        for(LineaPedido lineaPedido:lineasPedido){
+            if(lineaPedido.isCompletada()==false){
+                completado=false;
+            }
+        }
+        
+        if (completado){
+            setEstado(EstadoPedido.completado);
+            GestorPersistenciaPedido.updateEstadoPedido(estado.toString(), numeroPedido);
+        }
     }
     
     /**
@@ -291,7 +333,6 @@ public class Pedido {
     }
      /**
      * Se obtiene el importe total de Pedido
-     * @return el importe total de un pedido
      */
     protected void setTotal(){
         double importeTotal = 0.0;

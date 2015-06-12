@@ -8,8 +8,12 @@ package dominio;
 import excepciones.BDException;
 import excepciones.LineaCompraNotFoundException;
 import excepciones.LineasCompraNoRecibidasException;
+import excepciones.PedidoNotFoundException;
 import excepciones.ReferenciaNotFoundException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -111,4 +115,17 @@ public class ContCURegistrarCompra {
             throw new LineaCompraNotFoundException("Linea de compra no encontrada: "+ex.getMessage());   
         }   
     }
+    
+    public static void comprobarPedidos() throws PedidoNotFoundException{
+        try {
+            ArrayList<Pedido> listaPedidos;
+            listaPedidos=Pedido.obtenerPedidostramitados();
+            for(Pedido pedido:listaPedidos){
+                pedido.cambiaCompletado();
+            }
+            System.out.println();
+        } catch (BDException ex) {
+            throw new PedidoNotFoundException(ex.getMessage());
+        }
     }
+}

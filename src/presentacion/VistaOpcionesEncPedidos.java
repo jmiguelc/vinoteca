@@ -31,6 +31,7 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
         RegistrarEnvioButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
+        logOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Encargado de Pedidos");
@@ -51,6 +52,13 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Encargado de Pedidos");
 
+        logOutButton.setText("Salir del Sistema");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -61,7 +69,8 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
                     .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(procesarPedidoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(RegistrarEnvioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,6 +83,8 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
                 .addComponent(RegistrarEnvioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logOutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -83,8 +94,13 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
     private void procesarPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarPedidoButtonActionPerformed
         VistaCUProcesarPedido vista=new VistaCUProcesarPedido();
         vista.setVisible(true);
-        //this.dispose();
+        this.dispose();
     }//GEN-LAST:event_procesarPedidoButtonActionPerformed
+
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+       VistaCUIdentificarse v=new VistaCUIdentificarse();
+       v.setVisible(true);
+       this.dispose();    }//GEN-LAST:event_logOutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +140,7 @@ public class VistaOpcionesEncPedidos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RegistrarEnvioButton;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton logOutButton;
     private javax.swing.JButton procesarPedidoButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

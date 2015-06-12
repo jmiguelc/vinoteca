@@ -7,11 +7,15 @@ package datos;
 
 import excepciones.BDException;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
+import javax.json.JsonWriter;
 
 /**
  *
@@ -60,4 +64,36 @@ public class GestorPersistenciaLineaPedido {
         
         ConexionBD.creaInstancia().ejecutaUpdate(sql);
      }
+     
+     public static String getLineasPedidoByPedido(int numeroPedido) throws BDException{
+        ResultSet rs;
+        String sql = "SELECT * FROM APP.LINEAPEDIDO WHERE NUMEROPEDIDO="+numeroPedido;
+        
+        try{
+            /*Lectura de la BD y creación de la cadena Json*/
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            JsonArrayBuilder jsonPedidos= Json.createArrayBuilder();
+            while(rs.next()){
+                JsonObjectBuilder jObj=Json.createObjectBuilder()
+                .add("idLineaPedido",rs.getInt("ID"))
+                .add("unidades",rs.getInt("UNIDADES"))
+                .add("completada",rs.getString("COMPLETADA"));
+                
+                JsonObject jsonObj=jObj.build();
+                
+                jsonPedidos.add(jsonObj);
+            }
+            
+            /*Conversion de Json a String*/
+            StringWriter jsonstr=new StringWriter();
+            JsonWriter writer = Json.createWriter(jsonstr);
+            writer.writeArray(jsonPedidos.build());
+
+            return jsonstr.toString();
+            
+        }catch(SQLException e){
+            throw new BDException(e.getMessage());
+        }
+       
+    }
 }

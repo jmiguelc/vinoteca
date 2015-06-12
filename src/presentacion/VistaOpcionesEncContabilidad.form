@@ -25,14 +25,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="facturarAbonadoButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="anotarPagoButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="cImpagosButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="pagarBodegaButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="titleLabel" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="logOutButton" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="facturarAbonadoButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="anotarPagoButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cImpagosButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pagarBodegaButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="titleLabel" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -51,7 +54,9 @@
               <Component id="cImpagosButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pagarBodegaButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="logOutButton" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,6 +93,14 @@
         <Property name="text" type="java.lang.String" value="Pagar a Bodega"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="logOutButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir del Sistema"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logOutButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

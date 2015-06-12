@@ -48,7 +48,7 @@ public class GestorPersistenciaCompra {
                 .add("pagada",rs.getString("PAGADA"))
                 .add("idBodega",rs.getInt("IDBODEGA"));
                 
-                if(rs.getString("FECHACOMPRACOMPLETADA")!=null)
+                if(rs.getString("FECHAPAGO")!=null)
                     jsonObjBuilder.add("fechaPago",rs.getString("FECHAPAGO"));
                 
                 JsonObject jsonObj=jsonObjBuilder.build();

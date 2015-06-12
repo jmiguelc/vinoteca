@@ -73,6 +73,49 @@ public class GestorPersistenciaPedido {
        
     }
     
+    public static String getPedidosTramitados() throws BDException{
+        ResultSet rs;
+        String sql = "SELECT * FROM APP.PEDIDO WHERE ESTADO='T'";
+        
+        try{
+            /*Lectura de la BD y creación de la cadena Json*/
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            JsonArrayBuilder jsonPedidos= Json.createArrayBuilder();
+            while(rs.next()){
+                JsonObjectBuilder jObj=Json.createObjectBuilder()
+                .add("numeroPedido",rs.getInt("NUMERO"))
+                .add("fechaRealizacion",rs.getString("FECHAREALIZACION"));
+                if(rs.getString("NOTAENTREGA")!=null)
+                    jObj.add("notaEntrega",rs.getString("NOTAENTREGA"));
+                
+                jObj.add("importe",rs.getFloat("IMPORTE"));
+                if(rs.getString("FECHARECEPCION")!=null)
+                    jObj.add("fechaRecepcion",rs.getString("FECHARECEPCION"));
+                
+                if(rs.getString("FECHAENTREGA")!=null)
+                    jObj.add("fechaEntrega",rs.getString("FECHAENTREGA"));
+                jObj.add("estado",rs.getString("ESTADO"))
+                .add("numeroAbonado",rs.getInt("NUMEROABONADO"))
+                .add("numeroFactura",rs.getInt("NUMEROFACTURA"));
+                
+                JsonObject jsonObj=jObj.build();
+                
+                jsonPedidos.add(jsonObj);
+            }
+            
+            /*Conversion de Json a String*/
+            StringWriter jsonstr=new StringWriter();
+            JsonWriter writer = Json.createWriter(jsonstr);
+            writer.writeArray(jsonPedidos.build());
+
+            return jsonstr.toString();
+            
+        }catch(SQLException e){
+            throw new BDException(e.getMessage());
+        }
+       
+    }
+    
     public static int insertPedido(String jsonPedido) throws BDException {
         StringReader strReader=new StringReader(jsonPedido);
         JsonReader jReader=Json.createReader(strReader);
@@ -109,5 +152,13 @@ public class GestorPersistenciaPedido {
         }
         
         return nextPedido;
+    }
+    
+    public static int updateEstadoPedido(String estado,int numeroPedido) throws BDException {
+            
+        String sql = "UPDATE APP.PEDIDO SET ESTADO='"+estado+"' WHERE NUMERO="+numeroPedido;
+        int resutado=ConexionBD.creaInstancia().ejecutaUpdate(sql);
+        
+        return resutado;
     }
 }

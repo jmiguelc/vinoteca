@@ -38,6 +38,7 @@ public enum EstadoPedido {
      * Funcion tipo String
      * @return el tipo de estado del pedido
      */
+    @Override
     public String toString(){
         switch(this){
             case pendiente: return "P";

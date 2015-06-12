@@ -12,10 +12,13 @@ import dominio.LineaCompra;
 import dominio.Referencia;
 import excepciones.LineaCompraNotFoundException;
 import excepciones.LineasCompraNoRecibidasException;
+import excepciones.PedidoNotFoundException;
 import excepciones.ReferenciaNotFoundException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -85,9 +88,10 @@ public class ControlVistaRegistrarCompra {
             Date today =Date.valueOf(LocalDate.now());
             
             ContCURegistrarCompra.recepcionCompra(idCompra,today );
+            ContCURegistrarCompra.comprobarPedidos();
             vista.lanzaConfirmacion("La compra esta recibida completa");
             vista.dispose();
-        }catch(LineasCompraNoRecibidasException | LineaCompraNotFoundException ex){
+        }catch(LineasCompraNoRecibidasException | LineaCompraNotFoundException | PedidoNotFoundException ex){
            vista.lanzaError(ex.getMessage());
        }
     }

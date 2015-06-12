@@ -50,6 +50,7 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         scrollInforme2 = new javax.swing.JScrollPane();
         informeTable2 = new javax.swing.JTable();
+        volverButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultar Impagos");
@@ -157,6 +158,13 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
             informeTable2.getColumnModel().getColumn(6).setResizable(false);
         }
 
+        volverButton.setText("Volver");
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,6 +186,10 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
                             .addComponent(scrollInforme1)
                             .addComponent(scrollInforme2))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(volverButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +207,9 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
                 .addComponent(scrollInforme1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(scrollInforme2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(volverButton)
+                .addContainerGap())
         );
 
         pack();
@@ -205,6 +219,13 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
         // TODO add your handling code here:
         c.procesarDatosConsulta();
     }//GEN-LAST:event_consultaButtonActionPerformed
+
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        // TODO add your handling code here:      
+        VistaOpcionesEncContabilidad v=new VistaOpcionesEncContabilidad();
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverButtonActionPerformed
     
     public void lanzaError(String msg){
         JOptionPane.showMessageDialog(this, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -323,5 +344,6 @@ public class VistaCUConsultarImpagos extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollInforme1;
     private javax.swing.JScrollPane scrollInforme2;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 }

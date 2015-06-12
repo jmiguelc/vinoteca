@@ -49,7 +49,7 @@ public class ControlVistaConsultarImpagos {
             vista.showInforme(facturas);
             
         }catch(ParseException|PrivilegedActionException ex){
-            vista.lanzaError("Error Formato de fecha Incorrecto. " +ex.getMessage());
+            vista.lanzaError("Error Formato de fecha Incorrecto.\nPor favor intrduzca formato: dd/mm/aaaa");
         } catch (BDException ex) {
             vista.lanzaError(ex.getMessage());
         }

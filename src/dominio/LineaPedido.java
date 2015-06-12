@@ -7,9 +7,13 @@ package dominio;
 
 import datos.GestorPersistenciaLineaPedido;
 import excepciones.BDException;
+import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.json.JsonWriter;
 
 /**
@@ -31,6 +35,15 @@ public class LineaPedido {
         this.unidades = unidades;
         this.completada = completada;
         this.ref = ref;
+    }
+    
+    public LineaPedido(String jsonLineaPedido) {
+        StringReader strReader=new StringReader(jsonLineaPedido);
+        JsonReader jReader=Json.createReader(strReader);
+        JsonObject jsonObject=jReader.readObject();
+        
+        setUnidades(jsonObject.getInt("unidades"));
+        setCompletada(jsonObject.getString("completada"));
     }
 
     /**
@@ -61,8 +74,15 @@ public class LineaPedido {
      * Establece el estado de si la linea de pedido esta completada o no
      * @param completada
      */
-    public void setCompletada(boolean completada) {
-        this.completada = completada;
+    private void setCompletada(String completada) {
+        switch(completada){
+            case "T":
+                this.completada=true;
+                break;
+            case "F":
+                this.completada=false;
+                break;
+        }
     }
 
     /**
@@ -137,4 +157,27 @@ public class LineaPedido {
     protected static void lineasPedidoCompletas(int idLineaCompra) throws BDException{
         GestorPersistenciaLineaPedido.lineasPedidoCompletas(idLineaCompra);
     }
+    
+    protected static ArrayList<LineaPedido> obtenerlineasPedidosByPedido(int numeroPedido) throws BDException{
+        ArrayList<LineaPedido> lineasPedido=new ArrayList<>();
+        LineaPedido lineaPedido;
+        
+        /*recuperar pedidos */
+         String jsonListaLineasPedido=GestorPersistenciaLineaPedido.getLineasPedidoByPedido(numeroPedido);
+         String jsonLineaPedido;
+        
+        /*Deshacemos el jsonArray*/
+        StringReader strReader=new StringReader(jsonListaLineasPedido);
+        JsonReader jReader=Json.createReader(strReader);    
+        JsonArray jsonArray=jReader.readArray();
+        
+        /*mandamos construir los objetos y generamos la lista de Pedidos*/
+        for(int i=0;i<jsonArray.size();i++){
+            jsonLineaPedido = jsonArray.getJsonObject(i).toString();
+            lineaPedido=new LineaPedido(jsonLineaPedido);
+            lineasPedido.add(lineaPedido);
+        }
+        
+        return lineasPedido;
+    }  
 }
