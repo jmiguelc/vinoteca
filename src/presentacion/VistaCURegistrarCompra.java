@@ -5,7 +5,14 @@
  */
 package presentacion;
 
+import dominio.Abonado;
+import dominio.Compra;
+import dominio.Factura;
+import dominio.LineaCompra;
+import dominio.Pedido;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -79,10 +86,20 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
     /*protected void showInforme(Referencia ref){
 
     }*/
-    protected void mostrarTablas(boolean show){
+    protected void showInforme(Compra compra){
+        ArrayList<LineaCompra> lineasCompra=compra.getLineaCompras();
+        DefaultTableModel modelo;
 
+        
+        modelo=(DefaultTableModel)referenciaTable.getModel();
+        modelo.setRowCount(lineasCompra.size());
+        referenciaTable.setModel(modelo);
+     
+        for (int i=0;i<lineasCompra.size();i++) {
+            referenciaTable.setValueAt(lineasCompra.get(i).getUnidades(),i ,5);
+ 
+        }
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -292,15 +309,18 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaCURegistrarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaCURegistrarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaCURegistrarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VistaCURegistrarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -312,6 +332,7 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new VistaCURegistrarCompra().setVisible(true);
             }

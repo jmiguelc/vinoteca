@@ -47,4 +47,35 @@ public class GestorPersistenciaReferencia {
         
         return null;
     }
+    
+    public static String getReferenciaByLineaCompra(int idLineaCompra) throws BDException{
+        ResultSet rs;
+        String sql = "SELECT R.CODIGO, R.ESPORCAJAS, R.CONTENIDOENCL, R.PRECIO, R.DISPONIBLE "
+                + "FROM APP.REFERENCIA R, APP.LINEAPEDIDO LP "
+                + "WHERE LP.CODIGO = R.CODIGO AND LP.IDLINEACOMPRA="+idLineaCompra;
+        try{
+            /*Lectura de la BD y creación de la cadena Json*/
+            rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+            if(rs.next()){
+                JsonObject jsonObj=Json.createObjectBuilder()
+                .add("codigo",rs.getInt("R.CODIGO"))
+                .add("porCajas", rs.getBoolean("R.ESPORCAJAS"))
+                .add("contenido", rs.getShort("R.CONTENIDOENCL"))
+                .add("importe", rs.getDouble("R.PRECIO"))
+                .add("disponible", rs.getBoolean("R.DISPONIBLE"))
+                .build();
+
+                /*Conversion de Json a String*/
+                StringWriter jsonstr=new StringWriter();
+                JsonWriter writer = Json.createWriter(jsonstr);
+                writer.writeObject(jsonObj);
+
+                return jsonstr.toString();
+            }
+        }catch(SQLException e){
+            throw new BDException(e.getMessage());
+        }
+        
+        return null;
+    }
 }

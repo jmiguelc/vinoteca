@@ -6,7 +6,6 @@
 package dominio;
 
 import datos.GestorPersistenciaLineaCompra;
-import datos.GestorPersistenciaPedido;
 import excepciones.BDException;
 import java.io.StringReader;
 import java.sql.Date;
@@ -21,6 +20,7 @@ import javax.json.JsonReader;
  * @author nurcanc
  */
 public class LineaCompra {
+    private int idLineaCompra;
     private int unidades;
     private boolean recibida;
     private Date fechaRecepcion;
@@ -32,10 +32,20 @@ public class LineaCompra {
         
         setRecibida(jsonObject.getString("recibida"));
         setUnidades(jsonObject.getInt("unidades"));
-        String fechaRecepcion=jsonObject.getString("fechaRecepcion");
-        setFechaRecepcion(Date.valueOf(fechaRecepcion));
+        if(jsonObject.containsKey("fechaRecepcion")){
+            String fechaRecepcion=jsonObject.getString("fechaRecepcion");
+            setFechaRecepcion(Date.valueOf(fechaRecepcion));
+        }
+        setIdLineaCompra(jsonObject.getInt("idLineaCompra"));
     }
-    
+
+    public int getIdLineaCompra() {
+        return idLineaCompra;
+    }
+
+    private void setIdLineaCompra(int idLineaCompra) {
+        this.idLineaCompra = idLineaCompra;
+    }
     
     /**
      * Se obtiene las unidades de la linea de compra

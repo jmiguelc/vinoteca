@@ -83,7 +83,7 @@ public class ContCUProcesarPedido {
      * @throws RefNotAvaliableException 
      */    
     public static Referencia comprobarReferencia(int numRef)throws BDException, RefNotAvaliableException{
-         Referencia ref = Referencia.getReferencia(numRef);
+         Referencia ref = Referencia.obtenerReferencia(numRef);
          boolean val = false;
          
          if(ref != null && ref.isDisponible())

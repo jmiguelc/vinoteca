@@ -36,12 +36,15 @@ public class GestorPersistenciaLineaCompra {
             rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
             JsonArrayBuilder jsonLineaCompra= Json.createArrayBuilder();
             while(rs.next()){
-                JsonObject jsonObj=Json.createObjectBuilder()
+                JsonObjectBuilder jObj=Json.createObjectBuilder()
+                .add("idLineaCompra",rs.getInt("ID"))
                 .add("unidades",rs.getInt("UNIDADES"))
-                .add("recibida",rs.getString("RECIBIDA"))
-                .add("fechaRecepcion",rs.getString("FECHARECEPCION")).build();
+                .add("recibida",rs.getString("RECIBIDA"));
                 
+                if(rs.getString("FECHARECEPCION")!=null)
+                    jObj.add("fechaRecepcion",rs.getString("FECHARECEPCION"));
                 
+                JsonObject jsonObj=jObj.build();  
                 jsonLineaCompra.add(jsonObj);
             }
             

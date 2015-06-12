@@ -9,8 +9,8 @@ package excepciones;
  *
  * @author ruben
  */
-public class CompraNotFoundException extends Exception{
-      public CompraNotFoundException(String msg) {
+public class LineaCompraNotFoundException extends Exception{
+      public LineaCompraNotFoundException(String msg) {
         super(msg);
     }
 }

@@ -121,8 +121,18 @@ public class Referencia {
      * @return el numero de referencia de una referencia
      * @throws BDException
      */
-    protected static Referencia getReferencia(int numRef) throws BDException{
+    protected static Referencia obtenerReferencia(int numRef) throws BDException{
         String jsonReferencia = GestorPersistenciaReferencia.getReferencia(numRef);
+        Referencia ref = null;
+        
+        if(jsonReferencia != null){
+            ref = new Referencia(jsonReferencia);
+        }
+        return ref;
+    }
+    
+    protected static Referencia obtenerReferenciaByLineaPedido(int idLineaPedido) throws BDException{
+        String jsonReferencia = GestorPersistenciaReferencia.getReferenciaByLineaCompra(idLineaPedido);
         Referencia ref = null;
         
         if(jsonReferencia != null){

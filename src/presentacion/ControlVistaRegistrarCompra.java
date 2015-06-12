@@ -8,7 +8,11 @@ package presentacion;
 import dominio.Bodega;
 import dominio.Compra;
 import dominio.ContCURegistrarCompra;
-import excepciones.CompraNotFoundException;
+import dominio.LineaCompra;
+import dominio.Referencia;
+import excepciones.LineaCompraNotFoundException;
+import excepciones.ReferenciaNotFoundException;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,16 +36,25 @@ public class ControlVistaRegistrarCompra {
      */
     protected void comprobarIDCompra(){
        try{
+           ArrayList<Referencia> listaReferencias=new ArrayList<>();
+           ArrayList<LineaCompra> lineaCompras;
            int idCompra = Integer.parseInt(vista.getIdCompra());
            Compra compra=ContCURegistrarCompra.comprobarIDCompra(idCompra);
+           lineaCompras=compra.getLineaCompras();
+           for(LineaCompra lineaCompra:lineaCompras){
+            Referencia ref=ContCURegistrarCompra.obtenerInfRef(lineaCompra.getIdLineaCompra());
+            if (ref!=null){
+                listaReferencias.add(ref);
+            }
+           }
            vista.setIdCompraOutLabel(idCompra);
            Bodega bodega=compra.getBodega();
            vista.setNombreBodegaLabel(bodega.getNombre());
-           
+           vista.showInforme(compra);
            
        }catch(NumberFormatException ex){
             vista.lanzaError("Formato de identificador de Compra Incorrecto"); 
-       }catch(CompraNotFoundException ex){
+       }catch(LineaCompraNotFoundException | ReferenciaNotFoundException ex){
            vista.lanzaError(ex.getMessage());
        }
     }
