@@ -11,6 +11,7 @@ import dominio.ContCURegistrarCompra;
 import dominio.LineaCompra;
 import dominio.Referencia;
 import excepciones.LineaCompraNotFoundException;
+import excepciones.LineasCompraNoRecibidasException;
 import excepciones.ReferenciaNotFoundException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -61,8 +62,7 @@ public class ControlVistaRegistrarCompra {
        }
     }
     
-    protected void lineaCompraSeleccionada(int codigo, boolean esCajas, int contenido, 
-            double importe, boolean disponible,int unidades){
+    protected void lineaCompraSeleccionada(int codigo){
         try{
             ContCURegistrarCompra.lineaCompraRecibida(codigo);
              
@@ -70,8 +70,24 @@ public class ControlVistaRegistrarCompra {
             
             ContCURegistrarCompra.recepcionLineaCompra(codigo,today);
             
-            
+            ContCURegistrarCompra.lineasPedidoCompletas(codigo);
         }catch(LineaCompraNotFoundException ex){
+           vista.lanzaError(ex.getMessage());
+       }
+    }
+    
+    protected void finalizarSeleccion(){
+        try{
+            int idCompra = Integer.parseInt(vista.getIdCompra());
+            
+            ContCURegistrarCompra.comprobarLineasCompra(idCompra);
+            
+            Date today =Date.valueOf(LocalDate.now());
+            
+            ContCURegistrarCompra.recepcionCompra(idCompra,today );
+            vista.lanzaConfirmacion("La compra esta recibida completa");
+            vista.dispose();
+        }catch(LineasCompraNoRecibidasException | LineaCompraNotFoundException ex){
            vista.lanzaError(ex.getMessage());
        }
     }

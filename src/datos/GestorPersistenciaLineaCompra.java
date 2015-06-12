@@ -105,4 +105,21 @@ public class GestorPersistenciaLineaCompra {
         
         ConexionBD.creaInstancia().ejecutaUpdate(sql);
      }
+      
+      public static int comprobarLineaCompraRecibida(int id) throws BDException{
+          ResultSet rs;
+          String sql = "SELECT * FROM APP.LINEACOMPRA WHERE ID="+id+ " AND RECIBIDA='T'";
+          int valor = 1;
+          
+           try{
+                rs = ConexionBD.creaInstancia().ejecutaQuery(sql);
+                if(rs.next()){
+                    valor = 0;
+                    return valor;
+                }
+            }catch(SQLException e){
+                throw new BDException(e.getMessage());
+            }
+           return valor;
+      }
 }

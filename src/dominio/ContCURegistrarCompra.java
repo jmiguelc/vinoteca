@@ -7,6 +7,7 @@ package dominio;
 
 import excepciones.BDException;
 import excepciones.LineaCompraNotFoundException;
+import excepciones.LineasCompraNoRecibidasException;
 import excepciones.ReferenciaNotFoundException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -74,4 +75,41 @@ public class ContCURegistrarCompra {
             throw new LineaCompraNotFoundException("Linea de compra no encontrada: "+ex.getMessage());   
         }   
     }
-}
+    
+    public static void lineasPedidoCompletas(int id) throws LineaCompraNotFoundException{
+        try{
+            LineaCompra lineaCompra = LineaCompra.obtenerLineaCompra(id);
+        
+            lineaCompra.lineasPedidoCompletas();
+        }catch(BDException ex){
+            throw new LineaCompraNotFoundException("Linea de compra no encontrada: "+ex.getMessage());   
+        }   
+        
+    }
+    
+    public static void comprobarLineasCompra(int idCompra)throws LineasCompraNoRecibidasException, LineaCompraNotFoundException{
+        try{
+            int resultado = 1;
+            
+            Compra compra = Compra.obtenerCompra(idCompra);
+            
+            resultado = compra.comprobarLineasCompra();
+            
+            if(resultado==1)
+                throw new LineasCompraNoRecibidasException("Hay lineas de compra no recibidas");
+            }catch(BDException ex){
+                throw new LineaCompraNotFoundException("Identificador de compra no Encontrado: "+ex.getMessage());   
+            } 
+        }
+    
+    public static void recepcionCompra(int id,Date fecha) throws LineaCompraNotFoundException{
+        try{ 
+            Compra compra = Compra.obtenerCompra(id);
+   
+            
+            compra.fechaRecepcionCompra(fecha);
+        }catch(BDException ex){
+            throw new LineaCompraNotFoundException("Linea de compra no encontrada: "+ex.getMessage());   
+        }   
+    }
+    }

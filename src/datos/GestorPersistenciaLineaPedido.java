@@ -54,4 +54,10 @@ public class GestorPersistenciaLineaPedido {
         
         return nextPedido;
     }
+     
+     public static void lineasPedidoCompletas(int idLineaCompra) throws BDException{
+        String sql = "UPDATE APP.LINEAPEDIDO SET COMPLETADA='T' WHERE IDLINEACOMPRA="+idLineaCompra;
+        
+        ConexionBD.creaInstancia().ejecutaUpdate(sql);
+     }
 }

@@ -258,6 +258,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="finalizar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finalizarButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

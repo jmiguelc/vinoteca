@@ -139,4 +139,14 @@ public class LineaCompra {
     protected void fechaRecepcionLC(Date fecha)throws BDException{
         GestorPersistenciaLineaCompra.fechaRecepcionLC(getIdLineaCompra(), fecha);
     }
+    
+    protected void lineasPedidoCompletas() throws BDException{
+        LineaPedido.lineasPedidoCompletas(getIdLineaCompra());
+    }
+    
+    protected int comprobarLineaCompraRecibida() throws BDException{
+        int resultado;
+        resultado = GestorPersistenciaLineaCompra.comprobarLineaCompraRecibida(getIdLineaCompra());
+        return resultado;
+    }
 }

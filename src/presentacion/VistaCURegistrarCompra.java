@@ -234,6 +234,11 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         }
 
         finalizarButton.setText("finalizar");
+        finalizarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout salidaPanelLayout = new javax.swing.GroupLayout(salidaPanel);
         salidaPanel.setLayout(salidaPanelLayout);
@@ -308,16 +313,17 @@ public class VistaCURegistrarCompra extends javax.swing.JFrame {
         int i = referenciaTable.getSelectedRow();
         if(i != -1){
             int codigo = (int)referenciaTable.getValueAt(i, 0);
-            boolean esCajas = (boolean)referenciaTable.getValueAt(i, 1);
-            int contenido = (int)referenciaTable.getValueAt(i, 2);
-            double importe = (double)referenciaTable.getValueAt(i, 3);
-            boolean disponible = (boolean)referenciaTable.getValueAt(i, 4);
-            int unidades = (int)referenciaTable.getValueAt(i, 5);
-            c.lineaCompraSeleccionada(codigo,esCajas,contenido,importe,disponible,unidades);
+            c.lineaCompraSeleccionada(codigo);
             lanzaConfirmacion("Linea de compra recibida");
         }else
             lanzaError("No ha seleccionado ninguna linea de compra");
     }//GEN-LAST:event_seleccionarButtonActionPerformed
+
+    private void finalizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarButtonActionPerformed
+        
+        c.finalizarSeleccion();
+        
+    }//GEN-LAST:event_finalizarButtonActionPerformed
 
     /**
      * @param args the command line arguments

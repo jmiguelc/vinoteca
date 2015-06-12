@@ -7,6 +7,7 @@ package datos;
 
 import excepciones.BDException;
 import java.io.StringWriter;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
@@ -27,7 +28,7 @@ public class GestorPersistenciaCompra {
      */
     public static String getCompraByidCompra(int idCompra) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.COMPRA WHERE IDCOMPRA="+idCompra+" AND RECIBIDACOMPLETA='F'";
+        String sql = "SELECT * FROM APP.COMPRA WHERE IDCOMPRA="+idCompra+" AND RECIBIDACOMPLETADA='F'";
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/
@@ -68,5 +69,11 @@ public class GestorPersistenciaCompra {
        
         return null;
     }
+    
+    public static void fechaRecepcionCompra(int id, Date fecha) throws BDException{
+        String sql = "UPDATE APP.COMPRA SET FECHACOMPRACOMPLETADA='"+fecha+"' WHERE IDCOMPRA="+id;
+        
+        ConexionBD.creaInstancia().ejecutaUpdate(sql);
+     }
     
 }

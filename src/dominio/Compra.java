@@ -6,7 +6,6 @@
 package dominio;
 
 import datos.GestorPersistenciaCompra;
-import datos.GestorPersistenciaLineaCompra;
 import excepciones.BDException;
 import java.io.StringReader;
 import java.sql.Date;
@@ -211,5 +210,21 @@ public class Compra {
               
         return comp;
     } 
+    
+    protected int comprobarLineasCompra() throws BDException{
+        ArrayList<LineaCompra> lineasCompra = getLineaCompras();
+        int resultado = 1;
+        
+        for(LineaCompra lineaCompra: lineasCompra){
+            resultado = lineaCompra.comprobarLineaCompraRecibida();
+            if(resultado == 1)
+                return resultado;
+        }
+        return resultado;
+    }
+    
+    protected void fechaRecepcionCompra(Date fecha)throws BDException{
+        GestorPersistenciaCompra.fechaRecepcionCompra(getIdCompra(), fecha);
+    }
     
 }

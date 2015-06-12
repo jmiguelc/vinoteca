@@ -133,4 +133,8 @@ public class LineaPedido {
         
         return lp;
     }
+    
+    protected static void lineasPedidoCompletas(int idLineaCompra) throws BDException{
+        GestorPersistenciaLineaPedido.lineasPedidoCompletas(idLineaCompra);
+    }
 }
