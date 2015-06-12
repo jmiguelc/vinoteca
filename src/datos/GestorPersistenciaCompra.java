@@ -28,7 +28,7 @@ public class GestorPersistenciaCompra {
      */
     public static String getCompraByidCompra(int idCompra) throws BDException{
         ResultSet rs;
-        String sql = "SELECT * FROM APP.COMPRA WHERE IDCOMPRA="+idCompra+" AND RECIBIDACOMPLETADA='F'";
+        String sql = "SELECT * FROM APP.COMPRA WHERE IDCOMPRA="+idCompra+" AND RECIBIDACOMPLETA='F'";
         
         try{
             /*Lectura de la BD y creación de la cadena Json*/

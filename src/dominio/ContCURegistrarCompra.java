@@ -10,7 +10,6 @@ import excepciones.LineaCompraNotFoundException;
 import excepciones.LineasCompraNoRecibidasException;
 import excepciones.ReferenciaNotFoundException;
 import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  *
@@ -49,7 +48,7 @@ public class ContCURegistrarCompra {
             }
             
         }catch(BDException ex){
-            throw new ReferenciaNotFoundException("Identificador de compra no Encontrado: "+ex.getMessage());   
+            throw new ReferenciaNotFoundException("Referencia no Encontrada: "+ex.getMessage());   
         }
         
         return ref;
