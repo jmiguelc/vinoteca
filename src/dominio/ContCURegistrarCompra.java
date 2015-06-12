@@ -28,9 +28,7 @@ public class ContCURegistrarCompra {
             compra= Compra.obtenerCompra(idCompra);
             if(compra==null){
                 throw new LineaCompraNotFoundException("El identificador de compra no es correcto");
-            }
-            System.out.println("El identificador de compra existe y es válido");
-            
+            }            
         }catch(BDException ex){
             throw new LineaCompraNotFoundException("Identificador de compra no Encontrado: "+ex.getMessage());   
         }

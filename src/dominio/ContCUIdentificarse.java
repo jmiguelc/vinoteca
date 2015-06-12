@@ -29,7 +29,6 @@ public class ContCUIdentificarse {
             if(emp==null){
                 throw new EmpNotFoundException("Login o password Incorrectos.");
             }
-            System.out.println("El login se ha realizado correctamente");
             tipo=emp.getTipoEmpleado();
         }catch(BDException ex){
             throw new EmpNotFoundException("Empleado no Encontrado: "+ex.getMessage());   
