@@ -35,8 +35,7 @@ public class ContCUProcesarPedido {
             if(ab==null){
                 throw new AbNotFoundException("El número de abonado no es correcto");
             }
-            System.out.println("El abonado existe y es válido");
-            
+
         }catch(BDException ex){
             throw new AbNotFoundException("Abonado no Encontrado: "+ex.getMessage());   
         }
@@ -70,8 +69,6 @@ public class ContCUProcesarPedido {
         }
         if (val==false){
             throw new AbNotPaidException("Tiene facturas vencidas, no puede realizar otro pedido");
-        }else{
-            System.out.println("No tiene facturas pendientes");
         }
         return val;
     }
@@ -135,7 +132,6 @@ public class ContCUProcesarPedido {
         Calendar cal=Calendar.getInstance();
         cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
             cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-        System.out.println(cal.getTime().toString());
         Date mes=new Date(cal.getTimeInMillis());
         
         /*Obtenemos Facturas*/
